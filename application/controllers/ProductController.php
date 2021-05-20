@@ -16,4 +16,12 @@ class ProductController extends BaseController
             $this->set('productList', $product);
         }
     }
+
+    function view($id) //?url=cart/add/1
+    {
+        if (!empty($id)) {
+            $product = $this->Product->get_one($id);
+            $this->set("product", $product);
+        }
+    }
 }

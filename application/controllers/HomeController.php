@@ -2,8 +2,8 @@
 
 class HomeController extends BaseController
 {
-    public function getAll()
+    public function index()
     {
-        return ["test1", "test2", "test3"];
+        $product = new Product();
     }
 }

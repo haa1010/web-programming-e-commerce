@@ -41,6 +41,11 @@ function __autoload($className)
     }
 }
 
+// $url = Path route
+// ?url=cart/view/1/2
+// cart -> controller
+// view -> action
+// after -> paramlist
 function callHook()
 {
     global $url;
@@ -57,8 +62,8 @@ function callHook()
         $controllerName = $controller;
     }
     $controller = ucfirst($controller);
-    $model = $controller;
-    $controller .= 'Controller';
+    $model = $controller; //Cart
+    $controller .= 'Controller'; //CartController
     $dispatch = new $controller($model, $controllerName, $action);
     // $dispatch->render();
     if ((int)method_exists($controller, $action)) {
