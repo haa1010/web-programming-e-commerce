@@ -1,22 +1,24 @@
 <?php
-
+// include './config/config.php';
 class SQLQuery
 {
 
     public $_dbHandle;
     protected $_result;
     /** Connects to database * */
-    function connect($address, $account, $pwd, $name)
+    function connect()
     {
-        $this->_dbHandle = @mysqli_connect($address, $account, $pwd);
+        $this->_dbHandle = @mysqli_connect(DB_HOST, DB_USER,DB_PASSWORD);
         if ($this->_dbHandle) {
-            if (mysqli_select_db($this->_dbHandle, $name)) {
+            if (mysqli_select_db($this->_dbHandle,"ecommerce")) {
                 mysqli_set_charset($this->_dbHandle, 'utf8');
                 return 1;
             } else {
+                echo"not exist db";
                 return 0;
             }
         } else {
+            echo"unable to connect to db2";
             return 0;
         }
     }
@@ -47,7 +49,6 @@ class SQLQuery
     /** Custom SQL Query * */
     function query($query, $singleResult = 0)
     {
-
         $this->_result = mysqli_query($this->_dbHandle, $query);
 
         if (preg_match("/select/i", $query)) {
