@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div class="home">
+        Home Page
+        <!-- <img src="../../../public/images/banner3.png" src="banner3.png" alt="banner-1"> -->
+        <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG . 'shipping.png"' . '" alt="' . '"/ >'; ?>
+        <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG . 'banner.jpeg"' . '" alt="' . '"/ >'; ?>
+        <h1>#3HSale</h1>
+        <?php echo '<a href="?url=category/view/2/1"><image class="img-max-width" src="' . PATH_URL_IMG . 'men.jpeg"' . '" alt="' . '"/ ></a>'; ?>
+        <?php echo '<a href="?url=category/view/3"><image class="img-max-width" src="' . PATH_URL_IMG . 'banner-shoes.jpeg"' . '" alt="' . '"/ ></a>'; ?>
+        <h1>#3HProducts</h1>
+        <table>
+            <tr>
+                <td><?php echo '<a href="?url=category/view/2/2"><image class="img-max-width" src="' . PATH_URL_IMG . 't-shirt.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td class=" td-padding">
+                    <h2>2021 New T-shirt Collection</h2>
+                    <h3>Active and Creative</h3>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-right td-padding">
+                    <h2>Straight-Fit Jeans</h2>
+                    <h3>Elevate your look with the latest 3H's jeans</h3>
+                </td>
+                <td><?php echo '<a href="?url=category/view/1/3"><image class="img-max-width" src="' . PATH_URL_IMG . 'jeans.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+            </tr>
+            <tr>
+                <td><?php echo '<a href="?url=category/view/3"><image class="img-max-width" src="' . PATH_URL_IMG . 'shoes3.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td class=" td-padding">
+                    <h2>Unifactor Running Shoes</h2>
+                    <h3>All styles and colours available in the online store.</h3>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-right td-padding">
+                    <h2>2021 Autumn/Winter Collection</h2>
+                    <h3>Available online + in select stores 9/27 mid-morning ET</h3>
+                </td>
+                <td><?php echo '<a href="?url=category/view/2/8"><image class="img-max-width" src="' . PATH_URL_IMG . 'coat.png"' . '" alt="' . '"/ ></a>'; ?></td>
+            </tr>
+        </table>
+
+
+    </div>
+</body>
+
+</html>
+
+
+<style>
+    .home {
+        text-align: center;
+    }
+
+    .img-max-width {
+        max-width: 100%;
+    }
+
+    h1 {
+        margin: 50px;
+        font-style: italic;
+        color: #1d1182c9;
+        font-size: 40px;
+    }
+
+    h3 {
+        font-style: italic;
+        font-weight: normal;
+    }
+
+    .td-right {
+        text-align: right;
+    }
+
+    .td-padding {
+        padding: 0 20px;
+
+    }
+</style>
