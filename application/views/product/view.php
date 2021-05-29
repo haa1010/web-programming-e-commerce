@@ -39,8 +39,6 @@
         color: red;
     }
 
-
-
     .btn {
         display: inline-block;
         -moz-user-select: none;
@@ -75,31 +73,59 @@
         color: #5f5d5d;
         font-weight: normal;
     }
-</style>
 
+    .img-slide img {
+        max-width: 100px;
+        margin: 10px 5%;
+    }
+
+    .img-slide {
+        display: flex;
+    }
+
+    #highlight-img {
+        width: 80%;
+    }
+</style>
 
 
 <?php
 echo json_encode($product);
+$highlight_img = 1;
+if (isset($_GET['highlight'])) {
+    $highlight_img = $_GET['highlight'];
+}
+
 
 ?>
 
+<script>
+    function chooseImg(id) {
+        url = window.location.href
+        if (url.includes("&highlight=")) {
+            url = url.slice(0, -1) + id
+
+        } else
+            url += '&highlight=' + id
+        window.location.href = url
+
+    }
+</script>
 <div class="product-model">
+
     <div class="product-info ">
         <div class="left-panel">
-            <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image1'] ?>" class="item_image">
+            <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $highlight_img] ?>" id="highlight-img">
 
-            <ul class="slides">
-                <?php for ($i = 2; $i < 5; $i++) : ?>
-                    <?php if (!empty($product['Image' . $i])) { ?>
-                        <li data-thumb="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $i] ?>">
-                            <div class="thumb-image"><img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $i] ?>" data-imagezoom="true" class="img-responsive"></div>
-                        </li>
-                    <?php } else { ?>
-                        <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image1'] ?>" data-imagezoom="true" class="img-responsive">
-                    <?php } ?>
-                <?php endfor; ?>
-            </ul>
+            <div class="img-slide">
+                <?php for ($i = 1; $i < 5; $i++) :
+                    if ($i != $highlight_img) {
+
+                        echo ('  <img src="' . PATH_URL_IMG_PRODUCT  . $product['Image' . $i] . '" class="img-responsive" ' . 'onclick="chooseImg(' . $i . ')">');
+                    } else {
+                    }
+                endfor; ?>
+            </div>
         </div>
 
         <div class="right-panel">
