@@ -172,30 +172,7 @@ isViewUser=false;
 </div>
 </nav>
 </div>
-  <p>This is header</p>
-  <nav>
-    <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
-    <div class="dropdown">
-      <button class="dropbtn">Áo</button>
-      <div class="dropdown-content">
-        <a href="?url=category/view/2/1">Áo sơ mi</a>
-        <a href="?url=category/view/2/2">Áo phông</a>
-        <a href="?url=category/view/2/8">Áo khoác</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn">Quần</button>
-      <div class="dropdown-content">
-        <a href="?url=category/view/1/3">Quần bò</a>
-        <a href="?url=category/view/1/4">Quần kaki</a>
-
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn"><a href="?url=category/view/3">Giày dép</a></button>
-
-    </div>
-  </nav>
+  
 </body>
 
 </html>
