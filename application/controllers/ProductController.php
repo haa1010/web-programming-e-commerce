@@ -21,7 +21,10 @@ class ProductController extends BaseController
     {
         if (!empty($id)) {
             $product = $this->Product->get_one($id);
-            $this->set("product", $product);
+            $this->set("product", $product['Product']);
+        }
+        else {
+            $this->set("product", "Product not found");
         }
     }
 }
