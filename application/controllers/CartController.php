@@ -1,10 +1,10 @@
 <?php
 class CartController extends BaseController
 {
-    function add($id)
+    function add()
     {
-        if (!empty($id))
-            $this->Cart->cart_add($id);
+        if (isset($_REQUEST['id']))
+            $this->Cart->cart_add($_REQUEST['id']);
     }
     function view()
     {
@@ -24,5 +24,23 @@ class CartController extends BaseController
     function clear()
     {
         $this->Cart->cart_destroy();
+    }
+
+    function delete()
+    {
+        if (isset($_REQUEST['id']))
+            $this->Cart->cart_delete($_REQUEST['id']);
+    }
+
+    function checkout()
+    {
+        if ($_SESSION['cart'] == array()) {
+            $this->Cart->checkout();
+        }
+    }
+
+    function info()
+    {
+        # code...
     }
 }

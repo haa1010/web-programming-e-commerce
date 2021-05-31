@@ -1,0 +1,1 @@
+<a class="big" href="?url=cart/view">Todo successfully added. Click here to go back.</a><br />
