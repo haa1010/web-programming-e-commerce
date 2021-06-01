@@ -50,34 +50,38 @@ class SQLQuery
     function query($query, $singleResult = 0)
     {// echo $query;
         $this->_result = mysqli_query($this->_dbHandle, $query);
-
         if (preg_match("/select/i", $query)) {
             $result = array();
-            $table = array();
-            $field = array();
-            $tempResults = array();
-            $numOfFields = 0;
-            while ($fieldinfo = mysqli_fetch_field($this->_result)) {
-                array_push($table, $fieldinfo->table);
-                array_push($field, $fieldinfo->name);
-                $numOfFields++;
-            }
-            while ($row = mysqli_fetch_row($this->_result)) {
-                for ($i = 0; $i < $numOfFields; ++$i) {
-                    $table[$i] = trim(ucfirst($table[$i]), "s");
-                    $tempResults[$table[$i]][$field[$i]] = $row[$i];
+            if ($this->_result) {
+                $table = array();
+                $field = array();
+                $tempResults = array();
+                $numOfFields = 0;
+                while ($fieldinfo = mysqli_fetch_field($this->_result)) {
+                    array_push($table, $fieldinfo->table);
+                    array_push($field, $fieldinfo->name);
+                    $numOfFields++;
                 }
-                if ($singleResult == 1) {
-                    mysqli_free_result($this->_result);
-                    return $tempResults;
+                while ($row = mysqli_fetch_row($this->_result)) {
+                    for ($i = 0; $i < $numOfFields; ++$i) {
+                        $table[$i] = trim(ucfirst($table[$i]), "s");
+                        $tempResults[$table[$i]][$field[$i]] = $row[$i];
+                    }
+                    if ($singleResult == 1) {
+                        mysqli_free_result($this->_result);
+                        return $tempResults;
+                    }
+                    array_push($result, $tempResults);
                 }
-                array_push($result, $tempResults);
+                mysqli_free_result($this->_result);
             }
-            mysqli_free_result($this->_result);
             return ($result);
         }
     }
-
+    function escape($field)
+    {
+        return mysqli_real_escape_string($this->_dbHandle, $field);
+    }
     /** Get number of rows * */
     function getNumRows()
     {

@@ -15,19 +15,21 @@ function setReporting()
     }
 }
 
-# auto load controller classes
-// function autoload()
-// {
-//     $fileList = glob(CONTROLPATH . "*");
+function hash_password($str)
+{
+    return md5($str);
+}
 
-//     foreach ($fileList as $filename) {
-//         if (is_file($filename)) {
-//             if (file_exists($filename)) {
-//                 require_once $filename;
-//             }
-//         }
-//     }
-// }
+function compare_password($pass, $hash)
+{
+    return hash_equals($pass, $hash);
+}
+
+function redirect($controller, $action)
+{
+    header("Location: /?url=" . $controller . '/' . $action, true, 301);
+}
+
 function __autoload($className)
 {
     if (file_exists(BASEPATH . '/lib/' . strtolower($className) . '.class.php')) {
@@ -40,7 +42,14 @@ function __autoload($className)
         /* Error Generation Code Here */
     }
 }
-
+function base64UrlEncode($text)
+{
+    return str_replace(
+        ['+', '/', '='],
+        ['-', '_', ''],
+        base64_encode($text)
+    );
+}
 // $url = Path route
 // ?url=cart/view/1/2
 // cart -> controller

@@ -13,9 +13,8 @@ class Cart extends Model
         } else {
             $productModel = new Product();
             $product  = $productModel->select($pid);
-            print_r($product);
-            print_r("---------------_");
-            print_r(count($product));
+            // print_r($product);
+            // print_r(count($product));
             $_SESSION['cart'][$pid] = array(
                 'id' => $pid,
                 'name' => $product['Product']['Name'],
@@ -63,5 +62,10 @@ class Cart extends Model
     function cart_destroy()
     {
         $_SESSION['cart'] = array();
+    }
+
+    function checkout()
+    {
+        
     }
 }

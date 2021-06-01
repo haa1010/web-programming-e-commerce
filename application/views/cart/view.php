@@ -20,7 +20,9 @@
     }
 </style>
 <!-- <?php $cart = $_SESSION['cart']; ?> -->
-
+<div id="message"><?php if (!empty($message)) {
+                        echo $message;
+                    } ?></div>
 <form id="cart_form" method="post" action="?url=cart/update/" role="form">
     <div class="col-xs-12">
         <h2>Giỏ hàng</h2><br>
@@ -64,11 +66,11 @@
                         </td>
                         <td style="width: 20%">
                             <div class="btn-group">
-                                <input name="number[<?php echo $product['id']; ?>]" type="text" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
+                                <input name="number[<?php echo $product['id']; ?>]" type="number" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
                         <td>
-                            <a href="cart/delete/<?php echo $product['id']; ?>" class="text-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                            <a href="?url=cart/delete/?id=<?php echo $product['id']; ?>" class="text-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -85,8 +87,47 @@
             <div class="btn-group" style="padding-right: 30%;">
                 <input type="submit" class="form-control btn-primary" value="Cập nhật" />
             </div>
-            <a href="cart/order/checkout" class="btn btn-primary"><i class="glyphicon glyphicon-list-alt"></i> Đơn hàng</a>
+            <!-- <a href="cart/order/checkout" class="btn btn-primary"><i class="glyphicon glyphicon-list-alt"></i> Đơn hàng</a> -->
         </div>
     </div>
-
 </form>
+<div>
+    <form method="post" action="?url=cart/checkout" role="form" id="checkout-form">
+        <h5>
+            Delivery Infomation:
+        </h5>
+        <div>
+            Address:
+            <input type="text" name="address" maxlength="200" required>
+        </div>
+        <div>
+            Phone number:
+            <input type="text" name="pn" maxlength="10" required>
+        </div>
+        <div>
+            Description:
+            <input type="text" name="des" maxlength="200">
+        </div>
+        <div>
+            <input type="submit" class="form-control btn-primary" value="Make Order" />
+        </div>
+    </form>
+</div>
+<script>
+    document.querySelector("#checkout-form").addEventListener("submit", function(e) {
+        let mobile = document.querySelector('input[name=pn]').value;
+        let messagedov = document.querySelector('')
+        var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        if (mobile !== '') {
+            if (vnf_regex.test(mobile) == false) {
+                e.preventDefault();
+                messagedov.textContent = "Invalid Phone Number";
+            } else {
+                alert('Số điện thoại của bạn hợp lệ!');
+            }
+        } else {
+            e.preventDefault();
+            messagedov.textContent = "Invalid Phone Number";
+        }
+    })
+</script>
