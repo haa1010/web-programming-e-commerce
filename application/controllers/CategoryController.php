@@ -14,7 +14,8 @@ class CategoryController extends BaseController
         
         $id="select * from`categories` where alias = '".$cate."'";
         $id=$this->Category->query($id);
-    $id=$id[0]['Categorie']['Id'];
+
+        $id=$id[0]['Categorie']['Id'];
         if ($subCate)
 {
 $subid="select * from`subcategory` where alias = '".$subCate."'";

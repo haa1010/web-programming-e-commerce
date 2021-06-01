@@ -111,7 +111,10 @@ color:white;
 ul {
 list-style: none;
 }
-
+.dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+ 
 </style>
 <script>
 var isViewUser=false;
@@ -126,10 +129,7 @@ isViewUser=false;
 }
 
 }
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-  </style>
+    
 
 
 </script>
@@ -156,23 +156,23 @@ isViewUser=false;
 <nav>
 <div class="dropdown"><button class="dropbtn" ><a href="?url=home/view">Home</a></button></div>
 <div class="dropdown">
-  <button class="dropbtn">Áo</button>
+  <button class="dropbtn">Top</button>
   <div class="dropdown-content">
-    <a href="?url=category/view/ao/aosomi">Áo sơ mi</a>
-    <a href="?url=category/view/ao/ao-phong">Áo phông</a>
-    <a href="?url=category/view/ao/ao-gio">Áo khoác</a>
+    <a href="?url=category/view/top/shirt">Shirt</a>
+    <a href="?url=category/view/top/t-shirt">T-Shirt</a>
+    <a href="?url=category/view/top/coat">Coat</a>
   </div>
 </div>
 <div class="dropdown">
-  <button class="dropbtn">Quần</button>
+  <button class="dropbtn">Bottom</button>
   <div class="dropdown-content">
-<a href="?url=category/view/quan/jean">Quần bò</a>
-    <a href="?url=category/view/quan/quan-kaki">Quần kaki</a>
+<a href="?url=category/view/bottom/jean">Jean</a>
+    <a href="?url=category/view/bottom/short">Short</a>
     
   </div>
 </div>
 <div class="dropdown">
-  <button class="dropbtn"><a href="?url=category/view/giay-dep">Giày dép</a></button>
+  <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
 </div>
 </nav>
