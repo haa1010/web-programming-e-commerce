@@ -1,7 +1,5 @@
-<?php $viewUser=false;?>
 
-
-<html>
+<!DOCTYPE html>
 
 <head>
 
@@ -131,7 +129,10 @@ isViewUser=false;
 }
     
 
-
+search=()=>{
+  $text=document.getElementById("search").value;
+  window.location="http://localhost/web-programming-e-commerce/?url=filter/findName/"+$text;
+}
 </script>
 </head>
 
@@ -139,7 +140,7 @@ isViewUser=false;
 <div style="margin-left:15px">
 <div class="inline">
 <div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=100 width=100/></div>
-<div><input class="search-input" placeholder="Áo sơ mi"/><button class="btn-search">Search</button></div>
+<div><input class="search-input" placeholder="Áo sơ mi" id="search"/><button class="btn-search" onClick="search()">Search</button></div>
 <div style="margin-right:15px"><i class="fa fa-cart-plus" style="font-size:35px;margin-right:15px"></i><i class="fa fa-user tooltip" style="font-size:35px" onclick="visible()">
 
 <div class="tooltiptext" id="tooltip" style="visibility:hidden">
@@ -180,4 +181,4 @@ isViewUser=false;
   
 </body>
 
-</html>
+</!DOCTYPE>
