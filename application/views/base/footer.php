@@ -1,5 +1,5 @@
 </body>
-<p>This is footer</p>
+
 <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'footer.jpeg"' . '" alt="' . '"/ >'; ?>
 
 

@@ -48,7 +48,7 @@ class SQLQuery
 
     /** Custom SQL Query * */
     function query($query, $singleResult = 0)
-    {
+    {// echo $query;
         $this->_result = mysqli_query($this->_dbHandle, $query);
         if (preg_match("/select/i", $query)) {
             $result = array();
