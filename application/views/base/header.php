@@ -128,39 +128,9 @@ isViewUser=false;
 
 }
 let searchProduct=()=>{
-
-  event.preventDefault();
-  $text=document.getElementById("search").value;
-var priceFrom=document.getElementById("priceFrom").value;
-var priceTo =document.getElementById("priceTo").value;
-var orderby=document.getElementById("order").value;
-var categoryId=<?php echo $categoryId?>;
-var subCategoryId=<?php echo $subCategoryId?>;
-var url="http://localhost/web-programming-e-commerce/?url=filter/filter/"+categoryId+"/"+subCategoryId+"/"+$text;
-
-if(priceFrom) url=url+"/"+priceFrom;
-else url=url+"/"
-if(priceTo) url=url+"/"+priceTo;
-else url=url+"/";
-if(orderby) url=url+"/"+orderby;
-url=url+"&api=1";
-var http = new XMLHttpRequest();
-console.log(url);
-httpObject = getHTTPObject();
-if (httpObject != null) {
-    //httpObject.open('POST', url, true);
-   httpObject.open("GET", url, true);
- //httpObject.send(data);
-  httpObject.send(null);
-  httpObject.onreadystatechange = function() {//Call a function when the state changes.
-    if(httpObject.readyState == 4 && httpObject.status == 200) {
-   
-        document.getElementById("listProduct").innerHTML =this.responseText;
-     
-    }
-}
-
-}
+ 
+var text=document.getElementById("search").value;
+ window.location="http://localhost/web-programming-e-commerce/?url=filter/findName/"+text;
 }
 </script>
 </head>
