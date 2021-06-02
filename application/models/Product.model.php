@@ -2,9 +2,9 @@
 
 class Product extends Model
 {
-    function get_one($id)
+    function get_one($alias)
     {
-        return $this->select($id);
+        return $this->select_by_alias($alias);
     }
     
 }
