@@ -58,11 +58,11 @@
                             <a href="product/<?php echo $product['id']; ?>"><?php echo $product['name']; ?></a>
                         </td>
                         <td style="width: 20%">
-                            <?php if ($product["typeid"] == 3) : ?>
+                            <!-- <?php if ($product["typeid"] == 3) : ?>
                                 <?php echo $product ? number_format(($product['price']) - ($product['price']) * ($product['percent_off']) / 100, 0, ',', '.') : 0; ?>
-                            <?php else : ?>
-                                <?php echo number_format($product['price'], 0, ',', '.'); ?>
-                            <?php endif ?>
+                            <?php else : ?> -->
+                            <?php echo number_format($product['price'], 0, ',', '.'); ?>
+                            <!-- <?php endif ?> -->
                         </td>
                         <td style="width: 20%">
                             <div class="btn-group">
@@ -70,7 +70,7 @@
                             </div>
                         </td>
                         <td>
-                            <a href="?url=cart/delete/?id=<?php echo $product['id']; ?>" class="text-danger">Delete</a>
+                            <a href="?url=cart/delete/<?php echo $product['id']; ?>" class="text-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -13,23 +13,23 @@ class Cart extends Model
         } else {
             $productModel = new Product();
             $product  = $productModel->select($pid);
-            // print_r($product);
-            // print_r(count($product));
-            $_SESSION['cart'][$pid] = array(
-                'id' => $pid,
-                'name' => $product['Product']['Name'],
-                'image' => $product['Product']['Image1'],
-                'number' => 1,
-                'typeid' => $product['Product']['TypeId'],
-                'percent_off' => $product['Product']['Percent_off'],
-                'price' => $product['Product']['Price']
-            );
+            if ($product)
+                $_SESSION['cart'][$pid] = array(
+                    'id' => $pid,
+                    'name' => $product['Product']['Name'],
+                    'image' => $product['Product']['Image1'],
+                    'number' => 1,
+                    'percent_off' => $product['Product']['Percent_off'],
+                    'price' => $product['Product']['Price']
+                );
+            else 
+                return false;
         }
+        return true;
     }
     function cart_update($pid, $number)
     {
         if ($number == 0) {
-            //xóa sp ra khỏi giỏ hàng
             unset($_SESSION['cart'][$pid]);
         } else {
             $_SESSION['cart'][$pid]['number'] = $number;
