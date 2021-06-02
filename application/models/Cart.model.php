@@ -64,8 +64,11 @@ class Cart extends Model
         $_SESSION['cart'] = array();
     }
 
-    function checkout()
+    function checkout($address, $phone, $des)
     {
-        
+        print_r("<br>model<br>");
+
+        // $result = $this->query($query);
+        // var_dump($result);
     }
 }
