@@ -1,7 +1,7 @@
 <?php
 class CategoryController extends BaseController
 {
-    public function view($id, $subid = NULL)
+    public function view($cate, $subCate = NULL)
     {
         if (isset($_GET['page'])) $page = intval($_GET['page']);
         else $page = 1;
@@ -9,12 +9,25 @@ class CategoryController extends BaseController
         $page = ($page > 0) ? $page : 1;
         $limit = 15;
         $offset = ($page - 1) * $limit;
-        if ($subid)
-            $query = "select * from `product` where SubCategoryId =" . $subid . ' and CategoryId= ' . $id;
-        else $query = 'select * from `product` where CategoryId= ' . $id;
         $this->Category->connect();
+
+        
+        $id="select * from`categories` where alias = '".$cate."'";
+        $id=$this->Category->query($id);
+
+        $id=$id[0]['Categorie']['Id'];
+        if ($subCate)
+{
+$subid="select * from`subcategory` where alias = '".$subCate."'";
+$subid=$this->Category->query($subid);
+$subid=$subid[0]['Subcategory']['Id'];
+}        
+        
+       
+if($subCate)   $query = "select * from `product`  where SubCategoryId =" . $subid . ' and CategoryId= ' . $id;
+else $query = 'select * from `product` where CategoryId= ' . $id;
         $product = $this->Category->query($query);
         //print_r($product);
-        $this->set('productList', $product);
+        $this->set('products', $product);
     }
 }

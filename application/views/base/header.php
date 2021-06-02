@@ -4,9 +4,9 @@
 <html>
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     button.dropbtn a {
@@ -35,7 +35,7 @@
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
     }
-
+    a{text-decoration: none}
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -46,7 +46,7 @@
   display: flex;
   justify-content:space-between;
 align-items:center;
-height:100px;
+height:150px;
 
 }
 .search-input{
@@ -83,7 +83,9 @@ height:100px;
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
+    .dropbtn a{
+color:white;
+    }
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 .tooltip {
   position: relative;
@@ -109,7 +111,10 @@ height:100px;
 ul {
 list-style: none;
 }
-
+.dropdown:hover .dropbtn {
+      background-color: #3e8e41;
+    }
+ 
 </style>
 <script>
 var isViewUser=false;
@@ -124,10 +129,7 @@ isViewUser=false;
 }
 
 }
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-  </style>
+    
 
 
 </script>
@@ -136,38 +138,41 @@ isViewUser=false;
 <body>
 <div style="margin-left:15px">
 <div class="inline">
-<div><img src="" alt="logo"/></div>
+<div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=100 width=100/></div>
 <div><input class="search-input" placeholder="Áo sơ mi"/><button class="btn-search">Search</button></div>
 <div style="margin-right:15px"><i class="fa fa-cart-plus" style="font-size:35px;margin-right:15px"></i><i class="fa fa-user tooltip" style="font-size:35px" onclick="visible()">
 
-<div class="tooltiptext" id="tooltip" style="visibility:hidden"><ul>
+<div class="tooltiptext" id="tooltip" style="visibility:hidden">
+<ul>
 <li style="margin-bottom:10px">username</li>
 <li  style="cursor:pointer">logout</li>
-</ul></div>
+</ul>
+</div>
 
-</i> </div>
+</i>
+ </div>
 
 </div>
 <nav>
 <div class="dropdown"><button class="dropbtn" ><a href="?url=home/view">Home</a></button></div>
 <div class="dropdown">
-  <button class="dropbtn">Áo</button>
+  <button class="dropbtn">Top</button>
   <div class="dropdown-content">
-    <a href="?url=category/view/2/1">Áo sơ mi</a>
-    <a href="?url=category/view/2/2">Áo phông</a>
-    <a href="?url=category/view/2/8">Áo khoác</a>
+    <a href="?url=category/view/top/shirt">Shirt</a>
+    <a href="?url=category/view/top/t-shirt">T-Shirt</a>
+    <a href="?url=category/view/top/coat">Coat</a>
   </div>
 </div>
 <div class="dropdown">
-  <button class="dropbtn">Quần</button>
+  <button class="dropbtn">Bottom</button>
   <div class="dropdown-content">
-<a href="?url=category/view/1/3">Quần bò</a>
-    <a href="?url=category/view/1/4">Quần kaki</a>
+<a href="?url=category/view/bottom/jean">Jean</a>
+    <a href="?url=category/view/bottom/short">Short</a>
     
   </div>
 </div>
 <div class="dropdown">
-  <button class="dropbtn"><a href="?url=category/view/3">Giày dép</a></button>
+  <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
 </div>
 </nav>
