@@ -1,7 +1,5 @@
-
 <html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
   .product{
@@ -58,7 +56,7 @@
 .filter input, .filter button, .filter select{
     height: 25px;
     width: 80px;
-  margin-left:15px;
+    margin:0 15 0 15;
     border: 1px solid rgb(118, 118, 118);
     border-radius:5px
 }
@@ -73,7 +71,6 @@ border: 1px solid #04AA6D;
 }
 .filter select{
 width:100px;
-height:30px;
 }
 button.newest{
     height:33px;
@@ -86,66 +83,18 @@ button.newest{
 }
   </style>
 <script>
-var isFilter=false;
-function getHTTPObject(){if (window.ActiveXObject){return new ActiveXObject("Microsoft.XMLHTTP");}else if (window.XMLHttpRequest){return new XMLHttpRequest();}else {alert("Your browser does not support AJAX.");return null;}}
+
 direct=(id)=>{
 
     window.location =" ?url=product/view/"+ id;
 }
-filter=(event)=>{
-event.preventDefault();
-var priceFrom=document.getElementById("priceFrom").value;
-var priceTo =document.getElementById("priceTo").value;
-var orderby=document.getElementById("order").value;
-var categoryId=<?php echo $categoryId?>;
-var subCategoryId=<?php echo $subCategoryId?>;
-var url="http://localhost/web-programming-e-commerce/?url=filter/filter/"+categoryId+"/"+subCategoryId+"/";
 
-if(priceFrom) url=url+"/"+priceFrom;
-else url=url+"/"
-if(priceTo) url=url+"/"+priceTo;
-else url=url+"/";
-if(orderby) url=url+"/"+orderby;
-url=url+"&api=1";
-var http = new XMLHttpRequest();
-httpObject = getHTTPObject();
-if (httpObject != null) {
-    //httpObject.open('POST', url, true);
-   httpObject.open("GET", url, true);
- //httpObject.send(data);
-  httpObject.send(null);
-  httpObject.onreadystatechange = function() {//Call a function when the state changes.
-    if(httpObject.readyState == 4 && httpObject.status == 200) {
-   
-        document.getElementById("listProduct").innerHTML =this.responseText;
-     
-    }
-}
-
-
-}
-}
 </script>
 </head>
 <body>
 
- <div class="filter ">
- Price:
- <input placeholder="From--" type ='text' id="priceFrom"></input>
- <input placeholder="To--" id="priceTo"></input>
- <select name="order" id="order">
-  <option value="0"> High to Low</option>
-  <option value="1"> Low to High</option>
-</select>
-<button onclick="filter(event)" class="submit">Submit</button>
-
- </div>
-<div class="content-product">
-<div class="inline-row" id="listProduct" >
-
 <?php
-
- foreach($products as $item ){
+ foreach($listProduct as $item ){
      ?>
      <div class="product">
      <div class="item" onclick="direct(<?php echo $item['Product']['Id']?>)" >
@@ -155,16 +104,9 @@ if (httpObject != null) {
      </div>
      </div>
 <?php
-  
  }
-
 ?>
 
-
-</div>
-
-
-</div>
 
 
 
