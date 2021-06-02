@@ -10,7 +10,7 @@
                         <h3 class="panel-title">Login</h3>
                     </div>
                     <div class="panel-body">
-                        <form method="post" action="/user/login" class="form-signin" role="form">
+                        <form method="post" action="?url=user/login" class="form-signin" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>

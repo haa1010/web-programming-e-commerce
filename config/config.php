@@ -12,7 +12,7 @@ define('DB_PASSWORD', 'duonghue');
 define('DB_HOST', 'localhost');
 
 define("SECRET", "tH1s_1s_S3cR3t");
-define('PATH_URL', 'http://localhost/web-programming-e-commerce');
+define('PATH_URL', 'http://localhost/');
 define('PATH_URL_IMG', PATH_URL.'/public/images/');
 define('PATH_URL_IMG_HOME', PATH_URL.'/public/images/home/');
 define('PATH_URL_IMG_LOGO', PATH_URL.'/public/images/logo/');

@@ -1,7 +1,7 @@
 <?php
 function show_404()
 {
-    header('HTTP/1.1 Not Found 404', true, 404);
+    // header('HTTP/1.1 Not Found 404', true, 404);
     require(VIEWPATH . 'base/404.php');
     exit();
 }
@@ -15,6 +15,12 @@ function setReporting()
     }
 }
 
+function redirect($controller, $action)
+{
+    header("location:/?url=" . $controller . '/' . $action, true, 302);
+    exit();
+}
+
 function hash_password($str)
 {
     return md5($str);
@@ -23,11 +29,6 @@ function hash_password($str)
 function compare_password($pass, $hash)
 {
     return hash_equals($pass, $hash);
-}
-
-function redirect($controller, $action)
-{
-    header("Location: /?url=" . $controller . '/' . $action, true, 301);
 }
 
 function __autoload($className)
@@ -81,7 +82,7 @@ function callHook()
     // } else {
     //     /* Error Generation Code Here */
     // }
-    
+
 }
 
 setReporting();

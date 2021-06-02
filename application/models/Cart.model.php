@@ -22,7 +22,7 @@ class Cart extends Model
                     'percent_off' => $product['Product']['Percent_off'],
                     'price' => $product['Product']['Price']
                 );
-            else 
+            else
                 return false;
         }
         return true;
@@ -37,7 +37,11 @@ class Cart extends Model
     }
     function cart_delete($pid)
     {
-        unset($_SESSION['cart'][$pid]);
+        if ($pid && isset($_SESSION['cart'][$pid])) {
+            unset($_SESSION['cart'][$pid]);
+            return true;
+        }
+        return false;
     }
 
     function cart_total()
@@ -62,13 +66,5 @@ class Cart extends Model
     function cart_destroy()
     {
         $_SESSION['cart'] = array();
-    }
-
-    function checkout($address, $phone, $des)
-    {
-        print_r("<br>model<br>");
-
-        // $result = $this->query($query);
-        // var_dump($result);
     }
 }
