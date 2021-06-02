@@ -1,12 +1,39 @@
 <?php
  class FilterController extends BaseController{
    
-  public function filter($priceFrom=NULL,$priceTo=NULL,$orderby=NULL)
+  public function filter($categoryId=NULL,$subCategoryId=NULL,$name=NULL,$priceFrom=NULL,$priceTo=NULL,$orderby=NULL)
    {  
-    $query="select * from `product` ";  
+   if($categoryId)
+   {
+       if($subCategoryId){
+    $query="select * from `product` 
+    where CategoryId=".$categoryId." and SubCategoryId = ".$subCategoryId;  }
+    else{
+        $query="select * from `product` where  CategoryId=".$categoryId;
+    }
+}
+    else{
+        $query="select * from `product`";
+    }
+    
     $listProduct=$this->Filter->query($query);
   
     $newList=[];
+
+    
+    if($name!=NULL){
+        echo "name";
+        foreach($listProduct as $product){
+               
+            if($this->str_contains($product['Product']['Name'],$name)){
+           
+             array_push($newList,$product);
+            }
+        }
+     $listProduct=$newList;
+           
+     $newList=[];
+     }
         if($priceFrom){
            foreach($listProduct as $product){
                
@@ -43,28 +70,14 @@
         else  usort($listProduct, "usortDescending");
        // print_r($listProduct);
         $this->set('listProduct', $listProduct);
-     
+    
    
    }
    function str_contains(string $haystack, string $needle): bool
    {
        return '' === $needle || false !== strpos($haystack, $needle);
    }
-   public function findName($name){
-    $query="select * from `product` ";  
-    $listProduct=$this->Filter->query($query);
-  
-    if($name!=null){
-                  
-                   $listProduct = array_filter(
-                    $listProduct,
-                    function ($product) {
-                        return $this->str_contains($product['Product']['Name'],$name);
-                    }
-                );
-                $this->set('listProduct', $listProduct);
-                }
-   }
+
 
 }
 ?>

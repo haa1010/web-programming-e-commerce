@@ -27,5 +27,7 @@ else $query = 'select * from `product` where CategoryId= ' . $id;
         $product = $this->Category->query($query);
         //print_r($product);
         $this->set('products', $product);
+        $this->set('categoryId',$id);
+        $this->set('subCategoryId',$subid);
     }
 }?>
