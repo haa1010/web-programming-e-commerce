@@ -148,7 +148,7 @@ if (httpObject != null) {
  foreach($products as $item ){
      ?>
      <div class="product">
-     <div class="item" onclick="direct(<?php echo $item['Product']['Id']?>)" >
+     <div class="item" onclick="direct(<?php echo $item['Product']['Name']?>)" >
      <img src="<?php echo PATH_URL_IMG_PRODUCT.$item['Product']['Image1']?>"  alt="product" height=250 width=250/>
      <p class="item-name" ><?php echo $item['Product']['Name'];?>  </p>
     <p class="item-price"> <?php echo number_format($item['Product']['Price'], 2, ',', ' ') ?> VND  </p>

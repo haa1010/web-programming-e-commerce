@@ -2,9 +2,6 @@
 <html>
 
 <head>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     button.dropbtn a {
@@ -91,8 +88,8 @@ color:white;
   border-bottom: 1px dotted black;
 }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
+ .tooltiptext {
+  
   width: 120px;
   background-color: #c3f7e4;
   color:black;
@@ -100,9 +97,9 @@ color:white;
   border-radius: 6px;
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
-  top: 120%;
- right:5px;
+ 
+top:120px;
+ right:10px;
  
  
 }
@@ -117,12 +114,13 @@ list-style: none;
 <script>
 var isViewUser=false;
 visible=()=>{
-  if(!isViewUser)
-  {document.getElementById("tooltip").style.visibility = "visible";
+
+  if(!isViewUser)  {
+    document.getElementById("tooltip").style.display = "block";
 isViewUser=true;
 }
 else{
-  document.getElementById("tooltip").style.visibility = "hidden";
+  document.getElementById("tooltip").style.display = "none";
 isViewUser=false;
 }
 
@@ -142,16 +140,21 @@ var text=document.getElementById("search").value;
 <div><input class="search-input" placeholder="Áo sơ mi" id="search"/>
 <button class="btn-search" onclick="searchProduct()">Search</button>
 </div>
-<div style="margin-right:15px"><i class="fa fa-cart-plus" style="font-size:35px;margin-right:15px"></i><i class="fa fa-user tooltip" style="font-size:35px" onclick="visible()">
+<div style="margin-right:15px" class="inline">
+<img src="<?php echo PATH_URL_IMG_LOGO."cart.svg";?>" width=40 height=40 style="margin-right:15px"/>
+<div>
+<img src="<?php echo PATH_URL_IMG_LOGO."user.svg";?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()"/>
 
-<div class="tooltiptext" id="tooltip" style="visibility:hidden">
+<div class="tooltiptext" id="tooltip" 
+style="display:none"
+>
 <ul>
 <li style="margin-bottom:10px">username</li>
 <li  style="cursor:pointer">logout</li>
 </ul>
 </div>
+</div>
 
-</i>
  </div>
 
 </div>
