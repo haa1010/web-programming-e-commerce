@@ -7,7 +7,9 @@ define('VIEWPATH', BASEPATH . 'application/views/');
 define('CONTROLPATH', BASEPATH . 'application/controllers/');
 define('MODELPATH', BASEPATH . 'application/models/');
 
-require VIEWPATH . "base/header.php";
+if (!isset($_GET['api'])) {
+    require VIEWPATH . "base/header.php";
+}
 #code here
 
 
@@ -27,4 +29,7 @@ require VIEWPATH . "base/header.php";
 $url = $_GET['url'];
 
 require "lib/function.php";
-require VIEWPATH . "base/footer.php";
+
+if (!isset($_GET['api'])) {
+    require VIEWPATH . "base/footer.php";
+}

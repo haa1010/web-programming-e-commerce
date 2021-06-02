@@ -8,17 +8,17 @@ class SQLQuery
     /** Connects to database * */
     function connect()
     {
-        $this->_dbHandle = @mysqli_connect(DB_HOST, DB_USER,DB_PASSWORD);
+        $this->_dbHandle = @mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD);
         if ($this->_dbHandle) {
-            if (mysqli_select_db($this->_dbHandle,"ecommerce")) {
+            if (mysqli_select_db($this->_dbHandle, DB_NAME)) {
                 mysqli_set_charset($this->_dbHandle, 'utf8');
                 return 1;
             } else {
-                echo"not exist db";
+                echo "not exist db";
                 return 0;
             }
         } else {
-            echo"unable to connect to db2";
+            echo "unable to connect to db2";
             return 0;
         }
     }
@@ -82,6 +82,9 @@ class SQLQuery
     {
         return mysqli_real_escape_string($this->_dbHandle, $field);
     }
+    // function escape($table, $field)
+    // {
+    // }
     /** Get number of rows * */
     function getNumRows()
     {
@@ -98,5 +101,10 @@ class SQLQuery
     function getError()
     {
         return mysqli_error($this->_dbHandle);
+    }
+
+    function getInserted()
+    {
+        return array_values($this->query("select LAST_INSERT_ID() as id", true))[0];
     }
 }

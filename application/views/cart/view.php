@@ -116,14 +116,12 @@
 <script>
     document.querySelector("#checkout-form").addEventListener("submit", function(e) {
         let mobile = document.querySelector('input[name=pn]').value;
-        let messagedov = document.querySelector('')
+        let messagedov = document.querySelector('#message')
         var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
         if (mobile !== '') {
             if (vnf_regex.test(mobile) == false) {
                 e.preventDefault();
                 messagedov.textContent = "Invalid Phone Number";
-            } else {
-                alert('Số điện thoại của bạn hợp lệ!');
             }
         } else {
             e.preventDefault();
