@@ -87,7 +87,6 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
-
     .dropbtn a {
       color: white;
     }
@@ -220,6 +219,7 @@
 
       </div>
     </nav>
+
   </div>
 
 </body>

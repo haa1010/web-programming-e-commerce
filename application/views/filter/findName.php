@@ -97,9 +97,8 @@ event.preventDefault();
 var priceFrom=document.getElementById("priceFrom").value;
 var priceTo =document.getElementById("priceTo").value;
 var orderby=document.getElementById("order").value;
-var categoryId=<?php echo $categoryId?>;
-var subCategoryId=<?php echo $subCategoryId?>;
-var url="http://localhost/web-programming-e-commerce/?url=filter/filter/"+categoryId+"/"+subCategoryId+"/";
+
+var url="http://localhost/web-programming-e-commerce/?url=filter/filter///";
 
 if(priceFrom) url=url+"/"+priceFrom;
 else url=url+"/"
@@ -148,7 +147,7 @@ if (httpObject != null) {
  foreach($products as $item ){
      ?>
      <div class="product">
-     <div class="item" onclick="direct(<?php echo $item['Product']['Name']?>)" >
+     <div class="item" onclick="direct(<?php echo $item['Product']['Id']?>)" >
      <img src="<?php echo PATH_URL_IMG_PRODUCT.$item['Product']['Image1']?>"  alt="product" height=250 width=250/>
      <p class="item-name" ><?php echo $item['Product']['Name'];?>  </p>
     <p class="item-price"> <?php echo number_format($item['Product']['Price'], 2, ',', ' ') ?> VND  </p>
