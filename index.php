@@ -28,6 +28,7 @@ if (!isset($_GET['api'])) {
 // }
 $url = $_GET['url'];
 
+require "lib/ajax.php";
 require "lib/function.php";
 
 if (!isset($_GET['api'])) {

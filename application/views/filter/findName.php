@@ -97,9 +97,8 @@ event.preventDefault();
 var priceFrom=document.getElementById("priceFrom").value;
 var priceTo =document.getElementById("priceTo").value;
 var orderby=document.getElementById("order").value;
-var categoryId=<?php echo $categoryId?>;
-var subCategoryId=<?php echo $subCategoryId?>;
-var url="http://localhost/web-programming-e-commerce/?url=filter/filter/"+categoryId+"/"+subCategoryId+"/";
+
+var url="http://localhost/web-programming-e-commerce/?url=filter/filter///";
 
 if(priceFrom) url=url+"/"+priceFrom;
 else url=url+"/"

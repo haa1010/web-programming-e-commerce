@@ -9,7 +9,7 @@ class CategoryController extends BaseController
         $page = ($page > 0) ? $page : 1;
         $limit = 15;
         $offset = ($page - 1) * $limit;
-        $this->Category->connect();
+      //  $this->Category->connect();
 
         
         $id="select * from`categories` where alias = '".$cate."'";
@@ -21,13 +21,13 @@ class CategoryController extends BaseController
 $subid="select * from`subcategory` where alias = '".$subCate."'";
 $subid=$this->Category->query($subid);
 $subid=$subid[0]['Subcategory']['Id'];
-}        
-        
-       
+}              
 if($subCate)   $query = "select * from `product`  where SubCategoryId =" . $subid . ' and CategoryId= ' . $id;
 else $query = 'select * from `product` where CategoryId= ' . $id;
         $product = $this->Category->query($query);
         //print_r($product);
         $this->set('products', $product);
+        $this->set('categoryId',$id);
+        $this->set('subCategoryId',$subid);
     }
-}
+}?>
