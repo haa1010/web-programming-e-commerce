@@ -46,6 +46,12 @@ class SQLQuery
         return $this->query($query, 1);
     }
 
+    public function select_by_alias($alias)
+    {
+        $query = 'select * from `' . $this->_table . '` where `alias` = \'' . mysqli_real_escape_string($this->_dbHandle, $alias) . '\'';
+        return $this->query($query, 1);
+    }
+
     /** Custom SQL Query * */
     function query($query, $singleResult = 0)
     {// echo $query;
