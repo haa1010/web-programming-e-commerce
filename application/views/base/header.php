@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+<html>
 
 <head>
 
@@ -160,7 +160,6 @@ if (httpObject != null) {
     }
 }
 
-
 }
 }
 </script>
@@ -213,4 +212,4 @@ if (httpObject != null) {
   
 </body>
 
-</!DOCTYPE>
+</html>
