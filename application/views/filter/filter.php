@@ -92,10 +92,9 @@ direct=(id)=>{
 </script>
 </head>
 <body>
-<div class="content-product">
-<div class="inline-row">
+
 <?php
- foreach($products as $item ){
+ foreach($listProduct as $item ){
      ?>
      <div class="product">
      <div class="item" onclick="direct(<?php echo $item['Product']['Id']?>)" >
@@ -107,10 +106,7 @@ direct=(id)=>{
 <?php
  }
 ?>
-</div>
 
-
-</div>
 
 
 

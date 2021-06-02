@@ -9,18 +9,22 @@
     $newList=[];
         if($priceFrom){
            foreach($listProduct as $product){
+               
                if($product['Product']['Price']>=$priceFrom){
+              
                 array_push($newList,$product);
                }
            }
            $listProduct=$newList;
+           
            $newList=[];
         }
         
         if($priceTo){
             
             foreach($listProduct as $product){
-                if($product['Product']['Price']<=$priceFrom){
+                if($product['Product']['Price']<=$priceTo){
+                
                  array_push($newList,$product);
                 }
             }
@@ -37,7 +41,8 @@
         if($orderby==1)
         usort($listProduct, "usortAscending");
         else  usort($listProduct, "usortDescending");
-        $this->set('products', $listProduct);
+       // print_r($listProduct);
+        $this->set('listProduct', $listProduct);
      
    
    }
@@ -57,7 +62,7 @@
                         return $this->str_contains($product['Product']['Name'],$name);
                     }
                 );
-                $this->set('products', $listProduct);
+                $this->set('listProduct', $listProduct);
                 }
    }
 
