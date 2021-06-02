@@ -1,1 +1,1 @@
-Todo successfully added. Click <a class="big" href="?url=cart/view">here</a> to go back.<br />
+<?php
