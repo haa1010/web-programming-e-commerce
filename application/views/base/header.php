@@ -1,5 +1,3 @@
-<?php $viewUser=false;?>
-
 
 <html>
 
@@ -50,7 +48,7 @@ height:150px;
 
 }
 .search-input{
-  height:40px;
+  height:36px;
   font-size:18px;
   width:400px;
   padding-left:10px;
@@ -129,9 +127,41 @@ isViewUser=false;
 }
 
 }
-    
+let searchProduct=()=>{
 
+  event.preventDefault();
+  $text=document.getElementById("search").value;
+var priceFrom=document.getElementById("priceFrom").value;
+var priceTo =document.getElementById("priceTo").value;
+var orderby=document.getElementById("order").value;
+var categoryId=<?php echo $categoryId?>;
+var subCategoryId=<?php echo $subCategoryId?>;
+var url="http://localhost/web-programming-e-commerce/?url=filter/filter/"+categoryId+"/"+subCategoryId+"/"+$text;
 
+if(priceFrom) url=url+"/"+priceFrom;
+else url=url+"/"
+if(priceTo) url=url+"/"+priceTo;
+else url=url+"/";
+if(orderby) url=url+"/"+orderby;
+url=url+"&api=1";
+var http = new XMLHttpRequest();
+console.log(url);
+httpObject = getHTTPObject();
+if (httpObject != null) {
+    //httpObject.open('POST', url, true);
+   httpObject.open("GET", url, true);
+ //httpObject.send(data);
+  httpObject.send(null);
+  httpObject.onreadystatechange = function() {//Call a function when the state changes.
+    if(httpObject.readyState == 4 && httpObject.status == 200) {
+   
+        document.getElementById("listProduct").innerHTML =this.responseText;
+     
+    }
+}
+
+}
+}
 </script>
 </head>
 
@@ -139,7 +169,9 @@ isViewUser=false;
 <div style="margin-left:15px">
 <div class="inline">
 <div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=100 width=100/></div>
-<div><input class="search-input" placeholder="Áo sơ mi"/><button class="btn-search">Search</button></div>
+<div><input class="search-input" placeholder="Áo sơ mi" id="search"/>
+<button class="btn-search" onclick="searchProduct()">Search</button>
+</div>
 <div style="margin-right:15px"><i class="fa fa-cart-plus" style="font-size:35px;margin-right:15px"></i><i class="fa fa-user tooltip" style="font-size:35px" onclick="visible()">
 
 <div class="tooltiptext" id="tooltip" style="visibility:hidden">
