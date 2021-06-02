@@ -3,11 +3,12 @@ class CartController extends BaseController
 {
     function add($id)
     {
-        // if (isset($_REQUEST['id']))
-        // $this->Cart->cart_add($_REQUEST['id']);
-        if ($id != null)
-            $this->Cart->cart_add($id);
-        redirect("cart", "view");
+        $data = new Message();
+        if ($id != null) {
+            $data->success = $this->Cart->cart_add($id);
+            $data->message = $data->success ? "Successful added" : "Invalid Product Id";
+        }
+        $this->set("message", $data->getMesage());
     }
     function view()
     {
@@ -20,6 +21,7 @@ class CartController extends BaseController
             foreach ($_POST['number'] as $pid => $number) {
                 $this->Cart->cart_update($pid, $number);
             }
+            header("Refresh:0");
         }
         // if (!empty($id) && !empty($number))
         //     $this->Cart->cart_update($id, $number);
