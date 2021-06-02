@@ -73,6 +73,17 @@
     
    
    }
+ public function findName($name){
+    
+        
+     $query="select * from `product` where Name like '%".$name."%'";
+    
+     $listProduct=$this->Filter->query($query);
+         $this->set('products', $listProduct);
+        
+     
+ }
+
    function str_contains(string $haystack, string $needle): bool
    {
        return '' === $needle || false !== strpos($haystack, $needle);
