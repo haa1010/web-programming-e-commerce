@@ -10,12 +10,12 @@
         <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'shipping.png"' . '" alt="' . '"/ >'; ?>
         <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'banner.jpeg"' . '" alt="' . '"/ >'; ?>
         <h1>#3HSale</h1>
-        <?php echo '<a href="?url=category/view/2/1"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'men.jpeg"' . '" alt="' . '"/ ></a>'; ?>
-        <?php echo '<a href="?url=category/view/3"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'banner-shoes.jpeg"' . '" alt="' . '"/ ></a>'; ?>
+        <?php echo '<a href="?url=category/view/top/coat"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'men.jpeg"' . '" alt="' . '"/ ></a>'; ?>
+        <?php echo '<a href="?url=category/view/shoes"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'banner-shoes.jpeg"' . '" alt="' . '"/ ></a>'; ?>
         <h1>#3HProducts</h1>
         <table>
             <tr>
-                <td><?php echo '<a href="?url=category/view/2/2"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 't-shirt.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td><?php echo '<a href="?url=category/view/top/t-shirt"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 't-shirt.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
                 <td class=" td-padding">
                     <h2>2021 New T-shirt Collection</h2>
                     <h3>Active and Creative</h3>
@@ -26,10 +26,10 @@
                     <h2>Straight-Fit Jeans</h2>
                     <h3>Elevate your look with the latest 3H's jeans</h3>
                 </td>
-                <td><?php echo '<a href="?url=category/view/1/3"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'jeans.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td><?php echo '<a href="?url=category/view/bottom/jean"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'jeans.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
             </tr>
             <tr>
-                <td><?php echo '<a href="?url=category/view/3"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'shoes3.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td><?php echo '<a href="?url=category/view/shoes"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'shoes3.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
                 <td class=" td-padding">
                     <h2>Unifactor Running Shoes</h2>
                     <h3>All styles and colours available in the online store.</h3>
