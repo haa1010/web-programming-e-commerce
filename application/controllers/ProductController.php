@@ -31,10 +31,9 @@ class ProductController extends BaseController
     {
         if (!empty($alias)) {
             $product = $this->Product->get_one($alias);
-            $this->set("product", $product['Product']);
-        }
-        else {
-            $this->set("product", "Product not found");
+            $product ? $this->set("product", $product['Product']) : $this->set("product", null);
+        } else {
+            $this->set("product", null);
         }
     }
 }
