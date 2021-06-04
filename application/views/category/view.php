@@ -89,7 +89,7 @@ button.newest{
 var isFilter=false;
 function getHTTPObject(){if (window.ActiveXObject){return new ActiveXObject("Microsoft.XMLHTTP");}else if (window.XMLHttpRequest){return new XMLHttpRequest();}else {alert("Your browser does not support AJAX.");return null;}}
 direct=(id)=>{
-
+debugger;
     window.location =" ?url=product/view/"+ id;
 }
 filter=(event)=>{
@@ -125,6 +125,8 @@ if (httpObject != null) {
 
 }
 }
+
+// document.getElementById("demo").innerHTML = x;
 </script>
 </head>
 <body>
@@ -148,7 +150,10 @@ if (httpObject != null) {
  foreach($products as $item ){
      ?>
      <div class="product">
-     <div class="item" onclick="direct(<?php echo $item['Product']['Name']?>)" >
+     <div class="item" onclick='direct("<?php
+     echo $item["Product"]["Alias"];
+       
+     ?>")'>
      <img src="<?php echo PATH_URL_IMG_PRODUCT.$item['Product']['Image1']?>"  alt="product" height=250 width=250/>
      <p class="item-name" ><?php echo $item['Product']['Name'];?>  </p>
     <p class="item-price"> <?php echo number_format($item['Product']['Price'], 2, ',', ' ') ?> VND  </p>
