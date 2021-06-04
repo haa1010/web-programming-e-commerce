@@ -122,7 +122,6 @@
             }
         }
         direct = (id) => {
-
             window.location = " ?url=product/view/" + id;
         }
         filter = (event) => {
@@ -158,6 +157,8 @@
 
             }
         }
+
+        // document.getElementById("demo").innerHTML = x;
     </script>
 </head>
 
@@ -179,29 +180,16 @@
 
             <?php
 
-            foreach ($products as $items) {
-                $item = $items['Product'];
+            foreach ($products as $item) {
             ?>
                 <div class="product">
-                <?php echo ' <div class="item" onclick="direct(  &quot;'. $item['Alias'].' &quot;)"> ';?>
-                        <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Image1'] ?>" alt="product" height=250 width=250 />
-                        <p class="item-name"><?php echo $item['Name']; ?> </p>
-                        <?php if ($item["isSaleOff"]) : ?>
-                            <del>
-                                <h4 class="del-price">Price
-                                    : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
-                                    VNĐ
-                                </h4>
-                            </del>
-                            <span class="custom_price">Sale :
-                                <?php echo $item ? number_format(($item['Price']) - ($item['Price']) * ($item['Percent_off']) / 100, 0, ',', '.') : 0; ?>
-                                VNĐ</span>
-                            <br>
-                        <?php else : ?>
-                            <span class="custom_price">Price : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
-                                VNĐ</span>
-                            <br>
-                        <?php endif ?>
+                    <div class="item" onclick='direct("<?php
+                                                        echo $item["Product"]["Alias"];
+
+                                                        ?>")'>
+                        <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Product']['Image1'] ?>" alt="product" height=250 width=250 />
+                        <p class="item-name"><?php echo $item['Product']['Name']; ?> </p>
+                        <p class="item-price"> <?php echo number_format($item['Product']['Price'], 2, ',', ' ') ?> VND </p>
                     </div>
                 </div>
             <?php
@@ -212,6 +200,58 @@
 
 
         </div>
+
+        <body>
+
+            <div class="filter ">
+                Price:
+                <input placeholder="From--" type='text' id="priceFrom"></input>
+                <input placeholder="To--" id="priceTo"></input>
+                <select name="order" id="order">
+                    <option value="0"> High to Low</option>
+                    <option value="1"> Low to High</option>
+                </select>
+                <button onclick="filter(event)" class="submit">Submit</button>
+
+            </div>
+            <div class="content-product">
+                <div class="inline-row" id="listProduct">
+
+                    <?php
+
+                    foreach ($products as $items) {
+                        $item = $items['Product'];
+                    ?>
+                        <div class="product">
+                            <?php echo ' <div class="item" onclick="direct(  &quot;' . $item['Alias'] . ' &quot;)"> '; ?>
+                            <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Image1'] ?>" alt="product" height=250 width=250 />
+                            <p class="item-name"><?php echo $item['Name']; ?> </p>
+                            <?php if ($item["isSaleOff"]) : ?>
+                                <del>
+                                    <h4 class="del-price">Price
+                                        : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
+                                        VNĐ
+                                    </h4>
+                                </del>
+                                <span class="custom_price">Sale :
+                                    <?php echo $item ? number_format(($item['Price']) - ($item['Price']) * ($item['Percent_off']) / 100, 0, ',', '.') : 0; ?>
+                                    VNĐ</span>
+                                <br>
+                            <?php else : ?>
+                                <span class="custom_price">Price : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
+                                    VNĐ</span>
+                                <br>
+                            <?php endif ?>
+                        </div>
+                </div>
+            <?php
+
+                    }
+
+            ?>
+
+
+            </div>
 
 
     </div>
