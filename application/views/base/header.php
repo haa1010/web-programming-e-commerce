@@ -122,7 +122,8 @@ nav{
 var isViewUser=false;
 visible=()=>{
   debugger;
-var isLogin=<?php print_r($_SESSION);?>
+var isLogin={username:false};
+
 if(!isLogin.username){
   window.location="?url=user/login&api=1";
 } else{
@@ -145,7 +146,7 @@ var text=document.getElementById("search").value;
 </head>
 
 <body>
-<div style="margin:10px">
+<div style="margin:25 0 25 0">
 
 <nav >
 <div style="width:19vw">
