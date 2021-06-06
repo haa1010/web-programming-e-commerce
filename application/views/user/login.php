@@ -1,3 +1,7 @@
+<html>
+<head>
+  <link rel="stylesheet" href="<?php echo PATH_URL_STYLE.'user.css'?>">
+</head>
 <div id="wrapper">
     <div class="container">
         <div class="row">
@@ -6,29 +10,38 @@
                                         echo $message;
                                     } ?></div>
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
-                    </div>
+                    
                     <div class="panel-body">
+                      
+                        <div class="form-login">
                         <form method="post" action="/user/login" class="form-signin" role="form">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>
+                            <div class="loginForm">
+                            <div style="text-align:center; font-weight:bold;font-size:30px">Welcome to 3H!</div>
+                             
+                            <div class="form-group">
+                            <p style="font-weight:bold">Username</p> 
+                                    <input class="form-control" placeholder="username" name="username" type="text" autofocus>
                                 </div>
+                             
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <p style="font-weight:bold">Password</p>
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value=""/>
                                 </div>
-                                <div class="checkbox">
+                                <div style="width:412px">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        <input name="remember" type="checkbox" value="Remember Me"> Remember Me
                                     </label>
                                 </div>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng Nhập</button>
-                            </fieldset>
+                               
+                                <button class="btn-primary" type="submit">Login</button>
+                                <div style="width:412px"><span style="color:#a8adad">Need an account?</span><a href="?url=user/signup" style="color:orange"> Register</a></div>
+                                </div>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</html>

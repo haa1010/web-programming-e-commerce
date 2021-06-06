@@ -1,0 +1,70 @@
+.panel-body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   flex-direction: column;
+}
+.login-panel{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+   
+}
+.loginForm{
+    height: 408px;
+    width:784px;
+    background-color:#b3e3fc;
+    justify-content: space-evenly;
+    flex-direction: column;
+    display:flex;
+    
+    align-items: center;
+}
+.form-login{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.form-login form{
+    margin:unset;
+}
+.inline{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+body{
+    background-image: url("http://localhost/web-programming-e-commerce/public/images/logo/background.gif");
+    height: 100%;
+margin:unset;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;/* Resize the background image to cover the entire container */
+}
+.form-group{
+   
+    width:412px;
+}
+.form-group input{
+    height: 40px;
+    width: inherit;
+    border:1px solid #a7a8a8;
+    border-radius: 5px;
+    padding-left:10px;
+    font-size:18px
+}
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+.btn-primary{
+    height: 40px;
+    padding: 10px;
+    width:412px;
+    border:none;
+    font-size:17px;
+    border-radius: 5px;
+    background-color: 
+    #0a9191
+    ;
+    color:white;
+ 
+}
