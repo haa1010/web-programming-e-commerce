@@ -1,143 +1,7 @@
-<style>
-    #search {
-        margin-bottom: 0px !important;
-    }
 
-    .custom_price {
-        color: #000;
-        font-weight: 600;
-        font-size: 1.3em;
-    }
-
-    .item_price {
-        display: none;
-    }
-
-    .btn-primary {
-        margin: 5px 0;
-        ;
-    }
-
-    .share_nav img {
-        width: 30px;
-    }
-
-    .share_nav {
-        display: flex;
-        list-style: none;
-    }
-
-    .share_nav li {
-        margin: 0 10px;
-    }
-
-    .product-info {
-        display: inline-flex;
-    }
-
-    .custom_price {
-        color: red;
-    }
-
-    .btn {
-        display: inline-block;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        padding: 12px 20px;
-        font-size: 14px;
-        border-radius: 4px;
-    }
-
-    .btn-orange {
-        color: #fff;
-        background-color: #f5980df0;
-        border-color: #f5980df0;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    .left-panel,
-    .right-panel {
-        width: 50vw;
-    }
-
-    .item-name {
-        border-bottom: solid 1px grey;
-        padding: 0 15px 15px 0;
-        width: fit-content;
-    }
-
-    .del-price {
-        color: #5f5d5d;
-        font-weight: normal;
-    }
-
-    .img-slide img {
-        max-width: 100px;
-        margin: 10px 5%;
-    }
-
-    .img-slide {
-        display: flex;
-    }
-
-    #highlight-img {
-        width: 80%;
-    }
-
-    .popup {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .popup-header {
-        padding: 2px 16px;
-    }
-
-    /* popup Body */
-    .popup-body {
-        padding: 2px 16px;
-    }
-
-    /* popup Content */
-    .popup-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border-radius: 20px;
-        width: 20%;
-        min-width: fit-content;
-    }
-
-    /* The Close Button */
-    #close-btn {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    #close-btn:hover,
-    #close-btn:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
-
+<head>
+    <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'product.css' ?>">
+</head>
 <?php
 json_encode($product);
 $highlight_img = 1;
@@ -284,9 +148,6 @@ if ($product) {
                                 VNĐ
                             </h4>
                         </del>
-                        <span class="item_price">
-                            <?php echo $product ? (($product['Price']) - ($product['Price']) * ($product['Percent_off']) / 100) : 0; ?>
-                        </span>
                         <span class="custom_price">Sale :
                             <?php echo $product ? number_format(($product['Price']) - ($product['Price']) * ($product['Percent_off']) / 100, 0, ',', '.') : 0; ?>
                             VNĐ</span>
@@ -330,7 +191,7 @@ if ($product) {
                             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
                     </div>
                     <!-- <a href="cart/add/<?php echo $product['Id']; ?>" class="btn btn-orange" role="button">ADD TO CART</a> -->
-                    <button class="btn btn-orange" type="submit">ADD TO CART</button>
+                    <button class="btn btn-green" type="submit">ADD TO CART</button>
                     </form>
                 </div>
                 <h4>Description:</h4>

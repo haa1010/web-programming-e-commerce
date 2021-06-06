@@ -20,7 +20,8 @@ class Cart extends Model
                     'image' => $product['Product']['Image1'],
                     'number' => 1,
                     'percent_off' => $product['Product']['Percent_off'],
-                    'price' => $product['Product']['Price']
+                    'price' => $product['Product']['Price'],
+                    'alias' => $product['Product']['Alias']
                 );
             else 
                 return false;
@@ -44,7 +45,7 @@ class Cart extends Model
     {
         $total = 0;
         foreach ($_SESSION['cart'] as $product) {
-            if ($product["typeid"] == 3) {
+            if ($product["percent_off"] ) {
                 $total += (($product['price']) - ($product['price']) * ($product['percent_off']) / 100) * $product['number'];
             } else
                 $total += $product['price'] * $product['number'];
