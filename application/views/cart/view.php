@@ -1,41 +1,28 @@
-<style type="text/css">
-    .table th,
-    .table td {
-        text-align: center;
-    }
+<head>
+    <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'cart.css' ?>">
 
-    .table th:nth-child(3),
-    .table td:nth-child(3) {
-        width: auto;
-        text-align: left;
-    }
-
-    .table th:nth-child(4),
-    .table td:nth-child(4),
-    .table th:nth-child(5),
-    .table td:nth-child(5) {}
-
-    .table td {
-        vertical-align: middle !important;
-    }
-</style>
+</head>
 <!-- <?php $cart = $_SESSION['cart']; ?> -->
 <div id="message"><?php if (!empty($message)) {
                         echo $message;
                     } ?></div>
 <form id="cart_form" method="post" action="?url=cart/update/" role="form">
     <div class="col-xs-12">
-        <h2>Giỏ hàng</h2><br>
+        <h1>Your cart</h1>
+        <br>
 
-        <table class="table table-bordered table-hover">
+        <table class="table ">
             <thead>
                 <tr>
-                    <th class="hidden-xs">STT</th>
-                    <th class="hidden-xs">Ảnh</th>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tác vụ</th>
+                    <th class="hidden-xs">No</th>
+                    <th class="hidden-xs">Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,32 +30,57 @@
                 $stt = 0;
                 foreach ($cart as $pid => $product) :
                     $stt++;
+                    // print_r($product)
                 ?>
                     <tr>
-                        <td class="hidden-xs" style="width: 8%"><?php echo $stt; ?></td>
-                        <td class="hidden-xs" style="width: 20%">
+                        <td style="width: 5%"><?php echo $stt; ?></td>
+                        <td style="width: 10%">
                             <?php
-                            $image = 'public/upload/product/' . $product['image'];
+                            $image = 'public/images/product/' . $product['image'];
                             if (is_file($image)) {
                                 echo '<image src="' . $image . '" style="max-width:100px; max-height:50px;" />';
                             }
                             ?>
                         </td>
                         <td style="width: 20%">
-                            <a href="product/<?php echo $product['id']; ?>"><?php echo $product['name']; ?></a>
+                            <a id="product-name" href="product/<?php echo $product['alias']; ?>"><?php echo $product['name']; ?></a>
                         </td>
-                        <td style="width: 20%">
-                            <!-- <?php if ($product["typeid"] == 3) : ?>
+                        <td style="width: 10%">
+                            <?php if ($product["percent_off"]) : ?>
                                 <?php echo $product ? number_format(($product['price']) - ($product['price']) * ($product['percent_off']) / 100, 0, ',', '.') : 0; ?>
-                            <?php else : ?> -->
-                            <?php echo number_format($product['price'], 0, ',', '.'); ?>
-                            <!-- <?php endif ?> -->
+                            <?php else : ?>
+                                <?php echo number_format($product['price'], 0, ',', '.'); ?>
+                            <?php endif ?>
                         </td>
-                        <td style="width: 20%">
+
+                        <td style="width: 10%">
+                            <div class="btn-group">
+                                Color!!!
+                            </div>
+                        </td>
+
+                        <td style="width: 10%">
+                            <div class="btn-group">
+                                Size!!
+                            </div>
+                        </td>
+
+                        <td style="width: 10%">
                             <div class="btn-group">
                                 <input name="number[<?php echo $product['id']; ?>]" type="number" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
+
+                        <td style="width: 10%">
+                            <div class="btn-group" style="color: red">
+                                <?php if ($product["percent_off"]) : ?>
+                                    <?php echo $product ? number_format(($product['price'] - ($product['price'] * $product['percent_off']) / 100) * $product['number'], 0, ',', '.') : 0; ?>
+                                <?php else : ?>
+                                    <?php echo number_format($product['price'] * $product['number'], 0, ',', '.'); ?>
+                                <?php endif ?>
+                            </div>
+                        </td>
+
                         <td>
                             <a href="?url=cart/delete/<?php echo $product['id']; ?>" class="text-danger">Delete</a>
                         </td>
@@ -77,39 +89,37 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6">Thành tiền : <?php echo number_format($total, 0, ',', '.'); ?> VNĐ</th>
+                    <td colspan="8" id="total">Total: <?php echo number_format($total, 0, ',', '.'); ?> VND</th>
                 </tr>
             </tfoot>
         </table>
         <br>
         <div class="form-group">
-            <!-- Single button -->
-            <div class="btn-group" style="padding-right: 30%;">
-                <input type="submit" class="form-control btn-primary" value="Cập nhật" />
+            <div class="btn-group">
+                <button type="submit" class="update-btn">Update cart</button>
             </div>
-            <!-- <a href="cart/order/checkout" class="btn btn-primary"><i class="glyphicon glyphicon-list-alt"></i> Đơn hàng</a> -->
         </div>
     </div>
 </form>
 <div>
     <form method="post" action="?url=cart/checkout" role="form" id="checkout-form">
-        <h5>
+        <h3>
             Delivery Infomation:
-        </h5>
+        </h3>
         <div>
-            Address:
+            <label for="address">Address <b style="color: red;">*</b></label>
             <input type="text" name="address" maxlength="200" required>
         </div>
         <div>
-            Phone number:
+            <label for="pn">Phone number <b style="color: red;">*</b></label>
             <input type="text" name="pn" maxlength="10" required>
         </div>
         <div>
-            Description:
+            <label for="des">Note</label>
             <input type="text" name="des" maxlength="200">
         </div>
         <div>
-            <input type="submit" class="form-control btn-primary" value="Make Order" />
+            <input type="submit" class="form-control" style="background-color: #04AA6D;color: white;" value="Make Order" />
         </div>
     </form>
 </div>

@@ -26,7 +26,7 @@
                     <h2>Straight-Fit Jeans</h2>
                     <h3>Elevate your look with the latest 3H's jeans</h3>
                 </td>
-                <td><?php echo '<a href="?url=category/view/bottom/jean"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'jeans.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td><?php echo '<a href="?url=category/view/bottom/jeans"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'jeans.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
             </tr>
             <tr>
                 <td><?php echo '<a href="?url=category/view/shoes"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'shoes3.jpeg"' . '" alt="' . '"/ ></a>'; ?></td>
@@ -40,7 +40,7 @@
                     <h2>2021 Autumn/Winter Collection</h2>
                     <h3>Available online + in select stores 9/27 mid-morning ET</h3>
                 </td>
-                <td><?php echo '<a href="?url=category/view/2/8"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'coat.png"' . '" alt="' . '"/ ></a>'; ?></td>
+                <td><?php echo '<a href="?url=category/view/top/coat"><image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'coat.png"' . '" alt="' . '"/ ></a>'; ?></td>
             </tr>
         </table>
 
