@@ -21,7 +21,10 @@
         var priceTo = document.getElementById("priceTo").value;
         var orderby = document.getElementById("order").value;
         var categoryId = <?php echo $categoryId ?>;
-        var subCategoryId = <?php echo $subCategoryId ?>;
+        
+        if(categoryId!=3)console.log(categoryId);
+        var subCategoryId = "";
+        if(categoryId!=3) subCategoryId=<?php echo $subCategoryId ?>;
         var url = "http://localhost/web-programming-e-commerce/?url=filter/filter/" + categoryId + "/" + subCategoryId + "/";
 
         if (priceFrom) url = url + "/" + priceFrom;
@@ -54,7 +57,8 @@
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'category.css' ?>">
 </head>
 <div>
-    <div class="filter ">
+<?php if(sizeof($products)>0):?>
+    <div class="filter " >
         Price:
         <input placeholder="From--" type='text' id="priceFrom"></input>
         <input placeholder="To--" id="priceTo"></input>
@@ -107,6 +111,7 @@
 
 
         </div>
-
-
+<?php else:?>
+<div style="text-align:center;height:30vh;font-size:20px;"> No product founds</div>
+    <?php endif?>
     </div>
