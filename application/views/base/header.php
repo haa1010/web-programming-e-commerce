@@ -45,9 +45,9 @@ height:150px;
 
 }
 .search-input{
-  height:36px;
+  height:40px;
   font-size:18px;
-  width:400px;
+  width:250px;
   padding-left:10px;
   border-top:1px solid rgb(118, 118, 118);
   border-left:1px solid rgb(118, 118, 118);
@@ -58,7 +58,7 @@ height:150px;
 .btn-search{
   color:#ffff;
   height:40px;
-  width:100px;
+  width:85px;
   background-color: #04AA6D;
   border:1px solid #04AA6D ;
   border-radius:0px 8px 8px 0px;
@@ -106,6 +106,11 @@ top:120px;
 ul {
 list-style: none;
 }
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 .dropdown:hover .dropbtn {
       background-color: #3e8e41;
     }
@@ -140,31 +145,10 @@ var text=document.getElementById("search").value;
 </head>
 
 <body>
-<div style="margin-left:15px">
-<div class="inline">
-<div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=100 width=100/></div>
-<div><input class="search-input" placeholder="Áo sơ mi" id="search"/>
-<button class="btn-search" onclick="searchProduct()">Search</button>
-</div>
-<div style="margin-right:15px" class="inline">
-<img src="<?php echo PATH_URL_IMG_LOGO."cart.svg";?>" width=40 height=40 style="margin-right:15px"/>
-<div>
-<img src="<?php echo PATH_URL_IMG_LOGO."user.svg";?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()"/>
+<div style="margin:10px">
 
-<div class="tooltiptext" id="tooltip" 
-style="display:none"
->
-<ul>
-<li style="margin-bottom:10px">username</li>
-<li  style="cursor:pointer">logout</li>
-</ul>
-</div>
-</div>
-
- </div>
-
-</div>
-<nav>
+<nav >
+<div style="width:19vw">
 <div class="dropdown"><button class="dropbtn" ><a href="?url=home/view">Home</a></button></div>
 <div class="dropdown">
   <button class="dropbtn">Top</button>
@@ -186,6 +170,30 @@ style="display:none"
   <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
 </div>
+</div>
+<div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=150 width=150/></div>
+
+<div style="display:flex">
+<div style="margin-right:10px"><input class="search-input" placeholder="T-shirt" id="search"/>
+<button class="btn-search" onclick="searchProduct()">Search</button>
+</div>
+<div style="margin-right:15px;display:flex">
+
+<img src="<?php echo PATH_URL_IMG_LOGO."cart.svg";?>" width=40 height=40 style="margin-right:15px"/>
+<div>
+<img src="<?php echo PATH_URL_IMG_LOGO."user.svg";?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()"/>
+
+<div class="tooltiptext" id="tooltip" 
+style="display:none"
+>
+<ul>
+<li style="margin-bottom:10px">username</li>
+<li  style="cursor:pointer">logout</li>
+</ul>
+</div>
+</div>
+</div>
+ </div>
 </nav>
 </div>
   

@@ -17,3 +17,4 @@ define('PATH_URL_IMG', PATH_URL.'/public/images/');
 define('PATH_URL_IMG_HOME', PATH_URL.'/public/images/home/');
 define('PATH_URL_IMG_LOGO', PATH_URL.'/public/images/logo/');
 define('PATH_URL_IMG_PRODUCT', PATH_URL.'/public/images/product/');
+define('PATH_URL_STYLE',PATH_URL.'/public/css/');
