@@ -1,3 +1,7 @@
+<html>
+<head>
+  <link rel="stylesheet" href="<?php echo PATH_URL_STYLE.'user.css'?>">
+</head>
 <div id="wrapper">
     <div class="container">
         <div class="row">
@@ -6,11 +10,13 @@
                                         echo $message;
                                     } ?></div>
                 <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Login</h3>
-                    </div>
+                    
                     <div class="panel-body">
-                        <form method="post" action="?url=user/login" class="form-signin" role="form">
+                        <div class="inline">
+                        <h3 class="panel-title">Login</h3>
+                        </div>
+                        <div class="form-login">
+                        <form method="post" action="/user/login" class="form-signin" role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>
@@ -26,9 +32,11 @@
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng Nhập</button>
                             </fieldset>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</html>

@@ -29,50 +29,27 @@
       z-index: 1;
     }
 
-    a {
-      text-decoration: none
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .inline {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 150px;
-
-    }
-
-    .search-input {
-      height: 36px;
-      font-size: 18px;
-      width: 400px;
-      padding-left: 10px;
-      border-top: 1px solid rgb(118, 118, 118);
-      border-left: 1px solid rgb(118, 118, 118);
-      border-bottom: 1px solid rgb(118, 118, 118);
-      border-right: unset;
-      padding-bottom: 1px !important;
-    }
-
-    .btn-search {
-      color: #ffff;
-      height: 40px;
-      width: 100px;
-      background-color: #04AA6D;
-      border: 1px solid #04AA6D;
-      border-radius: 0px 8px 8px 0px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
+}
+.search-input{
+  height:40px;
+  font-size:18px;
+  width:250px;
+  padding-left:10px;
+  border-top:1px solid rgb(118, 118, 118);
+  border-left:1px solid rgb(118, 118, 118);
+  border-bottom:1px solid rgb(118, 118, 118);
+  border-right:unset;
+  padding-bottom:1px !important;
+}
+.btn-search{
+  color:#ffff;
+  height:40px;
+  width:85px;
+  background-color: #04AA6D;
+  border:1px solid #04AA6D ;
+  border-radius:0px 8px 8px 0px;
+}
+.dropdown-content a:hover {background-color: #ddd;}
     .dropdown-content a {
       color: black;
       padding: 12px 16px;
@@ -91,7 +68,30 @@
       color: white;
     }
 
-    .dropdown:hover .dropbtn {
+ .tooltiptext {
+  
+  width: 120px;
+  background-color: #c3f7e4;
+  color:black;
+  font-size:18px;
+  border-radius: 6px;
+  /* Position the tooltip */
+  position: absolute;
+ 
+top:120px;
+ right:10px;
+ 
+ 
+}
+ul {
+list-style: none;
+}
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.dropdown:hover .dropbtn {
       background-color: #3e8e41;
     }
  
@@ -125,51 +125,58 @@ var text=document.getElementById("search").value;
 </head>
 
 <body>
-  <div style="margin-left:15px">
-    <div class="inline">
-      <div><img src="<?php echo (PATH_URL_IMG_LOGO . "logo.png"); ?>" alt="logo" height=100 width=100 /></div>
-      <div><input class="search-input" placeholder="Áo sơ mi" id="search" />
-        <button class="btn-search" onclick="searchProduct();">Search</button>
-      </div>
-      <div style="margin-right:15px"><i class="fa fa-cart-plus" style="font-size:35px;margin-right:15px"></i><i class="fa fa-user tooltip" style="font-size:35px" onclick="visible()">
+<div style="margin:10px">
 
-          <div class="tooltiptext" id="tooltip" style="visibility:hidden">
-            <ul>
-              <li style="margin-bottom:10px">username</li>
-              <li style="cursor:pointer">logout</li>
-            </ul>
-          </div>
-
-        </i>
-      </div>
-
-    </div>
-    <nav>
-      <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
-      <div class="dropdown">
-        <button class="dropbtn">Top</button>
-        <div class="dropdown-content">
-          <a href="?url=category/view/top/shirt">Shirt</a>
-          <a href="?url=category/view/top/t-shirt">T-Shirt</a>
-          <a href="?url=category/view/top/coat">Coat</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn">Bottom</button>
-        <div class="dropdown-content">
-          <a href="?url=category/view/bottom/jean">Jean</a>
-          <a href="?url=category/view/bottom/short">Short</a>
-
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
-
-      </div>
-    </nav>
-
+<nav >
+<div style="width:19vw">
+<div class="dropdown"><button class="dropbtn" ><a href="?url=home/view">Home</a></button></div>
+<div class="dropdown">
+  <button class="dropbtn">Top</button>
+  <div class="dropdown-content">
+    <a href="?url=category/view/top/shirt">Shirt</a>
+    <a href="?url=category/view/top/t-shirt">T-Shirt</a>
+    <a href="?url=category/view/top/coat">Coat</a>
   </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Bottom</button>
+  <div class="dropdown-content">
+<a href="?url=category/view/bottom/jean">Jean</a>
+    <a href="?url=category/view/bottom/short">Short</a>
+    
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
+</div>
+</div>
+<div><img src="<?php echo PATH_URL_IMG_LOGO."logo.png"?>" alt="logo" height=150 width=150/></div>
+
+<div style="display:flex">
+<div style="margin-right:10px"><input class="search-input" placeholder="T-shirt" id="search"/>
+<button class="btn-search" onclick="searchProduct()">Search</button>
+</div>
+<div style="margin-right:15px;display:flex">
+
+<img src="<?php echo PATH_URL_IMG_LOGO."cart.svg";?>" width=40 height=40 style="margin-right:15px"/>
+<div>
+<img src="<?php echo PATH_URL_IMG_LOGO."user.svg";?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()"/>
+
+<div class="tooltiptext" id="tooltip" 
+style="display:none"
+>
+<ul>
+<li style="margin-bottom:10px">username</li>
+<li  style="cursor:pointer">logout</li>
+</ul>
+</div>
+</div>
+</div>
+ </div>
+</nav>
+</div>
+  
 </body>
 
 </html>

@@ -6,7 +6,7 @@
 
 <body>
     <div class="home">
-        Home Page
+     
         <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'shipping.png"' . '" alt="' . '"/ >'; ?>
         <?php echo '<image class="img-max-width" src="' . PATH_URL_IMG_HOME . 'banner.jpeg"' . '" alt="' . '"/ >'; ?>
         <h1>#3HSale</h1>
