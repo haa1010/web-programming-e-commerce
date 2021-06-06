@@ -32,8 +32,9 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
+                               
                                 <button class="btn-primary" type="submit">Đăng Nhập</button>
-                            </div>
+                                <div style="width:412px"><span style="color:#a8adad">Need an account?</span><a href="?url=user/signup" style="color:orange"> Register</a></div>
                                 </div>
                         </form>
                         </div>
