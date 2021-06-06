@@ -112,9 +112,15 @@ list-style: none;
  
 </style>
 <script>
+
+
 var isViewUser=false;
 visible=()=>{
-
+  debugger;
+var isLogin=<?php print_r($_SESSION);?>
+if(!isLogin.username){
+  window.location="?url=user/login&api=1";
+} else{
   if(!isViewUser)  {
     document.getElementById("tooltip").style.display = "block";
 isViewUser=true;
@@ -123,7 +129,7 @@ else{
   document.getElementById("tooltip").style.display = "none";
 isViewUser=false;
 }
-
+}
 }
 let searchProduct=()=>{
  

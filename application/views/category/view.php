@@ -122,6 +122,11 @@
         .del-price{
             text-align:center;
         }
+        .inline-price{
+            display: flex;
+            justify-content:space-around;
+            align-items:center;
+        }
     </style>
     <script>
         var isFilter = false;
@@ -205,20 +210,21 @@
                         <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Product']['Image1'] ?>" alt="product" height=250 width=250 />
                         <p class="item-name"><?php echo $item['Product']['Name']; ?> </p>
                         <?php if ($item["Product"]["isSaleOff"]) : ?>
+                              <div class="inline-price">
                                 <del class="price" >
-                                    <h4 class="del-price">Price
-                                        : <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
+                                    <span class="del-price">
+                                        <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
                                         VNĐ
-                                    </h4>
+                                    </span>
                                 </del>
-                               <div style="margin-top:23px;text-align:center;"> <span class="custom_price color-red">Sale :
+                               <div > <span class="custom_price color-red">
                                     <?php echo $item ? number_format(($item["Product"]['Price']) - ($item["Product"]['Price']) * ($item["Product"]['Percent_off']) / 100, 0, ',', '.') : 0; ?>
                                     VNĐ</span></div>
-                                <br>
+                                    </div>
                             <?php else : ?>
-                                <div style="text-align:center;"> <span class="custom_price color-red">Price : <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
+                                <div style="text-align:center;"> <span class="custom_price color-red"> <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
                                     VNĐ</span></div>
-                                <br>
+                                
                             <?php endif ?>
                     </div>
                 </div>
