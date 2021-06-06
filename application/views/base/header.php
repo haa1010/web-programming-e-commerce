@@ -94,86 +94,34 @@
     .dropdown:hover .dropbtn {
       background-color: #3e8e41;
     }
-
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      border-bottom: 1px dotted black;
-    }
-
-    .tooltip .tooltiptext {
-      visibility: hidden;
-      width: 120px;
-      background-color: #c3f7e4;
-      color: black;
-      font-size: 18px;
-      border-radius: 6px;
-      /* Position the tooltip */
-      position: absolute;
-      z-index: 1;
-      top: 120%;
-      right: 5px;
+ 
+</style>
+<script>
 
 
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-  </style>
-
-  <script>
-    var isViewUser = false;
-    visible = () => {
-      if (!isViewUser) {
-        document.getElementById("tooltip").style.visibility = "visible";
-        isViewUser = true;
-      } else {
-        document.getElementById("tooltip").style.visibility = "hidden";
-        isViewUser = false;
-      }
-
-    }
-    // let searchProduct = () => {
-    function searchProduct() {
-      event.preventDefault();
-      text = document.getElementById("search").value;
-      var priceFrom = document.getElementById("priceFrom").value;
-      var priceTo = document.getElementById("priceTo").value;
-      var orderby = document.getElementById("order").value;
-      var categoryId = <?php echo (isset($categoryId) ? 1 : 0); ?>;
-      var subCategoryId = <?php echo (isset($subCategoryId) ? 1 : 0); ?>;
-      var url = "http://localhost/web-programming-e-commerce/?url=filter/filter/" + categoryId + "/" + subCategoryId + "/" + text;
-
-      if (priceFrom) url = url + "/" + priceFrom;
-      else url = url + "/"
-      if (priceTo) url = url + "/" + priceTo;
-      else url = url + "/";
-      if (orderby) url = url + "/" + orderby;
-      url = url + "&api=1";
-      var http = new XMLHttpRequest();
-      console.log(url);
-      httpObject = getHTTPObject();
-      if (httpObject != null) {
-        //httpObject.open('POST', url, true);
-        httpObject.open("GET", url, true);
-        //httpObject.send(data);
-        httpObject.send(null);
-        httpObject.onreadystatechange = function() { //Call a function when the state changes.
-          if (httpObject.readyState == 4 && httpObject.status == 200) {
-
-            document.getElementById("listProduct").innerHTML = this.responseText;
-
-          }
-        }
-
-      }
-    };
-  </script>
+var isViewUser=false;
+visible=()=>{
+  debugger;
+var isLogin=<?php print_r($_SESSION);?>
+if(!isLogin.username){
+  window.location="?url=user/login&api=1";
+} else{
+  if(!isViewUser)  {
+    document.getElementById("tooltip").style.display = "block";
+isViewUser=true;
+}
+else{
+  document.getElementById("tooltip").style.display = "none";
+isViewUser=false;
+}
+}
+}
+let searchProduct=()=>{
+ 
+var text=document.getElementById("search").value;
+ window.location="http://localhost/web-programming-e-commerce/?url=filter/findName/"+text;
+}
+</script>
 </head>
 
 <body>
