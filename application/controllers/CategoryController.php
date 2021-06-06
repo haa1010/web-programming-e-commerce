@@ -2,7 +2,7 @@
 class CategoryController extends BaseController
 {
     public function view($cate, $subCate = NULL)
-    { echo $subCate;
+    { 
         if (isset($_GET['page'])) $page = intval($_GET['page']);
         else $page = 1;
 
@@ -24,11 +24,11 @@ $subid=$subid[0]['Subcategory']['Id'];
 }              
 if($subCate)   $query = "select * from `product`  where SubCategoryId =" . $subid . ' and CategoryId= ' . $id;
 else $query = 'select * from `product` where CategoryId= ' . $id;
-echo $query;
         $product = $this->Category->query($query);
         //print_r($product);
         $this->set('products', $product);
         $this->set('categoryId',$id);
        if($subCate) $this->set('subCategoryId',$subid);
+       else $this->set('subCategoryId',"-1");
     }
 }?>
