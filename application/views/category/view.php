@@ -9,7 +9,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 330px;
+            height: 360px;
             width: 365px;
             margin-bottom: 20px;
         }
@@ -23,7 +23,7 @@
         }
 
         .item {
-            height: 320;
+            height: 318;
             background: rgb(245, 245, 245)
         }
 
@@ -107,6 +107,21 @@
         .content-product {
             margin: 15px;
         }
+        .price h4{
+            margin-top:unset;
+            margin-bottom:15px;
+        }
+        .color-red{
+            color:red;
+        }
+        .custom_price{
+            font-weight:bold;
+            font-size:19px;
+            
+        }
+        .del-price{
+            text-align:center;
+        }
     </style>
     <script>
         var isFilter = false;
@@ -158,6 +173,8 @@
 
             }
         }
+
+        
     </script>
 </head>
 
@@ -183,25 +200,28 @@
                 $item = $items['Product'];
             ?>
                 <div class="product">
-                <?php echo ' <div class="item" onclick="direct(  &quot;'. $item['Alias'].' &quot;)"> ';?>
-                        <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Image1'] ?>" alt="product" height=250 width=250 />
-                        <p class="item-name"><?php echo $item['Name']; ?> </p>
-                        <?php if ($item["isSaleOff"]) : ?>
-                            <del>
-                                <h4 class="del-price">Price
-                                    : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
-                                    VNĐ
-                                </h4>
-                            </del>
-                            <span class="custom_price">Sale :
-                                <?php echo $item ? number_format(($item['Price']) - ($item['Price']) * ($item['Percent_off']) / 100, 0, ',', '.') : 0; ?>
-                                VNĐ</span>
-                            <br>
-                        <?php else : ?>
-                            <span class="custom_price">Price : <?php echo $item ? number_format($item['Price'], 0, ',', '.') : 0; ?>
-                                VNĐ</span>
-                            <br>
-                        <?php endif ?>
+                    <div class="item" onclick='direct("<?php
+                                                        echo $item["Product"]["Alias"];
+
+                                                        ?>")'>
+                        <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Product']['Image1'] ?>" alt="product" height=250 width=250 />
+                        <p class="item-name"><?php echo $item['Product']['Name']; ?> </p>
+                        <?php if ($item["Product"]["isSaleOff"]) : ?>
+                                <del class="price" >
+                                    <h4 class="del-price">Price
+                                        : <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
+                                        VNĐ
+                                    </h4>
+                                </del>
+                               <div style="margin-top:23px;text-align:center;"> <span class="custom_price color-red">Sale :
+                                    <?php echo $item ? number_format(($item["Product"]['Price']) - ($item["Product"]['Price']) * ($item["Product"]['Percent_off']) / 100, 0, ',', '.') : 0; ?>
+                                    VNĐ</span></div>
+                                <br>
+                            <?php else : ?>
+                                <div style="text-align:center;"> <span class="custom_price color-red">Price : <?php echo $item ? number_format($item["Product"]['Price'], 0, ',', '.') : 0; ?>
+                                    VNĐ</span></div>
+                                <br>
+                            <?php endif ?>
                     </div>
                 </div>
             <?php
@@ -213,10 +233,7 @@
 
         </div>
 
-
-    </div>
-
-
+      
 
 </body>
 
