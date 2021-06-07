@@ -131,12 +131,12 @@ ul {
 }
 
 .menu {
-    width: 30vw;
+    width: 32vw;
 }
 
 .right {
     display: flex;
-    width: 30vw;
+    width: 32vw;
     justify-content: flex-end;
 }
 
@@ -146,19 +146,58 @@ ul {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        width: 100vw;
     }
+    .dropbtn{
+        padding:8px;
+        width:70px;
+        height: 40px;
+    }
+.dropdown{
+    margin-right:10px;
+}
+
     .menu {
         text-align: center;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        margin-bottom: 10px;
     }
     .menu,
     .right {
         width: 100%;
     }
     .right {
+        margin-top:10px;
         justify-content: center;
     }
 }
-
+@media screen and (max-width:956px ) and (min-width:751px){
+.right{
+    width:38vw;
+}
+.search-input,.btn-search{
+    height:35px;
+}
+.btn-search{
+    width:64px
+}
+.dropbtn{
+    padding:8px;
+}
+}
+@media screen and (max-width:543px){
+    .filter{
+        width:50%;
+    }
+    .filter button.submit,.filter select{
+        margin-top:10px;
+    }
+    .filter select{
+        margin-left:45px !important;
+    }
+}
 
 /* pop up css */
 

@@ -13,7 +13,7 @@
                     <div class="panel-body">
 
                         <div class="form-login">
-                            <form method="post" action="?url=user/login" role="form">
+                            <form method="post" action="?url=user/login&api=1" role="form">
                                 <div class="loginForm">
                                     <div class="form-group">
                                         <p class="font-bold">Username</p>

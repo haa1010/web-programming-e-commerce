@@ -22,10 +22,9 @@
 
     
     if($name!=NULL){
-        echo "name";
-        foreach($listProduct as $product){
-               
-            if($this->str_contains($product['Product']['Name'],$name)){
+       
+        foreach($listProduct as $product){ 
+            if(stripos($product['Product']['Name'],$name)!== false){
            
              array_push($newList,$product);
             }
@@ -34,6 +33,7 @@
            
      $newList=[];
      }
+     
         if($priceFrom){
            foreach($listProduct as $product){
                
@@ -80,7 +80,7 @@
     
      $listProduct=$this->Filter->query($query);
          $this->set('products', $listProduct);
-        
+        $this->set('search',$name);
      
  }
 
