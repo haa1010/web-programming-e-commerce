@@ -46,7 +46,7 @@
 </head>
 
 <body>
-  <div style="margin:25px" id="header">
+  <div  id="header">
 
     <nav id="not-response">
       <div class="menu" >
@@ -82,16 +82,22 @@
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
           <div style=" display: flex;
     justify-content: space-around;">
-            <?php if (isset($_SESSION['username'])) : ?>
+            <?php if (true) : ?>
               <!-- Đăng nhập r -->
+              <div class="dropdown">
               <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
+              <div class="dropdown-content">
+            <span><?php echo $_SESSION['username']; ?></span>
+            <a href="?url=user/logout">Logout</a>
+          </div>
+          </div>
+              <!-- <div class="tooltiptext" id="tooltip" style="display:none">
 
-              <div class="tooltiptext" id="tooltip" style="display:none">
                 <ul>
                   <li style="margin-bottom:10px"><?php echo $_SESSION['username']; ?></li>
                   <li style="cursor:pointer" onclick="window.location='?url=user/logout'">Log out</li>
                 </ul>
-              </div>
+              </div> -->
             <?php else : ?>
               <!-- Chưa đăng nhập -->
               <a href="?url=user/login&api=1" class="color-green">Login</a>
