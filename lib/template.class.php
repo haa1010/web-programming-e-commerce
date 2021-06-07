@@ -5,11 +5,12 @@ class Template
     protected $variables = array();
     protected $_controller;
     protected $_action;
-
-    function __construct($controller, $action)
+    protected $_api;
+    function __construct($controller, $action, $api)
     {
         $this->_controller = $controller;
         $this->_action = $action;
+        $this->_api = $api;
     }
 
     /** Set Variables **/
@@ -23,11 +24,17 @@ class Template
 
     function render()
     {
-        // include(VIEWPATH . $this->_controller . '/index.php');
+        if (!$this->_api) {
+            require VIEWPATH . "base/header.php";
+        }
         if (is_file(VIEWPATH . $this->_controller . '/' . $this->_action . '.php')) {
             extract($this->variables);
             include(VIEWPATH . $this->_controller . '/' . $this->_action . '.php');
         } else
             show_404();
+
+        if (!$this->_api) {
+            require VIEWPATH . "base/footer.php";
+        }
     }
 }

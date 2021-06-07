@@ -13,7 +13,7 @@
                     <div class="panel-body">
 
                         <div class="form-login">
-                            <form method="post" action="/user/login" role="form">
+                            <form method="post" action="?url=user/login" role="form">
                                 <div class="loginForm">
                                     <div class="form-group">
                                         <p class="font-bold">Username</p>
@@ -30,8 +30,8 @@
                                         </label>
                                     </div>
                                     <div class="message"><?php if (!empty($message)) {
-                                                            echo $message;
-                                                        } ?></div>
+                                                                echo $message;
+                                                            } ?></div>
                                     <button class="btn-submit" type="submit">Login</button>
                                     <div class="direct"><span style="color:#656767">Don't have an account yet?</span><a href="?url=user/signup&api=1" class=" color-green"> Register</a></div>
                                 </div>

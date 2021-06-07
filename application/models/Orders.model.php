@@ -15,10 +15,12 @@ class Orders extends Model
     function insert_detail($item, $order)
     {
         print_r($item);
-        $query = "insert into order_detail (orderid, productid, quantity, price) values (" .
+        $query = "insert into order_detail (orderid, productid, quantity, color, size, price) values (" .
             $order . "," .
             intval($item['id']) . "," .
-            intval($item['number']) . "," .
+            intval($item['number']) . ",'" .
+            $this->escape($item['color']) . "','" .
+            $this->escape($item['size']) . "'," .
             intval($item['price']) . ")";
         var_dump($query);
         $this->query($query);
