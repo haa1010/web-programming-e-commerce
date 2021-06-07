@@ -1,3 +1,6 @@
+
+
+
 <html>
 
 <head>
@@ -52,7 +55,7 @@
     .search-input {
       height: 40px;
       font-size: 18px;
-      width: 250px;
+      width: 47%;
       padding-left: 10px;
       border-top: 1px solid rgb(118, 118, 118);
       border-left: 1px solid rgb(118, 118, 118);
@@ -67,6 +70,7 @@
       width: 85px;
       background-color: #04AA6D;
       border: 1px solid #04AA6D;
+      margin-right:10px;
       border-radius: 0px 8px 8px 0px;
     }
 
@@ -123,7 +127,7 @@
       list-style: none;
     }
 
-    nav {
+    #not-response {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -132,9 +136,42 @@
     .dropdown:hover .dropbtn {
       background-color: #3e8e41;
     }
+
+  .menu{
+    width:30vw;
+  }
+  .right{
+  display:flex;
+   width:30vw;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 750px) {
+  
+  #not-response{
+  flex-direction: column;
+  display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.menu{
+  
+  text-align: center;
+}
+.menu,.right{
+  width:100%;
+}
+.right{
+  justify-content:center;
+}
+}
+
+
+
   </style>
   <script>
     var isViewUser = false;
+  
     visible = () => {
       // debugger;
       var isLogin = {
@@ -158,17 +195,25 @@
       var text = document.getElementById("search").value;
       window.location = "http://localhost/web-programming-e-commerce/?url=filter/findName/" + text;
     }
+    function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
   </script>
 </head>
 
 <body>
-  <div style="margin:25px">
+  <div style="margin:25px" id="header">
 
-    <nav>
-      <div style="width:30vw">
+    <nav id="not-response">
+      <div  class="menu">
         <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
         <div class="dropdown">
-          <button class="dropbtn">Top</button>
+          <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>
           <div class="dropdown-content">
             <a href="?url=category/view/top/shirt">Shirt</a>
             <a href="?url=category/view/top/t-shirt">T-Shirt</a>
@@ -176,7 +221,7 @@
           </div>
         </div>
         <div class="dropdown">
-          <button class="dropbtn">Bottom</button>
+          <button class="dropbtn" onclick="window.location='?url=category/view/bottom'">Bottom</button>
           <div class="dropdown-content">
             <a href="?url=category/view/bottom/jeans">Jean</a>
             <a href="?url=category/view/bottom/short">Short</a>
@@ -187,14 +232,16 @@
           <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
         </div>
+       
+    
       </div>
-      <div><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" height=150 width=150 /></div>
+      <div ><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" width=150 height=150 id="logo" /></div>
 
-      <div style="display:flex; width:30vw">
-        <div style="margin-right:10px"><input class="search-input" placeholder="Search product" id="search" />
+      <div class="right">
+        <input class="search-input" placeholder="Search product" id="search" />
           <button class="btn-search" onclick="searchProduct()">Search</button>
-        </div>
-        <div style="margin-right:15px;display:flex">
+       
+        
 
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
           <div>
@@ -208,8 +255,10 @@
             </div>
           </div>
         </div>
-      </div>
+     
     </nav>
+    
+
   </div>
 
 </body>
