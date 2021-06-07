@@ -150,8 +150,10 @@
     }
 
     let caculate = (value, stt, price) => {
+        let lastprice = document.querySelector(`#subtotal-${stt}`);
+        total -= Number(lastprice.textContent.replaceAll(".", ""));
         let newprice = value * price;
-        document.querySelector(`#subtotal-${stt}`).textContent = stringMoney(newprice);
+        lastprice.textContent = stringMoney(newprice);
         total += newprice;
         totalElement.textContent = stringMoney(total);
         activeEle();
