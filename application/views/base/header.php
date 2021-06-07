@@ -88,7 +88,7 @@
 
               <div class="tooltiptext" id="tooltip" style="display:none">
                 <ul>
-                  <li style="margin-bottom:10px">Username</li>
+                  <li style="margin-bottom:10px"><?php echo $_SESSION['username']; ?></li>
                   <li style="cursor:pointer" onclick="window.location='?url=user/logout'">Log out</li>
                 </ul>
               </div>
