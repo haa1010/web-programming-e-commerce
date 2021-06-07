@@ -7,7 +7,7 @@ class Cart extends Model
     }
     function cart_add($pid, $color, $size, $quantity)
     {
-        $jstr = $pid . $color . $size;
+        $jstr = $pid . '-' . $color . '-' . $size;
         if (
             isset($_SESSION['cart'][$jstr])
         ) {

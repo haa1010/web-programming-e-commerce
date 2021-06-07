@@ -12,7 +12,7 @@ define('MODELPATH', BASEPATH . 'application/models/');
 #code here
 
 
-$url = $_GET['url'];
+$url = !empty($_GET['url']) ? $_GET['url'] : "home/view";
 $api = (isset($_REQUEST['api']) ? true : false);
 require "lib/ajax.php";
 require "lib/function.php";

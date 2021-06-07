@@ -184,8 +184,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`) VALUES
-(27, 'hangtt', '1');
-
+(27, 'hangtt', 'c4ca4238a0b923820dcc509a6f75849b'),
+(28, 'hoang', 'c4ca4238a0b923820dcc509a6f75849b');
 --
 -- Indexes for dumped tables
 --

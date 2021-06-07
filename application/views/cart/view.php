@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'cart.css' ?>">
 
 </head>
-<!-- <?php $cart = $_SESSION['cart']; ?> -->
 <form id="cart_form" method="post" action="?url=cart/update/" role="form">
     <div class="col-xs-12">
         <h1>Your cart</h1>
@@ -32,7 +31,7 @@
                         <td style="width: 5%" class="test" id="id"><?php echo $stt; ?></td>
                         <td style="width: 10%">
                             <?php
-                            $image = PATH_URL_IMG . 'public/images/product/' . $product['image'];
+                            $image = 'public/images/product/' . $product['image'];
                             if (is_file($image)) {
                                 echo '<image src="' . $image . '" style="max-width:100px; max-height:50px;" />';
                             }
@@ -65,7 +64,7 @@
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" onchange="caculate(this.value,<?php echo $stt; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
+                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" max="<?php echo($product['max'])?>" onchange="caculate(this.value,<?php echo ($stt . ',\'' . $pid) . '\''; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
 
@@ -126,9 +125,9 @@
     </form>
 </div>
 <script>
-    let length = <?php echo $stt ?>;
+    let length = <?php echo $stt; ?>;
     let is_change = false;
-    let total = <?php echo $total ?>;
+    let total = <?php echo $total; ?>;
     let totalElement = document.querySelector("#total-number");
     document.querySelector("#checkout-form").addEventListener("submit", function(e) {
         let mobile = document.querySelector('input[name=pn]').value;
@@ -152,14 +151,13 @@
     function getMoney(value) {
         return Number(value.replaceAll(".", ""));
     }
-    let caculate = (value, stt) => {
-        console.log(document.querySelector(`#price-${stt}`).textContent)
-        console.log(value)
+    let caculate = (value, stt, pid) => {
+        console.log(pid);
+
         document.querySelector(`#subtotal-${stt}`).textContent = stringMoney(Number(value) * getMoney(document.querySelector(`#price-${stt}`).textContent));
         let newprice = 0;
         for (let i = 1; i <= length; i++) {
             let ele = document.querySelector(`#row-${i}`);
-            console.log(ele.children[8])
             newprice += getMoney(ele.children[7].textContent);
         }
         total = newprice;
@@ -193,9 +191,7 @@
         xmlhttp.responseType = 'json';
         xmlhttp.onreadystatechange = function() {
             if (xmlhttp.readyState == 4) {
-
                 response = xmlhttp.response
-                console.log(response.success)
                 if (response.success) {
                     document.getElementById("response").innerHTML = "Cart Updated!";
                     var header = document.getElementById("inner-header")
@@ -225,7 +221,6 @@
         is_change = true;
         let targedEle = ele.parentElement.parentElement;
         targedEle.style.display = "none";
-        console.log(targedEle.children[targedEle.children.length - 3].firstElementChild.firstElementChild.value)
         targedEle.children[targedEle.children.length - 3].firstElementChild.firstElementChild.value = "-1";
         let stt = Number(targedEle.id.replace("row-", ""));
         targedEle.id = "";
