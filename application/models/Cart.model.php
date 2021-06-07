@@ -5,20 +5,25 @@ class Cart extends Model
     {
         if (!isset($_SESSION['cart'])) $_SESSION['cart'] = array();
     }
-    function cart_add($pid)
+    function cart_add($pid, $color, $size, $quantity)
     {
-        if (isset($_SESSION['cart'][$pid])) {
+        $jstr = $pid . $color . $size;
+        if (
+            isset($_SESSION['cart'][$jstr])
+        ) {
             //nếu đã có sp trong giỏ hàng thì số lượng lên 1
-            $_SESSION['cart'][$pid]['number']++;
+            $_SESSION['cart'][$jstr]['number'] += $quantity;
         } else {
             $productModel = new Product();
-            $product  = $productModel->select($pid);
+            $product  = $productModel->select($jstr);
             if ($product)
-                $_SESSION['cart'][$pid] = array(
+                $_SESSION['cart'][$jstr] = array(
                     'id' => $pid,
                     'name' => $product['Product']['Name'],
                     'image' => $product['Product']['Image1'],
-                    'number' => 1,
+                    'number' => $quantity,
+                    'size' => $size,
+                    'color' => $color,
                     'percent_off' => $product['Product']['Percent_off'],
                     'price' => $product['Product']['Price'],
                     'alias' => $product['Product']['Alias']
@@ -49,7 +54,7 @@ class Cart extends Model
     {
         $total = 0;
         foreach ($_SESSION['cart'] as $product) {
-            if ($product["percent_off"] ) {
+            if ($product["percent_off"]) {
                 $total += (($product['price']) - ($product['price']) * ($product['percent_off']) / 100) * $product['number'];
             } else
                 $total += $product['price'] * $product['number'];

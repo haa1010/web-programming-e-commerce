@@ -95,8 +95,6 @@ if ($product) {
 
 
 <?php if ($product) : ?>
-
-
     <div class="product-model">
         <div id="popup" class="popup">
             <div class="popup-content">

@@ -11,7 +11,7 @@
                 <div class="login-panel panel panel-default">
                     <div class="panel-body">
                         <div class="form-login">
-                            <form method="post" action="/user/signup" class="form-signup" role="form">
+                            <form method="post" action="?url=user/signup" class="form-signup" role="form">
                                 <div class="loginForm">
                                     <div class="form-group">
                                         <p class="font-bold">Username</p>
@@ -27,8 +27,8 @@
                                     </div>
 
                                     <div class="message"><?php if (!empty($message)) {
-                                                            echo $message;
-                                                        } ?></div>
+                                                                echo $message;
+                                                            } ?></div>
                                     <button class="btn-submit" type="submit">Sign Up</button>
                                     <div class="direct"><span style="color:#656767">Already have an account?</span><a href="?url=user/login&api=1" class=" color-green"> Login</a></div>
 

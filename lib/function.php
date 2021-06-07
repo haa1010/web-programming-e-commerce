@@ -58,7 +58,7 @@ function base64UrlEncode($text)
 // after -> paramlist
 function callHook()
 {
-    global $url;
+    global $url, $api;
     $urlArray = array();
     $urlArray = explode("/", $url);
     $controllerName = "Home";
@@ -74,7 +74,7 @@ function callHook()
     $controller = ucfirst($controller);
     $model = $controller; //Cart
     $controller .= 'Controller'; //CartController
-    $dispatch = new $controller($model, $controllerName, $action);
+    $dispatch = new $controller($model, $controllerName, $action, $api);
     // $dispatch->render();
     if ((int)method_exists($controller, $action)) {
         call_user_func_array(array($dispatch, $action), $queryString);

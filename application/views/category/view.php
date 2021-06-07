@@ -73,14 +73,10 @@
 
                 <?php
 
-                foreach ($products as $items) {
-                    $item = $items['Product'];
+                foreach ($products as $item) {
                 ?>
                     <div class="product">
-                        <div class="item" onclick='direct("<?php
-                                                            echo $item["Product"]["Alias"];
-
-                                                            ?>")'>
+                        <div class="item" onclick='direct("<?php echo $item["Product"]["Alias"]; ?>")'>
                             <img src="<?php echo PATH_URL_IMG_PRODUCT . $item['Product']['Image1'] ?>" alt="product" height=250 width=250 />
                             <p class="item-name"><?php echo $item['Product']['Name']; ?> </p>
                             <?php if ($item["Product"]["isSaleOff"]) : ?>

@@ -1,12 +1,13 @@
-<style> 
-body{
-    font-family: sans-serif;
-    color: #3a3a3a;
-    margin: 0;
-}
-button:hover{
-    cursor: pointer;
-}
+<style>
+    body {
+        font-family: sans-serif;
+        color: #3a3a3a;
+        margin: 0;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
 </style>
 
 <?php
@@ -24,6 +25,6 @@ define('MODELPATH', BASEPATH . 'application/models/');
 
 
 $url = $_GET['url'];
-$api = (isset($_GET['api']) ? true : false);
+$api = (isset($_REQUEST['api']) ? true : false);
 require "lib/ajax.php";
 require "lib/function.php";

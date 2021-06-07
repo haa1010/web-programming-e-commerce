@@ -3,9 +3,6 @@
 
 </head>
 <!-- <?php $cart = $_SESSION['cart']; ?> -->
-<div id="message"><?php if (!empty($message)) {
-                        echo $message;
-                    } ?></div>
 <form id="cart_form" method="post" action="?url=cart/update/" role="form">
     <div class="col-xs-12">
         <h1>Your cart</h1>
@@ -43,7 +40,7 @@
                             ?>
                         </td>
                         <td style="width: 20%">
-                            <a id="product-name" href="product/<?php echo $product['alias']; ?>"><?php echo $product['name']; ?></a>
+                            <a id="product-name" href="?url=product/view/<?php echo $product['alias']; ?>"><?php echo $product['name']; ?></a>
                         </td>
                         <td style="width: 10%">
                             <?php if ($product["percent_off"]) : ?>
@@ -55,13 +52,15 @@
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                Color!!!
+                                <!-- Color!!! -->
+                                <?php echo $product['color']; ?>
                             </div>
                         </td>
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                Size!!
+                                <!-- Size!! -->
+                                <?php echo $product['size']; ?>
                             </div>
                         </td>
 
@@ -118,6 +117,9 @@
             <label for="des">Note</label>
             <input type="text" name="des" maxlength="200">
         </div>
+        <div class="message"><?php if (!empty($message)) {
+                                    echo $message;
+                                } ?></div>
         <div>
             <input type="submit" class="form-control" style="background-color: #04AA6D;color: white;" value="Make Order" />
         </div>
@@ -126,7 +128,7 @@
 <script>
     document.querySelector("#checkout-form").addEventListener("submit", function(e) {
         let mobile = document.querySelector('input[name=pn]').value;
-        let messagedov = document.querySelector('#message')
+        let messagedov = document.querySelector('.message')
         var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
         if (mobile !== '') {
             if (vnf_regex.test(mobile) == false) {

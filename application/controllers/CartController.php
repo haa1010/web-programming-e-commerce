@@ -1,11 +1,11 @@
 <?php
 class CartController extends BaseController
 {
-    function add($id)
+    function add($id, $color, $size, $quantity)
     {
         $data = new Message();
         if ($id != null) {
-            $data->success = $this->Cart->cart_add($id);
+            $data->success = $this->Cart->cart_add($id, $color, $size, $quantity);
             $data->message = $data->success ? "Successful added" : "Invalid Product Id";
         }
         $this->set("message", $data->getMesage());
