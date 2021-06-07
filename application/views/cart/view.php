@@ -32,7 +32,7 @@
                         <td style="width: 5%" class="test" id="id"><?php echo $stt; ?></td>
                         <td style="width: 10%">
                             <?php
-                            $image = 'public/images/product/' . $product['image'];
+                            $image = PATH_URL_IMG . 'public/images/product/' . $product['image'];
                             if (is_file($image)) {
                                 echo '<image src="' . $image . '" style="max-width:100px; max-height:50px;" />';
                             }

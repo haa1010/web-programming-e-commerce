@@ -24,7 +24,7 @@ class Template
 
     function render()
     {
-        if (!$this->_api) {
+        if (!$this->_api || !($this->_controller == "user") && ($this->_action == ("login" || "signup"))) {
             require VIEWPATH . "base/header.php";
         }
         if (is_file(VIEWPATH . $this->_controller . '/' . $this->_action . '.php')) {
@@ -33,7 +33,7 @@ class Template
         } else
             show_404();
 
-        if (!$this->_api) {
+        if (!$this->_api || !($this->_controller == "user") && ($this->_action == ("login" || "signup"))) {
             require VIEWPATH . "base/footer.php";
         }
     }

@@ -54,14 +54,14 @@ CREATE TABLE `orders` (
   `Address` varchar(200) NOT NULL,
   `Phone` varchar(20) NOT NULL,
   `Cart_total` float NOT NULL,
-  `Note` int(11) NOT NULL
+  `Description` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Id`, `username`, `Address`, `Phone`, `Cart_total`, `Note`) VALUES
+INSERT INTO `orders` (`Id`, `username`, `Address`, `Phone`, `Cart_total`, `Description`) VALUES
 (1, '3', 'Ha Noi', '0918190234', 0, 0);
 
 -- --------------------------------------------------------
@@ -174,10 +174,10 @@ INSERT INTO `subcategory` (`Id`, `Name`, `CategoryId`, `Alias`) VALUES
 CREATE TABLE `user` (
   `Id` int(11) NOT NULL,
   `Username` varchar(50) DEFAULT NULL,
-  `Password` varchar(50) DEFAULT NULL,
-  `Avatar` varchar(100) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Description` varchar(500) NOT NULL
+  `Password` varchar(50) DEFAULT NULL
+  -- `Avatar` varchar(100) NOT NULL,
+  -- `Email` varchar(100) NOT NULL,
+  -- `Description` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
