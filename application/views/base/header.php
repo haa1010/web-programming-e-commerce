@@ -1,10 +1,20 @@
-<html>
-
 <head>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'base.css' ?>">
+  <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'common.css' ?>">
 
   <script>
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = function(event) {
+      if (event.target == popup)
+        closePopup();
+    }
+
     var isViewUser = false;
 
     visible = () => {
@@ -61,7 +71,6 @@
           <div class="dropdown-content">
             <a href="?url=category/view/bottom/jeans">Jean</a>
             <a href="?url=category/view/bottom/short">Short</a>
-
           </div>
         </div>
         <div class="dropdown">
@@ -78,8 +87,8 @@
         <div style="margin-right:15px;display:flex">
 
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
-          <div>
-            <?php if ($_SESSION['username']) : ?>
+          <div style="height: 40px;">
+            <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
               <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
 
@@ -91,15 +100,23 @@
               </div>
             <?php else : ?>
               <!-- Chưa đăng nhập -->
-              <a href="?url=user/login&api=1">Login</a>
-              <a href="?url=user/signup&api=1">Signup</a>
+              <a href="?url=user/login&api=1" class="color-green">Login</a>
+              <a href="?url=user/signup&api=1" class="color-green">Signup</a>
             <?php endif ?>
           </div>
         </div>
       </div>
     </nav>
   </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <span id="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="inner-header"></h2>
+      </div>
+      <div class="popup-body">
+        <p id="response"></p>
+      </div>
+    </div>
 
-</body>
-
-</html>
+  </div>

@@ -1,14 +1,3 @@
-<style> 
-body{
-    font-family: sans-serif;
-    color: #3a3a3a;
-    margin: 0;
-}
-button:hover{
-    cursor: pointer;
-}
-</style>
-
 <?php
 session_start();
 require "config/config.php";

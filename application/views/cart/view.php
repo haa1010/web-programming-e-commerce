@@ -27,10 +27,9 @@
                 $stt = 0;
                 foreach ($cart as $pid => $product) :
                     $stt++;
-                    // print_r($product)
                 ?>
-                    <tr>
-                        <td style="width: 5%"><?php echo $stt; ?></td>
+                    <tr id="row-<?php echo $stt; ?>">
+                        <td style="width: 5%" class="test" id="id"><?php echo $stt; ?></td>
                         <td style="width: 10%">
                             <?php
                             $image = 'public/images/product/' . $product['image'];
@@ -66,12 +65,12 @@
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                <input name="number[<?php echo $product['id']; ?>]" type="number" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
+                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" onchange="caculate(this.value,<?php echo $stt . ',' . $product['price']; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
 
                         <td style="width: 10%">
-                            <div class="btn-group" style="color: red">
+                            <div id="subtotal-<?php echo $stt; ?>" style="color: red">
                                 <?php if ($product["percent_off"]) : ?>
                                     <?php echo $product ? number_format(($product['price'] - ($product['price'] * $product['percent_off']) / 100) * $product['number'], 0, ',', '.') : 0; ?>
                                 <?php else : ?>
@@ -81,21 +80,22 @@
                         </td>
 
                         <td>
-                            <a href="?url=cart/delete/<?php echo $product['id']; ?>" class="text-danger">Delete</a>
+                            <a class="delete" onclick="deleteP(this)">Delete</a>
+
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="8" id="total">Total: <?php echo number_format($total, 0, ',', '.'); ?> VND</th>
+                    <td colspan="8" id="total">Total: <span id="total-number"><?php echo number_format($total, 0, ',', '.'); ?></span> VND</th>
                 </tr>
             </tfoot>
         </table>
         <br>
         <div class="form-group">
             <div class="btn-group">
-                <button type="submit" class="update-btn">Update cart</button>
+                <button type="button" class="update-btn disable" disabled onclick="updateCart()">Update cart</button>
             </div>
         </div>
     </div>
@@ -126,6 +126,10 @@
     </form>
 </div>
 <script>
+    let length = <?php echo $stt ?>;
+    let is_change = false;
+    let total = <?php echo $total ?>;
+    let totalElement = document.querySelector("#total-number");
     document.querySelector("#checkout-form").addEventListener("submit", function(e) {
         let mobile = document.querySelector('input[name=pn]').value;
         let messagedov = document.querySelector('.message')
@@ -140,4 +144,92 @@
             messagedov.textContent = "Invalid Phone Number";
         }
     })
+
+    function stringMoney(value) {
+        return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
+    }
+
+    let caculate = (value, stt, price) => {
+        let lastprice = document.querySelector(`#subtotal-${stt}`);
+        total -= Number(lastprice.textContent.replaceAll(".", ""));
+        let newprice = value * price;
+        lastprice.textContent = stringMoney(newprice);
+        total += newprice;
+        totalElement.textContent = stringMoney(total);
+        activeEle();
+    }
+
+    let activeEle = () => {
+        let updateButton = document.querySelector(".update-btn");
+        updateButton.disabled = false;
+        is_change = true;
+        updateButton.className = "update-btn";
+    }
+    let deactiveEle = () => {
+        let updateButton = document.querySelector(".update-btn");
+        updateButton.disabled = true;
+        is_change = false;
+        updateButton.className = "update-btn disable";
+    }
+
+    function updateCart(e) {
+        var url = "?url=cart/update&api=1";
+        let form = document.forms[0].elements;
+        let body = ""
+        console.log(form.length)
+        for (let i = 0; i < form.length - 1; i++) {
+            body += form[i]['name'] + "=" + form[i]['value']
+            if (i < form.length - 2)
+                body += "&";
+        }
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.responseType = 'json';
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4) {
+
+                response = xmlhttp.response
+                console.log(response.success)
+                if (response.success) {
+                    document.getElementById("response").innerHTML = "Cart Updated!";
+                    var header = document.getElementById("inner-header")
+                    header.innerHTML = "Success";
+                    header.style.color = "green"
+                } else {
+                    document.getElementById("response").innerHTML = response.message;
+                    var header = document.getElementById("inner-header")
+                    header.innerHTML = "Add failed";
+                    header.style.color = "red"
+                }
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+            }
+        };
+        xmlhttp.open('POST', url, true);
+        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xmlhttp.send(body);
+        deactiveEle();
+    };
+
+    function timeout(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    let deleteP = (ele) => {
+        activeEle();
+        is_change = true;
+        let targedEle = ele.parentElement.parentElement;
+        targedEle.style.display = "none";
+        console.log(targedEle.children[targedEle.children.length - 3].firstElementChild.firstElementChild.value)
+        targedEle.children[targedEle.children.length - 3].firstElementChild.firstElementChild.value = "-1";
+        let stt = Number(targedEle.id.replace("row-", ""));
+        targedEle.id = "";
+        for (let i = stt + 1; i <= length; i++) {
+            let ele = document.querySelector(`#row-${i}`)
+            ele.children[0].textContent = (i - 1).toString();
+            ele.id = "row-" + (i - 1).toString();
+        }
+        let newprice = targedEle.children[targedEle.children.length - 2].textContent
+        total -= Number(newprice.replaceAll(".", ""));
+        length -= 1;
+        totalElement.textContent = stringMoney(total);
+    }
 </script>

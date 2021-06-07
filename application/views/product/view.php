@@ -77,7 +77,7 @@ if ($product) {
 
     function popUpError(msg) {
         document.getElementById("response").innerHTML = msg;
-        var header = document.getElementById("header")
+        var header = document.getElementById("inner-header")
         header.innerHTML = "Add failed";
         header.style.color = "red"
         var popup = document.getElementById("popup");
@@ -86,7 +86,7 @@ if ($product) {
 
     function popUpSuccess(msg) {
         document.getElementById("response").innerHTML = msg;
-        var header = document.getElementById("header")
+        var header = document.getElementById("inner-header")
         header.innerHTML = "Success";
         header.style.color = "green"
         var popup = document.getElementById("popup");
@@ -130,19 +130,6 @@ if ($product) {
 
 
     <div class="product-model">
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <div class="popup-header">
-                    <span id="close-btn" onclick="closePopup()">&times;</span>
-                    <h2 id="header"></h2>
-                </div>
-                <div class="popup-body">
-                    <p id="response"></p>
-                </div>
-            </div>
-
-        </div>
-
         <div class="product-info ">
             <div class="left-panel">
                 <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $highlight_img] ?>" id="highlight-img">
@@ -219,7 +206,7 @@ if ($product) {
                                 ?>
                             </select>
                             <h4>Quantity:</h4>
-                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                            <input type="number" id="quantity" name="quantity" min="1" max="200" value="1">
 
 
                     </div>
