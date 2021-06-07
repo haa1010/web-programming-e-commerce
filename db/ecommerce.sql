@@ -184,8 +184,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`Id`, `Username`, `Password`, `Avatar`, `Email`, `Description`) VALUES
-(27, 'hangtt', '1', '', '', '');
+INSERT INTO `user` (`Id`, `Username`, `Password`) VALUES
+(27, 'hangtt', '1');
 
 --
 -- Indexes for dumped tables
