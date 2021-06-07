@@ -39,16 +39,7 @@ if ($product) {
 ?>
 
 <script>
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the popup, close it
-    window.onclick = function(event) {
-        if (event.target == popup)
-            closePopup();
-    }
-
+    
     function chooseImg(id) {
         url = window.location.href
         if (url.includes("&highlight=")) {
@@ -71,12 +62,12 @@ if ($product) {
                 response = xmlhttp.response
                 if (response.success) {
                     document.getElementById("response").innerHTML = "Product added to your cart!";
-                    var header = document.getElementById("header")
+                    var header = document.getElementById("inner-header")
                     header.innerHTML = "Success";
                     header.style.color = "green"
                 } else {
                     document.getElementById("response").innerHTML = response.message;
-                    var header = document.getElementById("header")
+                    var header = document.getElementById("inner-header")
                     header.innerHTML = "Add failed";
                     header.style.color = "red"
                 }
@@ -97,19 +88,6 @@ if ($product) {
 
 
     <div class="product-model">
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <div class="popup-header">
-                    <span id="close-btn" onclick="closePopup()">&times;</span>
-                    <h2 id="header"></h2>
-                </div>
-                <div class="popup-body">
-                    <p id="response"></p>
-                </div>
-            </div>
-
-        </div>
-
         <div class="product-info ">
             <div class="left-panel">
                 <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $highlight_img] ?>" id="highlight-img">
