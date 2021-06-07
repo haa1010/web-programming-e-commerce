@@ -100,8 +100,8 @@
               </div> -->
             <?php else : ?>
               <!-- Chưa đăng nhập -->
-              <a href="?url=user/login&api=1" class="color-green">Login</a>
-              <a href="?url=user/signup&api=1" class="color-green">Signup</a>
+              <a href="?url=user/login" class="color-green">Login</a>
+              <a href="?url=user/signup" class="color-green">Signup</a>
             <?php endif ?>
           </div>
         </div>

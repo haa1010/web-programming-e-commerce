@@ -30,7 +30,7 @@
                                                                 echo $message;
                                                             } ?></div>
                                     <button class="btn-submit" type="submit">Sign Up</button>
-                                    <div class="direct"><span style="color:#656767">Already have an account?</span><a href="?url=user/login&api=1" class=" color-green"> Login</a></div>
+                                    <div class="direct"><span style="color:#656767">Already have an account?</span><a href="?url=user/login" class=" color-green"> Login</a></div>
 
                                 </div>
                             </form>

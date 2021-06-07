@@ -41,7 +41,7 @@
                         <td style="width: 20%">
                             <a id="product-name" href="?url=product/view/<?php echo $product['alias']; ?>"><?php echo $product['name']; ?></a>
                         </td>
-                        <td style="width: 10%">
+                        <td style="width: 10%" id="price-<?php echo $stt; ?>">
                             <?php if ($product["percent_off"]) : ?>
                                 <?php echo $product ? number_format(($product['price']) - ($product['price']) * ($product['percent_off']) / 100, 0, ',', '.') : 0; ?>
                             <?php else : ?>
@@ -65,7 +65,7 @@
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" onchange="caculate(this.value,<?php echo $stt . ',' . $product['price']; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
+                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" onchange="caculate(this.value,<?php echo $stt; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
 
@@ -149,12 +149,20 @@
         return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.");
     }
 
-    let caculate = (value, stt, price) => {
-        let lastprice = document.querySelector(`#subtotal-${stt}`);
-        total -= Number(lastprice.textContent.replaceAll(".", ""));
-        let newprice = value * price;
-        lastprice.textContent = stringMoney(newprice);
-        total += newprice;
+    function getMoney(value) {
+        return Number(value.replaceAll(".", ""));
+    }
+    let caculate = (value, stt) => {
+        console.log(document.querySelector(`#price-${stt}`).textContent)
+        console.log(value)
+        document.querySelector(`#subtotal-${stt}`).textContent = stringMoney(Number(value) * getMoney(document.querySelector(`#price-${stt}`).textContent));
+        let newprice = 0;
+        for (let i = 1; i <= length; i++) {
+            let ele = document.querySelector(`#row-${i}`);
+            console.log(ele.children[8])
+            newprice += getMoney(ele.children[7].textContent);
+        }
+        total = newprice;
         totalElement.textContent = stringMoney(total);
         activeEle();
     }
@@ -176,7 +184,6 @@
         var url = "?url=cart/update&api=1";
         let form = document.forms[0].elements;
         let body = ""
-        console.log(form.length)
         for (let i = 0; i < form.length - 1; i++) {
             body += form[i]['name'] + "=" + form[i]['value']
             if (i < form.length - 2)

@@ -3,6 +3,7 @@
 /** Configuration Variables **/
 
 define('DEVELOPMENT_ENVIRONMENT', true);
+ini_set('display_errors', 'On');
 
 define('DB_NAME', 'ecommerce');
 //define('DB_USER', 'hangtt');

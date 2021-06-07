@@ -32,9 +32,9 @@ class CartController extends BaseController
     }
     function clear()
     {
-        $data = new Message(true);
+        // $data = new Message(true);
         $this->Cart->cart_destroy();
-        $this->set("message", $data->getMesage());
+        // $this->set("message", $data->getMesage());
     }
 
     function delete($id = NULL)
@@ -68,14 +68,16 @@ class CartController extends BaseController
                 print_r($result);
                 if ($result > 0) {
                     foreach ($_SESSION['cart'] as $item) {
-                        // print_r($item);
                         $orderModel->insert_detail($item, $result);
                     }
+                    $this->clear();
                 } else {
                     $this->set("message", $orderModel->getError());
                 }
-            } else
+            } else {
                 $this->set("message", "Empty Cart");
+                redirect("cart", "view");
+            }
         } else {
             $this->set("message", "You must login first");
             redirect("user", "login");
