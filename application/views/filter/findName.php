@@ -1,6 +1,4 @@
-<head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'category.css' ?>">
 
     <script>
@@ -25,8 +23,9 @@
             var priceFrom = document.getElementById("priceFrom").value;
             var priceTo = document.getElementById("priceTo").value;
             var orderby = document.getElementById("order").value;
-
-            var url = "http://localhost/web-programming-e-commerce/?url=filter/filter///";
+            let query=window.location.search;
+            var search = query.split("/");
+            var url = "http://localhost/web-programming-e-commerce/?url=filter/filter///"+search[search.length-1];
 
             if (priceFrom) url = url + "/" + priceFrom;
             else url = url + "/"
@@ -34,6 +33,7 @@
             else url = url + "/";
             if (orderby) url = url + "/" + orderby;
             url = url + "&api=1";
+            console.log(url);
             var http = new XMLHttpRequest();
             httpObject = getHTTPObject();
             if (httpObject != null) {
@@ -49,9 +49,9 @@
             }
         }
     </script>
-</head>
 
-<body>
+
+
 <?php if(sizeof($products)>0):?>
     <div class="filter " >
         Price:
@@ -108,4 +108,3 @@
 <?php else:?>
 <div style="text-align:center;height:30vh;font-size:20px;"> No product founds</div>
     <?php endif?>
-</body>

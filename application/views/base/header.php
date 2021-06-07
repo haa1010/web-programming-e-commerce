@@ -18,14 +18,7 @@
     var isViewUser = false;
 
     visible = () => {
-      // debugger;
-      var isLogin = {
-        username: false
-      };
-
-      if (!isLogin.username) {
-        window.location = "?url=user/login&api=1";
-      } else {
+     
         if (!isViewUser) {
           document.getElementById("tooltip").style.display = "block";
           isViewUser = true;
@@ -33,7 +26,7 @@
           document.getElementById("tooltip").style.display = "none";
           isViewUser = false;
         }
-      }
+      
     }
     let searchProduct = () => {
 
@@ -56,8 +49,8 @@
   <div style="margin:25px" id="header">
 
     <nav id="not-response">
-      <div class="menu" style="width:35vw">
-        <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
+      <div class="menu" >
+        <div class="dropdown"><button class="dropbtn" onclick="window.location='?url=home/view'">Home</button></div>
         <div class="dropdown">
           <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>
           <div class="dropdown-content">
@@ -80,14 +73,15 @@
       </div>
       <div><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" height=150 width=150 /></div>
 
-      <div style="display:flex; width:35vw">
-        <div style="margin-right:10px"><input class="search-input" placeholder="Search product" id="search" />
+      <div class="right">
+        <div style="margin-right:10px;display: flex"><input class="search-input" placeholder="Search product" id="search" />
           <button class="btn-search" onclick="searchProduct()">Search</button>
         </div>
         <div style="margin-right:15px;display:flex">
 
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
-          <div style="height: 40px;">
+          <div style=" display: flex;
+    justify-content: space-around;">
             <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
               <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
@@ -95,7 +89,7 @@
               <div class="tooltiptext" id="tooltip" style="display:none">
                 <ul>
                   <li style="margin-bottom:10px">Username</li>
-                  <li style="cursor:pointer">Log out</li>
+                  <li style="cursor:pointer" onclick="window.location='?url=user/logout'">Log out</li>
                 </ul>
               </div>
             <?php else : ?>

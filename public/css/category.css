@@ -40,13 +40,15 @@
 
 .filter {
     background: rgb(245, 245, 245);
-    height: 50px;
+   
     margin-top: 20px;
     align-items: center;
     display: flex;
     margin-left: 72px;
-    padding-left: 15px;
+   
     margin-right: 15px;
+    flex-flow: wrap;
+    padding: 10 0 10 15;
 }
 
 .filter input {
@@ -56,6 +58,10 @@
 .filter button:hover,
 .filter button:focus {
     background-color: #3e8e41;
+}
+
+.filter select{
+    padding:unset;
 }
 
 .filter input,

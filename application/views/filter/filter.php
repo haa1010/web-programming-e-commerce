@@ -1,21 +1,3 @@
-<html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'category.css' ?>">
-
-    <script>
-        direct = (id) => {
-
-            window.location = " ?url=product/view/" + id;
-        }
-    </script>
-</head>
-
-<body>
-
-<div class="content-product">
-        <div class="inline-row" id="listProduct">
 
             <?php if(sizeof($products)>0):
 
@@ -54,14 +36,11 @@
             ?>
 
 
-        </div>
+       
 <?php else:?>
-<div style="text-align:center;height:30vh;font-size:20px;"> No product founds</div>
+<div style="text-align:center;height:30vh;font-size:20px;width: 100%;"> No product founds</div>
     <?php endif?>
 
 
 
 
-</body>
-
-</html>
