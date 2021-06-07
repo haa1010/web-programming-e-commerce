@@ -1,7 +1,7 @@
 <?php
 function show_404()
 {
-    header('HTTP/1.1 Not Found 404', true, 404);
+    // header('HTTP/1.1 Not Found 404', true, 404);
     require(VIEWPATH . 'base/404.php');
     exit();
 }
@@ -15,6 +15,12 @@ function setReporting()
     }
 }
 
+function redirect($controller, $action)
+{
+    header("location:/?url=" . $controller . '/' . $action, true, 302);
+    exit();
+}
+
 function hash_password($str)
 {
     return md5($str);
@@ -23,11 +29,6 @@ function hash_password($str)
 function compare_password($pass, $hash)
 {
     return hash_equals($pass, $hash);
-}
-
-function redirect($controller, $action)
-{
-    header("Location: /?url=" . $controller . '/' . $action, true, 301);
 }
 
 function __autoload($className)
@@ -57,7 +58,7 @@ function base64UrlEncode($text)
 // after -> paramlist
 function callHook()
 {
-    global $url;
+    global $url, $api;
     $urlArray = array();
     $urlArray = explode("/", $url);
     $controllerName = "Home";
@@ -73,7 +74,7 @@ function callHook()
     $controller = ucfirst($controller);
     $model = $controller; //Cart
     $controller .= 'Controller'; //CartController
-    $dispatch = new $controller($model, $controllerName, $action);
+    $dispatch = new $controller($model, $controllerName, $action, $api);
     // $dispatch->render();
     if ((int)method_exists($controller, $action)) {
         call_user_func_array(array($dispatch, $action), $queryString);
@@ -81,7 +82,7 @@ function callHook()
     // } else {
     //     /* Error Generation Code Here */
     // }
-    
+
 }
 
 setReporting();

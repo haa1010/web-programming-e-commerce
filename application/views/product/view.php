@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'product.css' ?>">
 </head>
