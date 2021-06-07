@@ -4,7 +4,7 @@ class UserController extends BaseController
     private function genToken($username)
     {
         $issuedAt   = new DateTimeImmutable();
-        $expire     = $issuedAt->modify('+7 days')->getTimestamp();      // Add 60 seconds
+        $expire     = $issuedAt->modify('+30 days')->getTimestamp();      // Add 60 seconds
         // $serverName = "your.domain.name";
         $header = json_encode([
             'typ' => 'JWT',
@@ -55,13 +55,19 @@ class UserController extends BaseController
     }
     public function login()
     {
+        $arr_cookie_options = array(
+            'expires' => time() + 60 * 60 * 24 * 30,
+            'path' => '/',
+            'secure' => true,
+            'httponly' => true,
+        );
         if (isset($_COOKIE['token'])) {
             $value = $this->validate_token($_COOKIE['token']);
             if ($value != NULL && !empty($_SESSION['username']))
                 $_SESSION['username'] = $value;
         }
         if (!empty($_SESSION['username'])) {
-            redirect("home", "index");
+            redirect("home", "view");
         }
         if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
             $result = $this->User->login($_REQUEST['username'], $_REQUEST['password']);
@@ -69,9 +75,9 @@ class UserController extends BaseController
                 $_SESSION['username'] = $result['User']['username'];
                 $_SESSION['avatar']  = $result['User']['avatar'];
                 if (isset($_REQUEST['remember'])) {
-                    setcookie("token", $this->genToken($_SESSION['username']));
+                    setcookie("token", $this->genToken($_SESSION['username']), $arr_cookie_options);
                 }
-                redirect("home", "index");
+                redirect("home", "view");
             } else
                 $this->set("message", "Invalid username or password");
         } else {
@@ -84,7 +90,7 @@ class UserController extends BaseController
         $_SESSION['username'] = "";
         $_SESSION['avatar'] = "";
         setcookie("token", "", time() - 3600);
-        header("Refresh:0");
+        header('Location: ' . $_SERVER['REQUEST_URI']);
     }
 
     public function signup()

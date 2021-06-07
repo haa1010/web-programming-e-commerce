@@ -1,9 +1,15 @@
-
 <head>
-    <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'product.css' ?>">
+    <link rel="stylesheet" href="<?php
+
+                                    use function PHPSTORM_META\type;
+
+                                    echo PATH_URL_STYLE . 'product.css' ?>">
 </head>
 <?php
 json_encode($product);
+
+
+
 $highlight_img = 1;
 if (isset($_GET['highlight'])) {
     $highlight_img = $_GET['highlight'];
@@ -35,11 +41,19 @@ if ($product) {
             $token = strtok(" ");
         }
     }
+
+    // get quantity
+    $quantities = (json_decode($product["Quantity"], true));
 }
+
+
 
 ?>
 
 <script>
+    var quantities = <?php echo  json_encode($quantities); ?>;
+    console.log(quantities)
+
     function closePopup() {
         document.getElementById("popup").style.display = "none";
     }
@@ -61,9 +75,35 @@ if ($product) {
 
     }
 
+    function popUpError(msg) {
+        document.getElementById("response").innerHTML = msg;
+        var header = document.getElementById("inner-header")
+        header.innerHTML = "Add failed";
+        header.style.color = "red"
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
+
+    function popUpSuccess(msg) {
+        document.getElementById("response").innerHTML = msg;
+        var header = document.getElementById("inner-header")
+        header.innerHTML = "Success";
+        header.style.color = "green"
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
+
     function addToCart() {
         event.preventDefault();
-        // alert(document.form.color.value + document.form.size.value + document.getElementById('quantity').value + <?php echo $product["Id"]; ?>)
+        var prod_type = document.form.prod.value;
+        var entered_qty = document.getElementById('quantity').value;
+
+        console.log(quantities[prod_type], quantities[prod_type]['qty']);
+        // // check quantity 
+        if (parseInt(quantities[prod_type]['qty']) < entered_qty) {
+            popUpError("Your quantity must be less than number of items in stock")
+            return;
+        }
 
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.responseType = 'json';
@@ -71,22 +111,14 @@ if ($product) {
             if (xmlhttp.readyState == 4) {
                 response = xmlhttp.response
                 if (response.success) {
-                    document.getElementById("response").innerHTML = "Product added to your cart!";
-                    var header = document.getElementById("header")
-                    header.innerHTML = "Success";
-                    header.style.color = "green"
+                    popUpSuccess("Product added to your cart!");
                 } else {
-                    document.getElementById("response").innerHTML = response.message;
-                    var header = document.getElementById("header")
-                    header.innerHTML = "Add failed";
-                    header.style.color = "red"
+                    popUpError(response.message);
                 }
-                var popup = document.getElementById("popup");
-                popup.style.display = "block";
             }
         };
         // path = ?url=cart/add/id/color/size/quantity&api=1
-        var url = "?url=cart/add/" + <?php echo $product["Id"]; ?> + "/" + document.form.color.value + "/" + document.form.size.value + "/" + document.getElementById('quantity').value + "&api=1";
+        var url = "?url=cart/add/" + <?php echo $product["Id"]; ?> + "/" + quantities[prod_type]['color'] + "/" + quantities[prod_type]['size'] + "/" + document.getElementById('quantity').value + "&api=1";
         console.log(url)
         xmlhttp.open("GET", url, true);
         xmlhttp.send();
@@ -98,19 +130,6 @@ if ($product) {
 
 
     <div class="product-model">
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <div class="popup-header">
-                    <span id="close-btn" onclick="closePopup()">&times;</span>
-                    <h2 id="header"></h2>
-                </div>
-                <div class="popup-body">
-                    <p id="response"></p>
-                </div>
-            </div>
-
-        </div>
-
         <div class="product-info ">
             <div class="left-panel">
                 <img src="<?php echo PATH_URL_IMG_PRODUCT . $product['Image' . $highlight_img] ?>" id="highlight-img">
@@ -163,34 +182,34 @@ if ($product) {
                     <div class="item-detail">
                         <h4>Material Composition:</h4> <?php echo $product['Material'] ?>
                         <form onsubmit="addToCart(event)" name="form">
-                            <h4>Color:</h4>
+                            <!-- <h4>Color:</h4>
 
                             <select name="color" id="color">
-                                <?php if (array_key_exists('color', $product)) : ?>
-                                    <?php
-                                    foreach ($product['color'] as $key => $value) :
-                                        echo '<option value="' . $value . '">' . $value . '</option>'; //close your tags!!
-                                    endforeach;
-                                    ?>
-                                <?php else : echo '<option value="' . $product["Color"] . '">' . $product["Color"] . '</option>'; ?>
-                                <?php endif ?>
+                                <?php foreach ($quantities as $item) {
+                                    echo '<option value="' . $item['color'] . '">' . $item['color'] . '</option>';
+                                }
+                                ?>
                             </select>
 
                             <h4>Size:</h4>
                             <select name="size" id="size">
-                                <?php if (array_key_exists('size', $product)) : ?>
-                                    <?php
-                                    foreach ($product['size'] as $key => $value) :
-                                        echo '<option value="' . $value . '">' . $value . '</option>'; //close your tags!!
-                                    endforeach;
-                                    ?>
-                                <?php else : echo '<option value="' . $product["Size"] . '">' . $product["Size"] . '</option>'; ?>
-                                <?php endif ?>
+                                <?php foreach ($quantities as $item) {
+                                    echo '<option value="' . $item['size'] . '">' . $item['size'] . '</option>';
+                                }
+                                ?>
+                            </select> -->
+                            <h4>Color, Size, Items in stock:</h4>
+                            <select name="prod" id="prod">
+                                <?php foreach ($quantities as $key => $item) {
+                                    echo '<option value="' . $key . '">' . $item['color'] . ', ' . $item['size'] . ': ' . $item['qty'] . ' items</option>';
+                                }
+                                ?>
                             </select>
                             <h4>Quantity:</h4>
-                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+                            <input type="number" id="quantity" name="quantity" min="1" max="200" value="1">
+
+
                     </div>
-                    <!-- <a href="cart/add/<?php echo $product['Id']; ?>" class="btn btn-orange" role="button">ADD TO CART</a> -->
                     <button class="btn btn-green" type="submit">ADD TO CART</button>
                     </form>
                 </div>

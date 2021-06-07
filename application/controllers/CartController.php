@@ -1,11 +1,11 @@
 <?php
 class CartController extends BaseController
 {
-    function add($id)
+    function add($id, $color, $size, $quantity)
     {
         $data = new Message();
         if ($id != null) {
-            $data->success = $this->Cart->cart_add($id);
+            $data->success = $this->Cart->cart_add($id, $color, $size, $quantity);
             $data->message = $data->success ? "Successful added" : "Invalid Product Id";
         }
         $this->set("message", $data->getMesage());
@@ -17,33 +17,38 @@ class CartController extends BaseController
     }
     function update()
     {
+        $data = new Message(true);
         if (!empty($_POST)) {
             foreach ($_POST['number'] as $pid => $number) {
-                $this->Cart->cart_update($pid, $number);
+                if (intval($number) > 0)
+                    $data->success &=  $this->Cart->cart_update($pid, $number);
+                else {
+                    $data->success &= $this->Cart->cart_delete($pid);
+                }
             }
-            header("Refresh:0");
-        }
-        // if (!empty($id) && !empty($number))
-        //     $this->Cart->cart_update($id, $number);
+        } else
+            $this->Cart->cart_destroy();
+        $this->set("message", $data->getMesage());
     }
     function clear()
     {
+        $data = new Message(true);
         $this->Cart->cart_destroy();
+        $this->set("message", $data->getMesage());
     }
 
     function delete($id = NULL)
     {
-        if ($id)
-            $this->Cart->cart_delete($id);
-        // if (isset($_REQUEST['id']))
-        //     $this->Cart->cart_delete($_REQUEST['id']);
+        $data = new Message();
+        if ($id != null) {
+            $data->success = $this->Cart->cart_delete($id);
+            // $data->message = $data->success ? "Successful deleted" : "Invalid Product Id";
+        }
+        // $this->set("message", $data->getMesage());
     }
 
     function checkout()
     {
-        // if ($_SESSION['cart'] == array()) {
-        //     $this->Cart->checkout();
-        // }
         if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
             $pattern = "/((09|03|07|08|05)+([0-9]{8})\b)/";
             $address = $_POST['address'];

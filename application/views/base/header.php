@@ -1,177 +1,22 @@
-
-
-
-<html>
-
 <head>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    button.dropbtn a {
-      text-decoration: none;
-      color: white;
-    }
+  <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'base.css' ?>">
+  <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'common.css' ?>">
 
-    .dropbtn {
-      background-color: #04AA6D;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f1f1f1;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
-
-    a {
-      text-decoration: none
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .inline {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 150px;
-
-    }
-
-    .search-input {
-      height: 40px;
-      font-size: 18px;
-      width: 47%;
-      padding-left: 10px;
-      border-top: 1px solid rgb(118, 118, 118);
-      border-left: 1px solid rgb(118, 118, 118);
-      border-bottom: 1px solid rgb(118, 118, 118);
-      border-right: unset;
-      padding-bottom: 1px !important;
-    }
-
-    .btn-search {
-      color: #ffff;
-      height: 40px;
-      width: 85px;
-      background-color: #04AA6D;
-      border: 1px solid #04AA6D;
-      margin-right:10px;
-      border-radius: 0px 8px 8px 0px;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #ddd;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropbtn a {
-      color: white;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      border-bottom: 1px dotted black;
-    }
-
-    .tooltiptext {
-
-      width: 120px;
-      background-color: #c3f7e4;
-      color: black;
-      font-size: 18px;
-      border-radius: 6px;
-      /* Position the tooltip */
-      position: absolute;
-
-      top: 120px;
-      right: 10px;
-
-
-    }
-
-    ul {
-      list-style: none;
-    }
-
-    #not-response {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dropdown:hover .dropbtn {
-      background-color: #3e8e41;
-    }
-
-  .menu{
-    width:30vw;
-  }
-  .right{
-  display:flex;
-   width:30vw;
-  justify-content: flex-end;
-}
-
-@media screen and (max-width: 750px) {
-  
-  #not-response{
-  flex-direction: column;
-  display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.menu{
-  
-  text-align: center;
-}
-.menu,.right{
-  width:100%;
-}
-.right{
-  justify-content:center;
-}
-}
-
-
-
-  </style>
   <script>
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = function(event) {
+      if (event.target == popup)
+        closePopup();
+    }
+
     var isViewUser = false;
-  
+
     visible = () => {
       // debugger;
       var isLogin = {
@@ -195,14 +40,15 @@
       var text = document.getElementById("search").value;
       window.location = "http://localhost/web-programming-e-commerce/?url=filter/findName/" + text;
     }
+
     function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
   </script>
 </head>
 
@@ -210,7 +56,7 @@
   <div style="margin:25px" id="header">
 
     <nav id="not-response">
-      <div  class="menu">
+      <div class="menu" style="width:35vw">
         <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
         <div class="dropdown">
           <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>
@@ -225,42 +71,52 @@
           <div class="dropdown-content">
             <a href="?url=category/view/bottom/jeans">Jean</a>
             <a href="?url=category/view/bottom/short">Short</a>
-
           </div>
         </div>
         <div class="dropdown">
           <button class="dropbtn"><a href="?url=category/view/shoes">Shoes</a></button>
 
         </div>
-       
-    
       </div>
-      <div ><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" width=150 height=150 id="logo" /></div>
+      <div><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" height=150 width=150 /></div>
 
-      <div class="right">
-        <input class="search-input" placeholder="Search product" id="search" />
+      <div style="display:flex; width:35vw">
+        <div style="margin-right:10px"><input class="search-input" placeholder="Search product" id="search" />
           <button class="btn-search" onclick="searchProduct()">Search</button>
-       
-        
+        </div>
+        <div style="margin-right:15px;display:flex">
 
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
-          <div>
-            <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
+          <div style="height: 40px;">
+            <?php if (isset($_SESSION['username'])) : ?>
+              <!-- Đăng nhập r -->
+              <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
 
-            <div class="tooltiptext" id="tooltip" style="display:none">
-              <ul>
-                <li style="margin-bottom:10px">Username</li>
-                <li style="cursor:pointer">Log out</li>
-              </ul>
-            </div>
+              <div class="tooltiptext" id="tooltip" style="display:none">
+                <ul>
+                  <li style="margin-bottom:10px">Username</li>
+                  <li style="cursor:pointer">Log out</li>
+                </ul>
+              </div>
+            <?php else : ?>
+              <!-- Chưa đăng nhập -->
+              <a href="?url=user/login&api=1" class="color-green">Login</a>
+              <a href="?url=user/signup&api=1" class="color-green">Signup</a>
+            <?php endif ?>
           </div>
         </div>
-     
+      </div>
     </nav>
-    
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <span id="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="inner-header"></h2>
+      </div>
+      <div class="popup-body">
+        <p id="response"></p>
+      </div>
+    </div>
 
   </div>
-
-</body>
-
-</html>
