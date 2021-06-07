@@ -18,15 +18,15 @@
     var isViewUser = false;
 
     visible = () => {
-     
-        if (!isViewUser) {
-          document.getElementById("tooltip").style.display = "block";
-          isViewUser = true;
-        } else {
-          document.getElementById("tooltip").style.display = "none";
-          isViewUser = false;
-        }
-      
+
+      if (!isViewUser) {
+        document.getElementById("tooltip").style.display = "block";
+        isViewUser = true;
+      } else {
+        document.getElementById("tooltip").style.display = "none";
+        isViewUser = false;
+      }
+
     }
     let searchProduct = () => {
 
@@ -46,10 +46,10 @@
 </head>
 
 <body>
-  <div  id="header">
+  <div id="header">
 
     <nav id="not-response">
-      <div class="menu" >
+      <div class="menu">
         <div class="dropdown"><button class="dropbtn" onclick="window.location='?url=home/view'">Home</button></div>
         <div class="dropdown">
           <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>
@@ -82,22 +82,22 @@
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
           <div style=" display: flex;
     justify-content: space-around;">
-            <?php if (true) : ?>
+            <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
               <div class="dropdown">
-              <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
-              <div class="dropdown-content">
-            <span><?php echo $_SESSION['username']; ?></span>
-            <a href="?url=user/logout">Logout</a>
-          </div>
-          </div>
-              <!-- <div class="tooltiptext" id="tooltip" style="display:none">
+                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
+                <div class="dropdown-content">
+                  <span><?php echo $_SESSION['username']; ?></span>
+                  <a href="?url=user/logout">Logout</a>
+                </div>
+              </div>
+              <div class="tooltiptext" id="tooltip" style="display:none">
 
                 <ul>
                   <li style="margin-bottom:10px"><?php echo $_SESSION['username']; ?></li>
-                  <li style="cursor:pointer" onclick="window.location='?url=user/logout'">Log out</li>
+                  <li style="cursor:pointer" onclick="window.location='?url=user/logout/'">Log out</li>
                 </ul>
-              </div> -->
+              </div>
             <?php else : ?>
               <!-- Chưa đăng nhập -->
               <a href="?url=user/login" class="color-green">Login</a>

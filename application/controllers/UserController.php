@@ -87,10 +87,11 @@ class UserController extends BaseController
 
     public function logout()
     {
-        $_SESSION['username'] = "";
-        $_SESSION['uid'] = "";
+        $_SESSION['username'] = null;
+        $_SESSION['uid'] = null;
         setcookie("token", "", time() - 3600);
-        header('Location: ' . $_SERVER['REQUEST_URI']);
+        header('Location:' . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "?url=home/view"));
+        // redirect("home", "view");
     }
 
     public function signup()

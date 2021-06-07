@@ -36,4 +36,5 @@ class ProductController extends BaseController
             $this->set("product", null);
         }
     }
+
 }
