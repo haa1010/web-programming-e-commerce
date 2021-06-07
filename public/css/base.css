@@ -86,9 +86,10 @@ a {
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,.tooltip:hover .dropdown-content{
     display: block;
 }
+
 
 .dropbtn a {
     color: white;
@@ -129,7 +130,9 @@ ul {
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
-
+#header{
+    margin:25px
+}
 .menu {
     width: 32vw;
 }
@@ -147,6 +150,9 @@ ul {
         justify-content: space-around;
         align-items: center;
         width: 100vw;
+    }
+    #header{
+        margin:25 0 25 0;
     }
     .dropbtn{
         padding:8px;
@@ -172,6 +178,7 @@ ul {
         margin-top:10px;
         justify-content: center;
     }
+
 }
 @media screen and (max-width:956px ) and (min-width:751px){
 .right{
@@ -186,6 +193,7 @@ ul {
 .dropbtn{
     padding:8px;
 }
+
 }
 @media screen and (max-width:543px){
     .filter{
