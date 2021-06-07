@@ -1,4 +1,3 @@
-
 <head>
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'product.css' ?>">
 </head>
@@ -95,6 +94,8 @@ if ($product) {
 
 
 <?php if ($product) : ?>
+
+
     <div class="product-model">
         <div id="popup" class="popup">
             <div class="popup-content">

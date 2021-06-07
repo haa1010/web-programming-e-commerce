@@ -1,9 +1,12 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'base.css' ?>">
+
   <script>
     var isViewUser = false;
+
     visible = () => {
       // debugger;
       var isLogin = {
@@ -27,17 +30,26 @@
       var text = document.getElementById("search").value;
       window.location = "http://localhost/web-programming-e-commerce/?url=filter/findName/" + text;
     }
+
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
   </script>
 </head>
 
 <body>
-  <div style="margin:25px">
+  <div style="margin:25px" id="header">
 
-    <nav>
-      <div style="width:30vw">
+    <nav id="not-response">
+      <div class="menu">
         <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
         <div class="dropdown">
-          <button class="dropbtn">Top</button>
+          <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>
           <div class="dropdown-content">
             <a href="?url=category/view/top/shirt">Shirt</a>
             <a href="?url=category/view/top/t-shirt">T-Shirt</a>
@@ -45,7 +57,7 @@
           </div>
         </div>
         <div class="dropdown">
-          <button class="dropbtn">Bottom</button>
+          <button class="dropbtn" onclick="window.location='?url=category/view/bottom'">Bottom</button>
           <div class="dropdown-content">
             <a href="?url=category/view/bottom/jeans">Jean</a>
             <a href="?url=category/view/bottom/short">Short</a>
@@ -68,7 +80,7 @@
           <a href="?url=cart/view"> <img src="<?php echo PATH_URL_IMG_LOGO . "cart.svg"; ?>" width=40 height=40 style="margin-right:15px" /></a>
           <div>
             <?php if ($_SESSION['username']) : ?>
-            <!-- Đăng nhập r -->
+              <!-- Đăng nhập r -->
               <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
 
               <div class="tooltiptext" id="tooltip" style="display:none">
@@ -78,7 +90,7 @@
                 </ul>
               </div>
             <?php else : ?>
-            <!-- Chưa đăng nhập -->
+              <!-- Chưa đăng nhập -->
               <a href="?url=user/login&api=1">Login</a>
               <a href="?url=user/signup&api=1">Signup</a>
             <?php endif ?>

@@ -54,7 +54,7 @@ class Cart extends Model
     {
         $total = 0;
         foreach ($_SESSION['cart'] as $product) {
-            if ($product["percent_off"]) {
+            if ($product["percent_off"] ) {
                 $total += (($product['price']) - ($product['price']) * ($product['percent_off']) / 100) * $product['number'];
             } else
                 $total += $product['price'] * $product['number'];

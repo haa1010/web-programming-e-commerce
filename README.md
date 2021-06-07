@@ -3,13 +3,10 @@ E-commerce website for Web Programming course
 
 # BUGS:
 ## Cart
-- add product to cart by path = ?url=cart/add/id/color/size/quantity&api=1
-- from cart, click img, go to page ?url=product/view/alias (alias, not id)
-- login onsubmit
-## Category:
-- Filter, Find: Sale price chưa fix
-- view/shoes: Undefined variable: subid
-
+- color, size in view cart
+- add to cart: dont have noti message
+- update cart: expect: not direct page, display message success update
+- checkout
 
 # TODO:
 - Home Footer Database Signup CSS(Hang)
