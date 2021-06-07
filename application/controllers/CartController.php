@@ -17,12 +17,18 @@ class CartController extends BaseController
     }
     function update()
     {
+        $data = new Message(true);
         if (!empty($_POST)) {
             foreach ($_POST['number'] as $pid => $number) {
-                $this->Cart->cart_update($pid, $number);
+                if (intval($number) > 0)
+                    $data->success &=  $this->Cart->cart_update($pid, $number);
+                else {
+                    $data->success &= $this->Cart->cart_delete($pid);
+                }
             }
-            header("Refresh:0");
-        }
+        } else
+            $this->Cart->cart_destroy();
+        $this->set("message", $data->getMesage());
     }
     function clear()
     {
@@ -36,9 +42,9 @@ class CartController extends BaseController
         $data = new Message();
         if ($id != null) {
             $data->success = $this->Cart->cart_delete($id);
-            $data->message = $data->success ? "Successful deleted" : "Invalid Product Id";
+            // $data->message = $data->success ? "Successful deleted" : "Invalid Product Id";
         }
-        $this->set("message", $data->getMesage());
+        // $this->set("message", $data->getMesage());
     }
 
     function checkout()
