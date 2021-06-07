@@ -155,5 +155,5 @@ select,
 input#quantity {
     height: fit-content;
     padding: 10px;
-    width: 80px;
+    width: 150px;
 }

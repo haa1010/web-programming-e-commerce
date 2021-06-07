@@ -6,9 +6,6 @@
 
 <body>
     Product Page
-    <?php
-    print_r(count($productList));
-    ?>
 </body>
 
 </html>

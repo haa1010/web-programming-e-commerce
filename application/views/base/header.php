@@ -165,7 +165,7 @@
   <div style="margin:25px">
 
     <nav>
-      <div style="width:30vw">
+      <div style="width:35vw">
         <div class="dropdown"><button class="dropbtn"><a href="?url=home/view">Home</a></button></div>
         <div class="dropdown">
           <button class="dropbtn">Top</button>
@@ -190,7 +190,7 @@
       </div>
       <div><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" height=150 width=150 /></div>
 
-      <div style="display:flex; width:30vw">
+      <div style="display:flex; width:35vw">
         <div style="margin-right:10px"><input class="search-input" placeholder="Search product" id="search" />
           <button class="btn-search" onclick="searchProduct()">Search</button>
         </div>
