@@ -10,6 +10,7 @@ class Orders extends Model
             $total . ",'" .
             $this->escape($des) . "');";
         $this->query($query);
+        var_dump($query);
     }
 
     function insert_detail($item, $order)

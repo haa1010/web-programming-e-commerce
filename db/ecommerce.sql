@@ -54,7 +54,8 @@ CREATE TABLE `orders` (
   `Address` varchar(200) NOT NULL,
   `Phone` varchar(20) NOT NULL,
   `Cart_total` float NOT NULL,
-  `Description` int(11) NOT NULL
+  `Description` varchar(500) NOT NULL,
+  `Created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -62,7 +63,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`Id`, `Uid`, `Address`, `Phone`, `Cart_total`, `Description`) VALUES
-(1, 3, 'Ha Noi', '0918190234', 0, 0);
+(1, 3, 'Ha Noi', '0918190234', 0, "");
 
 -- --------------------------------------------------------
 

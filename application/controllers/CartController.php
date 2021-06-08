@@ -60,28 +60,41 @@ class CartController extends BaseController
             $address = $_POST['address'];
             $phone = $_POST['pn'];
             $des = $_POST['des'] or "";
-            if (strlen($address) > 200)
+            if (strlen($address) > 200) {
                 $this->set("message", "Invalid length Address");
-            if (strlen($des) > 500)
+                return;
+            }
+            if (strlen($des) > 500) {
                 $this->set("message", "Invalid length Description");
-            if (preg_match_all($pattern, $phone))
-                $this->set("message", "Invalid Phone Number");
+                return;
+            }
+            // if (preg_match_all($pattern, $phone))
+            //     $this->set("message", "Invalid Phone Number");
             // add to DB
             if ($_SESSION['cart'] != array()) {
                 $orderModel = new Orders();
                 $productModel = new Product();
-                $orderModel->insert_one($address, $phone, $des, $this->Cart->cart_total());
-                $result = intval($orderModel->getInserted()['id']);
-                print_r($result);
-                if ($result > 0) {
-                    foreach ($_SESSION['cart'] as $item) {
-                        $orderModel->insert_detail($item, $result);
-                        $productModel->update_quantity();
+                // $productModel.get_quantity();D
+                $isValid = $productModel->checkCart();
+                // add to order and order detail.
+                if ($isValid == "") {
+                    $orderModel->insert_one($address, $phone, $des, $this->Cart->cart_total());
+                    $result = intval($orderModel->getInserted()['id']);
+                    var_dump($result);
+                    if ($result > 0) {
+                        foreach ($_SESSION['cart'] as $item) {
+                            $orderModel->insert_detail($item, $result);
+                            $productModel->update_quantity($item);
+                        }
+                        // Update to db 
+                        redirect("cart", "history");
+                    } else {
+                        $this->set("message", $orderModel->getError());
+                        var_dump($orderModel->getError());
                     }
-                    // Update to db 
-                    $this->clear();
                 } else {
-                    $this->set("message", $orderModel->getError());
+                    $this->set("message", $isValid);
+                    var_dump("herereer");
                 }
             } else {
                 $this->set("message", "Empty Cart");

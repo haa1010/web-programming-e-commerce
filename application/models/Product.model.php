@@ -17,7 +17,29 @@ class Product extends Model
         }
         return 0;
     }
-    function update_quantity()
+    function update_quantity($item)
     {
+        $objArr =  json_decode($this->select($item['id'])['Product']['Quantity'], true);
+        foreach ($objArr as $i => $obj) {
+            if ($obj['color'] === $item['color'] && $obj['size'] === $item['size']) {
+                $objArr[$i]['qty'] = strval($objArr[$i]['qty'] - $item['number']);
+            }
+        }
+        $query = "update `" . $this->_table . "` set `Quantity` = '" . json_encode($objArr) . "' where `id`=" . $this->escape($item['id']) . ";";
+        var_dump($query);
+        $this->query($query);
+    }
+
+    function checkCart()
+    {
+        $result = "";
+        foreach ($_SESSION['cart'] as $pid => $item) {
+            var_dump($item);
+            $left = $this->get_quantity($item['id'], $item['color'], $item['size']);
+            if ($item['number'] > intval($left)) {
+                $result += "Product " . str_replace("-", " ", $pid) . "Only have " . $left . " item" . "\n";
+            }
+        }
+        return $result;
     }
 }
