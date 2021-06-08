@@ -52,7 +52,7 @@ if ($product) {
 
 <script>
     var quantities = <?php echo  json_encode($quantities); ?>;
-    console.log(quantities)
+    // console.log(quantities)
 
     function closePopup() {
         document.getElementById("popup").style.display = "none";
