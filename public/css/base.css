@@ -71,8 +71,7 @@ a {
     border-radius: 0px 8px 8px 0px;
 }
 
-.dropdown-content a:hover,
-#username-header:hover {
+.dropdown-content a:hover {
     background-color: #ddd;
 }
 

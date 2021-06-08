@@ -40,7 +40,7 @@ if (!empty($cart)) {
                         <th>Color</th>
                         <th>Size</th>
                         <th>Quantity</th>
-                        <th>Subtotal</th>
+                        <!-- <th>Subtotal</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -50,8 +50,8 @@ if (!empty($cart)) {
                         $stt = 0;
                     ?>
                         <th colspan="8">
-                            <h3 style="margin: 0;">Order #<?php echo ($oid + 1); ?>: <?php echo number_format($cart[0]['Order']['Cart_total'], 0, ',', '.'); ?> VND
-                            </h3>
+                            <h3 style="margin: 0;color:red">Order #<?php echo ($oid + 1); ?>: <?php echo number_format($cart[0]['Order']['Cart_total'], 0, ',', '.'); ?> VND</h3> at <?php echo $cart[0]['Order']['Created_at']; ?>
+                            
                         </th>
                         <?php foreach ($cart as $pid => $item) :
                             $stt++;
@@ -91,11 +91,11 @@ if (!empty($cart)) {
                                     </div>
                                 </td>
 
-                                <td style="width: 10%">
+                                <!-- <td style="width: 10%">
                                     <div id="subtotal-<?php echo $stt; ?>" style="color: red">
                                         <?php echo number_format($product['Subtotal'], 0, ',', '.'); ?>
                                     </div>
-                                </td>
+                                </td> -->
 
                             </tr>
                     <?php endforeach;
