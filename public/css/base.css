@@ -142,6 +142,9 @@ ul {
     width: 32vw;
     justify-content: flex-end;
 }
+.dropdown-content.user{
+    right:0px;
+}
 
 @media screen and (max-width: 750px) {
     #not-response {
