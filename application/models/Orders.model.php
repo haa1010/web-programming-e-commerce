@@ -10,7 +10,6 @@ class Orders extends Model
             $total . ",'" .
             $this->escape($des) . "');";
         $this->query($query);
-        var_dump($query);
     }
 
     function insert_detail($item, $order)
@@ -22,9 +21,7 @@ class Orders extends Model
             $this->escape($item['color']) . "','" .
             $this->escape($item['size']) . "'," .
             intval($item['price']) . ")";
-        var_dump($query);
         $this->query($query);
-        var_dump($this->getError());
     }
 
     function get_history($username)

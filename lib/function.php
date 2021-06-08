@@ -1,10 +1,11 @@
 <?php
 function show_404()
 {
-    // header('HTTP/1.1 Not Found 404', true, 404);
+    header('HTTP/1.1 Not Found 404', true, 404);
     require(VIEWPATH . 'base/404.php');
     exit();
 }
+
 function setReporting()
 {
     if (DEVELOPMENT_ENVIRONMENT == true) {

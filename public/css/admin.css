@@ -1,0 +1,115 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 50px auto;
+}
+
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+th {
+  background: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+td,
+th {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+  font-size: 18px;
+}
+
+tr:hover td {
+  background: #a8d8f8;
+}
+
+.link-btn {
+  color: #3498db;
+  cursor: pointer;
+}
+
+td .link-btn {
+  margin-right: 5px;
+}
+
+td .link-btn:last-child {
+  margin-right: 0px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  float: right;
+  direction: rtl;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #3498db;
+  margin: 0px 5px;
+  user-select: none;
+}
+
+.pagination a.active {
+  background-color: #1976d2;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.select {
+  display: inline-block;
+  margin-right: 15px;
+}

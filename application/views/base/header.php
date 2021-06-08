@@ -129,6 +129,9 @@
                 <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 />
                 <div class="dropdown-content user">
                   <p id="username-header"><?php echo $_SESSION['username']; ?></p>
+                  <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : ?>
+                    <a href="?url=admin/manage">Manage</a>
+                  <?php endif ?>
                   <a href="?url=cart/history">History</a>
                   <a href="?url=user/logout">Logout</a>
                 </div>
