@@ -60,10 +60,10 @@
         }
         
         function usortAscending($a, $b) {
-            return $a['Product']['Price']>$b['Product']['Price'];
+            return $a['Product']['Price']*(100-$a['Product']['Percent_off'])/100>$b['Product']['Price']*(100-$b['Product']['Percent_off'])/100;
         }
         function usortDescending($a,$b){
-            return $a['Product']['Price']<$b['Product']['Price'];
+            return $a['Product']['Price']*(100-$a['Product']['Percent_off'])/100<$b['Product']['Price']*(100-$b['Product']['Percent_off'])/100;
         }
         if($orderby==1)
         usort($listProduct, "usortAscending");

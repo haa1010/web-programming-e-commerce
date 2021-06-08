@@ -154,6 +154,8 @@
     let caculate = (ele, stt) => {
         let value = Number(ele.value);
         let max = Number(ele.max);
+        if(value<1) popUpError(`Product quantity must greater than 0`);
+        else
         if (value > max) {
             popUpError(`Product only have ${max} in stock`)
             ele.value = max;
