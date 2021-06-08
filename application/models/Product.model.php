@@ -26,7 +26,6 @@ class Product extends Model
             }
         }
         $query = "update `" . $this->_table . "` set `Quantity` = '" . json_encode($objArr) . "' where `id`=" . $this->escape($item['id']) . ";";
-        var_dump($query);
         $this->query($query);
     }
 
@@ -34,7 +33,6 @@ class Product extends Model
     {
         $result = "";
         foreach ($_SESSION['cart'] as $pid => $item) {
-            var_dump($item);
             $left = $this->get_quantity($item['id'], $item['color'], $item['size']);
             if ($item['number'] > intval($left)) {
                 $result += "Product " . str_replace("-", " ", $pid) . "Only have " . $left . " item" . "\n";
