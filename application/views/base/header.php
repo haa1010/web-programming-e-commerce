@@ -3,8 +3,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'base.css' ?>">
   <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'common.css' ?>">
+  <style>
+    button#myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 20px;
+      border: none;
+      outline: none;
+      background-color: #ff0000e6;
+      color: white;
+      cursor: pointer;
+      padding: 12px 15px;
+      border-radius: 4px;
+    }
 
+    button#myBtn:hover {
+      background-color: #e06666;
+    }
+  </style>
   <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      var mybutton = document.getElementById("myBtn");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
     function closePopup() {
       document.getElementById("popup").style.display = "none";
     }
@@ -18,15 +58,15 @@
     var isViewUser = false;
 
     visible = () => {
-     
-        if (!isViewUser) {
-          document.getElementById("tooltip").style.display = "block";
-          isViewUser = true;
-        } else {
-          document.getElementById("tooltip").style.display = "none";
-          isViewUser = false;
-        }
-      
+
+      if (!isViewUser) {
+        document.getElementById("tooltip").style.display = "block";
+        isViewUser = true;
+      } else {
+        document.getElementById("tooltip").style.display = "none";
+        isViewUser = false;
+      }
+
     }
     let searchProduct = () => {
 
@@ -46,10 +86,11 @@
 </head>
 
 <body>
+  <button onclick="topFunction()" id="myBtn" title="Go to top">	&uarr;</button>
   <div style="margin:25px" id="header">
 
     <nav id="not-response">
-      <div class="menu" >
+      <div class="menu">
         <div class="dropdown"><button class="dropbtn" onclick="window.location='?url=home/view'">Home</button></div>
         <div class="dropdown">
           <button class="dropbtn" onclick="window.location='?url=category/view/top'">Top</button>

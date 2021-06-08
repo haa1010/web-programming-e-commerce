@@ -81,4 +81,16 @@ class CartController extends BaseController
             redirect("user", "login");
         }
     }
+
+    function history()
+    {
+        // get username in session
+        $username = '';
+        if (isset($_SESSION['username']) && !empty($_SESSION['username']))
+            $username = $_SESSION['username'];
+        $order = new Orders();
+        $cart_history = $order->get_history($username);
+
+        $this->set("cart", $cart_history);
+    }
 }

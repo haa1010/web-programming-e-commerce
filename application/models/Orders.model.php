@@ -25,4 +25,11 @@ class Orders extends Model
         var_dump($query);
         $this->query($query);
     }
+
+    function get_history($username)
+    {
+        $query = 'SELECT `orders`.`Cart_total`, `order_detail`.*, `product`.`Name`,`product`.`Image1`,`product`.`Alias` FROM `orders` JOIN `order_detail` ON `order_detail`.`OrderId`=`orders`.`Id` JOIN `product` on `product`.`Id` = `order_detail`.`ProductId` WHERE `orders`.`username`=\'' . $username . '\' ';
+        // echo($query);
+        return $this->query($query);
+    }
 }

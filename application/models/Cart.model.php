@@ -78,4 +78,5 @@ class Cart extends Model
     {
         $_SESSION['cart'] = array();
     }
+
 }
