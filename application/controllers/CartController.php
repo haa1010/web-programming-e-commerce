@@ -87,6 +87,7 @@ class CartController extends BaseController
                             $productModel->update_quantity($item);
                         }
                         // Update to db 
+                        $this->clear();
                         redirect("cart", "history");
                     } else {
                         $this->set("message", $orderModel->getError());

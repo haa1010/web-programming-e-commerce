@@ -27,7 +27,7 @@
     //     isViewUser = false;
     //   }
 
-    }
+    // }
     let searchProduct = () => {
 
       var text = document.getElementById("search").value;
@@ -85,7 +85,7 @@
             <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
               <div class="dropdown">
-                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40  />
+                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 />
                 <div class="dropdown-content user">
                   <a href="?url=home/view"><?php echo $_SESSION['username']; ?></a>
                   <a href="?url=user/logout">Logout</a>
