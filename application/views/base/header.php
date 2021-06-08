@@ -17,15 +17,15 @@
 
     var isViewUser = false;
 
-    visible = () => {
+    // visible = () => {
 
-      if (!isViewUser) {
-        document.getElementById("tooltip").style.display = "block";
-        isViewUser = true;
-      } else {
-        document.getElementById("tooltip").style.display = "none";
-        isViewUser = false;
-      }
+    //   if (!isViewUser) {
+    //     document.getElementById("tooltip").style.display = "block";
+    //     isViewUser = true;
+    //   } else {
+    //     document.getElementById("tooltip").style.display = "none";
+    //     isViewUser = false;
+    //   }
 
     }
     let searchProduct = () => {
@@ -85,9 +85,9 @@
             <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
               <div class="dropdown">
-                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
-                <div class="dropdown-content">
-                  <span><?php echo $_SESSION['username']; ?></span>
+                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40  />
+                <div class="dropdown-content user">
+                  <a href="?url=home/view"><?php echo $_SESSION['username']; ?></a>
                   <a href="?url=user/logout">Logout</a>
                 </div>
               </div>
