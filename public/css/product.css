@@ -51,8 +51,9 @@ a {
 }
 
 .left-panel {
-    width: 45vw;
+    width: 40vw;
     padding-top: 60px;
+    text-align: center;
 }
 
 .right-panel {
@@ -77,6 +78,7 @@ a {
 
 .img-slide {
     display: flex;
+    justify-content: space-around;
 }
 
 #highlight-img {

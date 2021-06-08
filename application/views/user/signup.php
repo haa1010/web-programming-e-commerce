@@ -45,14 +45,24 @@
 </html>
 <script>
     document.querySelector(".form-signup").addEventListener("submit", function(e) {
-        let isValid = false;
+        let isValid = true;
         let message = "";
         let params = document.querySelectorAll(".form-control");
-        if (params[1].value == params[2].value && params[1].value)
-            isValid = true;
-        else {
+
+        var usernameReg = /^[a-zA-Z0-9]{6,}$/;
+        if (!usernameReg.test(params[0].value)) {
+            message = "Username must contains at least 6 characters, numbers and alphabets!";
+            isValid = false;
+        }
+        else if (params[1].value.length < 5 ) {
+            message = "Password must contains at least 6 characters!"
+            isValid = false;
+        }
+        else if (!(params[1].value == params[2].value && params[1].value)) {
+            isValid = false;
             message = "Incompatible password!";
         }
+
         if (!isValid) {
             e.preventDefault()
             document.querySelector(".message").textContent = message;
