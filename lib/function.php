@@ -18,7 +18,7 @@ function setReporting()
 function redirect($controller, $action)
 {
     // header("location:/?url=" . $controller . '/' . $action, true, 302);
-    header("location:/web-programming-e-commerce/?url=" . $controller . '/' . $action.'&api=1', true, 302);
+    header("location:/web-programming-e-commerce/?url=" . $controller . '/' . $action, true, 302);
     exit();
 }
 

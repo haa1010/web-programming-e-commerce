@@ -9,8 +9,8 @@
     #img-footer {
         max-width: 100%;
         margin-top: 50px;
-        position: absolute;
-        bottom: 0;
+        /* position: absolute; */
+        /* bottom: 0; */
     }
     #img-footer:hover{
         cursor: pointer;

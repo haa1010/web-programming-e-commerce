@@ -12,7 +12,13 @@ class CartController extends BaseController
     }
     function view()
     {
-        $this->set("cart", $_SESSION['cart']);
+        $productModel = new Product();
+        $cart = $_SESSION['cart'];
+        foreach ($cart as $id => $product) {
+            // var_dump($id);
+            $cart[$id]['max'] = $productModel->get_quantity($product['id'], $product['color'], $product['size']);
+        }
+        $this->set("cart", $cart);
         $this->set("total", $this->Cart->cart_total());
     }
     function update()
@@ -32,9 +38,9 @@ class CartController extends BaseController
     }
     function clear()
     {
-        $data = new Message(true);
+        // $data = new Message(true);
         $this->Cart->cart_destroy();
-        $this->set("message", $data->getMesage());
+        // $this->set("message", $data->getMesage());
     }
 
     function delete($id = NULL)
@@ -63,19 +69,24 @@ class CartController extends BaseController
             // add to DB
             if ($_SESSION['cart'] != array()) {
                 $orderModel = new Orders();
+                $productModel = new Product();
                 $orderModel->insert_one($address, $phone, $des, $this->Cart->cart_total());
                 $result = intval($orderModel->getInserted()['id']);
                 print_r($result);
                 if ($result > 0) {
                     foreach ($_SESSION['cart'] as $item) {
-                        // print_r($item);
                         $orderModel->insert_detail($item, $result);
+                        $productModel->update_quantity();
                     }
+                    // Update to db 
+                    $this->clear();
                 } else {
                     $this->set("message", $orderModel->getError());
                 }
-            } else
+            } else {
                 $this->set("message", "Empty Cart");
+                redirect("cart", "view");
+            }
         } else {
             $this->set("message", "You must login first");
             redirect("user", "login");

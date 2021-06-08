@@ -71,22 +71,22 @@ a {
     border-radius: 0px 8px 8px 0px;
 }
 
-.dropdown-content a:hover {
+.dropdown-content a:hover,
+#username-header:hover {
     background-color: #ddd;
 }
 
-.dropdown-content a {
-    color: black;
+.dropdown-content a,
+#username-header {
+    color: #3a3a3a;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    margin: 0;
 }
 
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.tooltip:hover .dropdown-content {
     display: block;
 }
 
@@ -130,6 +130,10 @@ ul {
     background-color: #3e8e41;
 }
 
+#header {
+    margin: 25px
+}
+
 .menu {
     width: 32vw;
 }
@@ -140,6 +144,10 @@ ul {
     justify-content: flex-end;
 }
 
+.dropdown-content.user {
+    right: 0px;
+}
+
 @media screen and (max-width: 750px) {
     #not-response {
         flex-direction: column;
@@ -147,6 +155,9 @@ ul {
         justify-content: space-around;
         align-items: center;
         width: 100vw;
+    }
+    #header {
+        margin: 25 0 25 0;
     }
     .dropbtn {
         padding: 8px;

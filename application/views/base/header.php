@@ -57,17 +57,17 @@
 
     var isViewUser = false;
 
-    visible = () => {
+    // visible = () => {
 
-      if (!isViewUser) {
-        document.getElementById("tooltip").style.display = "block";
-        isViewUser = true;
-      } else {
-        document.getElementById("tooltip").style.display = "none";
-        isViewUser = false;
-      }
+    //   if (!isViewUser) {
+    //     document.getElementById("tooltip").style.display = "block";
+    //     isViewUser = true;
+    //   } else {
+    //     document.getElementById("tooltip").style.display = "none";
+    //     isViewUser = false;
+    //   }
 
-    }
+    // }
     let searchProduct = () => {
 
       var text = document.getElementById("search").value;
@@ -86,7 +86,7 @@
 </head>
 
 <body>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">	&uarr;</button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"> &uarr;</button>
   <div style="margin:25px" id="header">
 
     <nav id="not-response">
@@ -125,18 +125,25 @@
     justify-content: space-around;">
             <?php if (isset($_SESSION['username'])) : ?>
               <!-- Đăng nhập r -->
-              <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 onclick="visible()" />
-
+              <div class="dropdown">
+                <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 />
+                <div class="dropdown-content user">
+                  <p id="username-header"><?php echo $_SESSION['username']; ?></p>
+                  <a href="?url=cart/history">History</a>
+                  <a href="?url=user/logout">Logout</a>
+                </div>
+              </div>
               <div class="tooltiptext" id="tooltip" style="display:none">
+
                 <ul>
                   <li style="margin-bottom:10px"><?php echo $_SESSION['username']; ?></li>
-                  <li style="cursor:pointer" onclick="window.location='?url=user/logout'">Log out</li>
+                  <li style="cursor:pointer" onclick="window.location='?url=user/logout/'">Log out</li>
                 </ul>
               </div>
             <?php else : ?>
               <!-- Chưa đăng nhập -->
-              <a href="?url=user/login&api=1" class="color-green">Login</a>
-              <a href="?url=user/signup&api=1" class="color-green">Signup</a>
+              <a href="?url=user/login" class="color-green">Login</a>
+              <a href="?url=user/signup" class="color-green">Signup</a>
             <?php endif ?>
           </div>
         </div>

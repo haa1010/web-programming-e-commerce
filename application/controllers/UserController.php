@@ -73,7 +73,7 @@ class UserController extends BaseController
             $result = $this->User->login($_REQUEST['username'], $_REQUEST['password']);
             if (count($result) == 1) {
                 $_SESSION['username'] = $result['User']['username'];
-                $_SESSION['avatar']  = $result['User']['avatar'];
+                $_SESSION['uid'] = $result['User']['id'];
                 if (isset($_REQUEST['remember'])) {
                     setcookie("token", $this->genToken($_SESSION['username']), $arr_cookie_options);
                 }
@@ -87,10 +87,11 @@ class UserController extends BaseController
 
     public function logout()
     {
-        $_SESSION['username'] = "";
-        $_SESSION['avatar'] = "";
+        $_SESSION['username'] = null;
+        $_SESSION['uid'] = null;
         setcookie("token", "", time() - 3600);
-        header('Location: ' . $_SERVER['REQUEST_URI']);
+        header('Location:' . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "?url=home/view"));
+        // redirect("home", "view");
     }
 
     public function signup()

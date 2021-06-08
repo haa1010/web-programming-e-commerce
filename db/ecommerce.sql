@@ -50,7 +50,7 @@ INSERT INTO `categories` (`Id`, `Name`, `Alias`) VALUES
 
 CREATE TABLE `orders` (
   `Id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `Uid` int(11) NOT NULL,
   `Address` varchar(200) NOT NULL,
   `Phone` varchar(20) NOT NULL,
   `Cart_total` float NOT NULL,
@@ -61,8 +61,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`Id`, `username`, `Address`, `Phone`, `Cart_total`, `Description`) VALUES
-(1, '3', 'Ha Noi', '0918190234', 0, 0);
+INSERT INTO `orders` (`Id`, `Uid`, `Address`, `Phone`, `Cart_total`, `Description`) VALUES
+(1, 3, 'Ha Noi', '0918190234', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -77,8 +77,7 @@ CREATE TABLE `order_detail` (
   `Quantity` int(11) NOT NULL,
   `Price` float NOT NULL,
   `Size` varchar(5) NOT NULL,
-  `Color` varchar(10) NOT NULL,
-  `Subtotal` float NOT NULL
+  `Color` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -185,8 +184,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`Id`, `Username`, `Password`) VALUES
-(27, 'hangtt', '1');
-
+(27, 'hangtt', 'c4ca4238a0b923820dcc509a6f75849b'),
+(28, 'hoang', 'c4ca4238a0b923820dcc509a6f75849b');
 --
 -- Indexes for dumped tables
 --
@@ -270,6 +269,12 @@ ALTER TABLE `user`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -278,6 +283,19 @@ ALTER TABLE `user`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `FK_Product_Categories` FOREIGN KEY (`CategoryId`) REFERENCES `categories` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `FK_order_detail_od1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `FK_order_detail_od2` FOREIGN KEY (`ProductId`) REFERENCES `product` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 
 --
 -- Constraints for table `subcategory`
