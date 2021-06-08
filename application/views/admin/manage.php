@@ -4,35 +4,45 @@
     <!-- <body onload="onload()"> -->
 
     <body>
-        <button id="add-product">Thêm sản phẩm</button>
-        <div id="edit-product-modal" class="modal">
+        <button id="add-product" onclick="showadd()">Thêm sản phẩm</button>
+        <div id="add-product-modal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <form>
-                    <h3 id="modal-title"></h3>
+                <span class="close" onclick="hiddenModal()">&times;</span>
+                <form id="add-form" onsubmit="return submitadd(event,this)">
+                    <h3 id="modal-title">Add Product</h3>
                     <div class="form-group">
                         <label for="Name">Product name:</label>
-                        <input id="Name" name="Name" />
+                        <input id="Name" name="Name" type="text" maxlength="100" />
                     </div>
                     <div class="form-group">
-                        <label for="CategoryId">CategoryId:</label>
-                        <input id="CategoryId" name="CategoryId" />
+                        <label for="CategoryId">Category:</label>
+                        <!-- <input class="CategoryId" name="CategoryId" /> -->
+                        <select id="CategoryId" name="CategoryId">
+                            <?php
+                            foreach ($category as $value) {
+                                echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
+                            }
+                            ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="SubCategoryId">SubCategoryId:</label>
-                        <input id="SubCategoryId" name="SubCategoryId" />
+                        <select id="SubCategoryId" name="SubCategoryId">
+                            <?php
+                            foreach ($subcategory as $value) {
+                                echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <!-- <input class="SubCategoryId" name="SubCategoryId" /> -->
                     </div>
                     <div class="form-group">
                         <label for="Description">Description:</label>
-                        <input id="Description" name="Description" />
-                    </div>
-                    <div class="form-group">
-                        <label for="Description">Description:</label>
-                        <input id="Description" name="Description" />
+                        <textarea id="Description" name="Description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="Price">Price:</label>
-                        <input id="Price" name="Price" />
+                        <input id="Price" name="Price" type="number" />
                     </div>
                     <div class="form-group">
                         <label for="Color">Color:</label>
@@ -40,39 +50,134 @@
                     </div>
                     <div class="form-group">
                         <label for="Material">Material:</label>
-                        <input id="Material" name="Material" />
+                        <input id="Material" name="Material" maxlength="200" />
                     </div>
                     <div class="form-group">
                         <label for="Size">Size:</label>
-                        <input id="Size" name="Size" />
+                        <input id="Size" name="Size" type="20" />
                     </div>
                     <div class="form-group">
                         <label for="isSaleOff">isSaleOff:</label>
-                        <input id="isSaleOff" name="isSaleOff" />
+                        <input id="isSaleOff" name="isSaleOff" type="checkbox" />
                     </div>
                     <div class="form-group">
                         <label for="Percent_off">Percent_off:</label>
-                        <input id="Percent_off" name="Percent_off" />
+                        <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
                     </div>
                     <div class="form-group">
                         <label for="Image1">Image1:</label>
                         <input id="Image1" name="Image1" />
                     </div>
                     <div class="form-group">
+                        <label for="Image2">Image2:</label>
+                        <input id="Image2" name="Image2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image3">Image3:</label>
+                        <input id="Image3" name="Image3" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image4">Image4:</label>
+                        <input id="Image4" name="Image4" />
+                    </div>
+                    <div class="form-group">
                         <label for="Alias">Alias:</label>
-                        <input id="Alias" name="Alias" />
+                        <input id="Alias" name="Alias" type="text" maxlength="200" />
                     </div>
                     <div class="form-group">
                         <label for="Quantity">Quantity:</label>
                         <input id="Quantity" name="Quantity" />
                     </div>
+                    <button type="submit">Add</button>
                 </form>
             </div>
         </div>
-        <div id="delete-product-modal" class="modal">
+        <div id="edit-product-modal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Xoá sản phẩm</h3>
+                <span class="close" onclick="hiddenModal()">&times;</span>
+                <h3>Edit Product</h3>
+                <form id="edit-form" onsubmit="return submitedit(event,this)">
+                    <div class="form-group">
+                        <input id="Id" name="Id" type="text" maxlength="100" value="" hidden />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Product name:</label>
+                        <input id="Name" name="Name" type="text" maxlength="100" value="" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="CategoryId">Category:</label>
+                        <select id="CategoryId" name="CategoryId" disabled>
+                            <?php
+                            foreach ($category as $value) {
+                                echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="SubCategoryId">SubCategoryId:</label>
+                        <select id="SubCategoryId" name="SubCategoryId" disabled>
+                            <?php
+                            foreach ($subcategory as $value) {
+                                echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description:</label>
+                        <textarea id="Description" name="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Price:</label>
+                        <input id="Price" name="Price" type="number" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Color">Color:</label>
+                        <input id="Color" name="Color" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="Material">Material:</label>
+                        <input id="Material" name="Material" maxlength="200" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Size">Size:</label>
+                        <input id="Size" name="Size" type="20" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="isSaleOff">isSaleOff:</label>
+                        <input id="isSaleOff" name="isSaleOff" type="checkbox" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Percent_off">Percent_off:</label>
+                        <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image1">Image1:</label>
+                        <input id="Image1" name="Image1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image2">Image2:</label>
+                        <input id="Image2" name="Image2" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image3">Image3:</label>
+                        <input id="Image3" name="Image3" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Image4">Image4:</label>
+                        <input id="Image4" name="Image4" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Alias">Alias:</label>
+                        <input id="Alias" name="Alias" type="text" maxlength="200" disabled />
+                    </div>
+                    <div class="form-group">
+                        <label for="Quantity">Quantity:</label>
+                        <input id="Quantity" name="Quantity" />
+                    </div>
+                    <button type="submit">Edit</button>
+                </form>
             </div>
         </div>
         <div class="table-wrapper">
@@ -102,24 +207,14 @@
         </div>
         <div class="pagination">
             <div id="pagination" class="page">
-                <!-- <a href="#" onclick="pageChange(page - 1)">&laquo;</a> -->
-                <!-- <ng-container *ngFor="let p of pageSelect">
-          <a
-            href="#"
-            (click)="pageChange(p)"
-            [class]="page == p ? 'active' : ''"
-            >{{ p }}</a
-          >
-        </ng-container> -->
-                <!-- <a href="#" (click)="pageChange(page + 1)">&raquo;</a> -->
             </div>
             <div class="select">
                 Page size
                 <select id="select-page-size" style="margin-right: 5px">
+                    <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
-                    <option value="100">100</option>
                 </select>
                 Total: <span id="total-items"></span>
             </div>
@@ -129,7 +224,7 @@
 
     <script>
         let filter = {
-            pageSize: 10,
+            pageSize: 5,
             currentPage: 1,
         };
         document.addEventListener("DOMContentLoaded", async function() {
@@ -141,7 +236,7 @@
 
         function getData(filter) {
             // return new Promise(function(resolve, reject) {
-            var url = "?url=admin/view&api";
+            var url = `?url=admin/view/${filter.currentPage}/${filter.pageSize}&api`;
             let data = [];
             var xmlhttp = new XMLHttpRequest();
             let rNumb = filter.pageSize;
@@ -156,8 +251,9 @@
                         if (response.success) {
                             data = response.data
                             renderTable({
-                                products: data,
-                                total: rNumb * 10,
+                                products: data['data'],
+                                // total: rNumb * 10,
+                                total: data['total'],
                                 pageSize: filter.pageSize,
                                 currentPage: filter.currentPage,
                             })
@@ -174,7 +270,7 @@
         function renderTable(data) {
             let products = data.products || [];
             let total = data.total || 0;
-            let pageSize = data.pageSize || 10;
+            let pageSize = data.pageSize || 5;
             let currentPage = data.currentPage || 1;
             let tableBody = document.querySelector(
                 ".table-wrapper .table .table-body"
@@ -191,17 +287,17 @@
             for (let productItem of products) {
                 let product = productItem.Product
                 let tr = document.createElement("tr");
-                tr.appendChild(createTD(product.Name));
-                tr.appendChild(createTD(product.CategoryId));
-                tr.appendChild(createTD(product.SubCategoryId));
-                tr.appendChild(createTD(product.Description));
-                tr.appendChild(createTD(product.Price));
-                tr.appendChild(createTD(product.Color));
-                tr.appendChild(createTD(product.Material));
-                tr.appendChild(createTD(product.Size));
-                tr.appendChild(createTD(formatDate(product.Createdate)));
-                tr.appendChild(createTD(formatDate(product.EditDate)));
-                tr.appendChild(createTD(product.isSaleOff == 1 ? "Có" : "Không"));
+                tr.appendChild(createTD(product.Name, "Name"));
+                tr.appendChild(createTD(product.CategoryId, "CategoryId"));
+                tr.appendChild(createTD(product.SubCategoryId, "SubCategoryId"));
+                tr.appendChild(createTD(product.Description, "Description"));
+                tr.appendChild(createTD(product.Price, "Price"));
+                tr.appendChild(createTD(product.Color, "Color"));
+                tr.appendChild(createTD(product.Material, "Material"));
+                tr.appendChild(createTD(product.Size, "Size"));
+                tr.appendChild(createTD(product.Createdate, "Createdate"));
+                tr.appendChild(createTD(product.EditDate, "EditDate"));
+                tr.appendChild(createTD(product.isSaleOff == 1 ? "Yes" : "No"));
                 tr.appendChild(createTD(product.Percent_off));
                 let imgs = [
                     createLink(product.Image1, "Image1"),
@@ -209,11 +305,11 @@
                     createLink(product.Image3, "Image3"),
                     createLink(product.Image4, "Image4"),
                 ];
-                let imgsElement = createTD(imgs);
-                imgsElement.style.maxWidth = "200px";
-                imgsElement.style.wordBreak = "break-all";
+                let imgsElement = createTD(imgs, "imglist");
+                // imgsElement.style.maxWidth = "150px";
+                // imgsElement.style.wordBreak = "break-all";
                 tr.appendChild(imgsElement);
-                tr.appendChild(createTD(product.Alias));
+                tr.appendChild(createTD(product.Alias), "alias");
                 tr.appendChild(createTD(product.Quantity));
                 tr.appendChild(createTDAction(product));
                 tableBody.append(tr);
@@ -279,8 +375,10 @@
             getData(filter);
         }
 
-        function createTD(childNode) {
+        function createTD(childNode, idname = null) {
             let td = document.createElement("td");
+            if (idname != null)
+                td.setAttribute("id", idname);
             if (Array.isArray(childNode)) {
                 childNode.forEach((e) => td.append(e));
                 return td;
@@ -301,9 +399,9 @@
         function createTDAction(row) {
             let td = document.createElement("td");
             let buttonEdit = createLinkButton("Edit", () => editRow(row));
-            let buttonDelete = createLinkButton("Delete", () => deleteRow(row));
+            // let buttonDelete = createLinkButton("Delete", () => deleteRow(row));
             td.append(buttonEdit);
-            td.append(buttonDelete);
+            // td.append(buttonDelete);
             return td;
         }
 
@@ -316,18 +414,27 @@
         }
 
         function editRow(row) {
+            console.log(row)
             let modal = document.getElementById("edit-product-modal");
             modal.style.display = "block";
             let modalTitle = document.getElementById("modal-title");
-            modalTitle.innerText = "Sửa sản phẩm";
-            console.log(row);
+            for (let i in row) {
+                let ele = document.querySelector(`#edit-product-modal #${i}`);
+                if (ele) {
+                    if (i == "Description" || i == "Material") {
+                        ele.value = htmlspecialchars_decode(row[i])
+                    } else if (i == "isSaleOff") {
+                        ele.checked = (row[i] == "1" ? true : false);
+                    } else
+                        ele.value = row[i];
+                }
+            }
         }
 
         function deleteRow(row) {
-            let modal = document.getElementById("delete-product-modal");
+            let modal = document.getElementById("add-product-modal");
             modal.style.display = "block";
             let modalTitle = document.getElementById("modal-title");
-            modalTitle.innerText = "Sửa sản phẩm";
             console.log(row);
         }
 
@@ -342,26 +449,6 @@
             initModal();
         }
 
-        function formatDate(date) {
-            // let hours = date.getHours();
-            // let minutes = date.getMinutes();
-            // let ampm = hours >= 12 ? "pm" : "am";
-            // hours = hours % 12;
-            // hours = hours ? hours : 12;
-            // minutes = minutes < 10 ? "0" + minutes : minutes;
-            // let strTime = hours + ":" + minutes + " " + ampm;
-            // return (
-            //     date.getDate() +
-            //     "/" +
-            //     (date.getMonth() + 1) +
-            //     "/" +
-            //     date.getFullYear() +
-            //     "  " +
-            //     strTime
-            // );
-            return date
-        }
-
         function pageSizeChange(e) {
             let pageSize = e.target.value;
             let filter = {
@@ -373,7 +460,7 @@
 
         function initModal() {
             let modal = document.getElementById("edit-product-modal");
-            let modalDelete = document.getElementById("delete-product-modal");
+            let modalDelete = document.getElementById("add-product-modal");
 
             let btn = document.getElementById("add-product");
             let spans = document.getElementsByClassName("close");
@@ -396,6 +483,84 @@
                     modalDelete.style.display = "none";
                 }
             };
+        }
+
+        function hiddenModal() {
+            let modal = document.getElementById("edit-product-modal");
+            let modalDelete = document.getElementById("add-product-modal");
+            modal.style.display = "none";
+            modalDelete.style.display = "none";
+        }
+
+        function showadd() {
+            let modalDelete = document.getElementById("add-product-modal");
+            modalDelete.style.display = "block";
+
+        }
+
+        function submitadd(e, form) {
+            e.preventDefault();
+            let data = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '?url=admin/add&api=1', true);
+            xhr.responseType = 'json';
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    response = xhr.response
+                    if (response.success) {
+                        document.getElementById("response").innerHTML = "Cart Updated!";
+                        var header = document.getElementById("inner-header")
+                        header.innerHTML = "Success";
+                        header.style.color = "green"
+                    } else {
+                        document.getElementById("response").innerHTML = response.message;
+                        var header = document.getElementById("inner-header")
+                        header.innerHTML = "Add failed";
+                        header.style.color = "red"
+                    }
+                    var popup = document.getElementById("popup");
+                    popup.style.display = "block";
+                }
+            }
+            xhr.send(data);
+        }
+
+        function submitedit(e, form) {
+            e.preventDefault();
+            let data = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '?url=admin/edit&api=1', true);
+            xhr.responseType = 'json';
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    response = xhr.response
+                    if (response.success) {
+                        document.getElementById("response").innerHTML = "Cart Updated!";
+                        var header = document.getElementById("inner-header")
+                        header.innerHTML = "Success";
+                        header.style.color = "green"
+                    } else {
+                        document.getElementById("response").innerHTML = response.message;
+                        var header = document.getElementById("inner-header")
+                        header.innerHTML = "Edit failed";
+                        header.style.color = "red"
+                    }
+                    var popup = document.getElementById("popup");
+                    popup.style.display = "block";
+                }
+            }
+            xhr.send(data);
+        }
+
+        function htmlspecialchars_decode(str) {
+            if (typeof(str) == "string") {
+                str = str.replace(/&gt;/ig, ">");
+                str = str.replace(/&lt;/ig, "<");
+                str = str.replace(/&#039;/g, "'");
+                str = str.replace(/&quot;/ig, '"');
+                str = str.replace(/&amp;/ig, '&'); /* must do &amp; last */
+            }
+            return str;
         }
     </script>
 

@@ -19,7 +19,7 @@ th {
   padding: 10px;
   border: 1px solid #ccc;
   text-align: left;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 tr:hover td {
@@ -46,7 +46,6 @@ td .link-btn:last-child {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -112,4 +111,21 @@ td .link-btn:last-child {
 .select {
   display: inline-block;
   margin-right: 15px;
+}
+
+#Description {
+  width: 20%;
+}
+
+#Quantity {
+  width: 10%;
+}
+
+#imglist {
+  white-space: pre-line;
+}
+
+#Createdate,
+#EditDate {
+  width: 5%;
 }
