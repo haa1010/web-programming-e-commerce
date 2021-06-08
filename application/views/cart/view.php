@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'cart.css' ?>">
 
 </head>
-<form id="cart_form" method="post" action="?url=cart/update/" role="form">
+<form id="cart_form" method="post" action="?url=cart/update/" role="form" onsubmit="return false;">
     <div class="col-xs-12">
         <h1>Your cart</h1>
         <br>
@@ -64,7 +64,7 @@
 
                         <td style="width: 10%">
                             <div class="btn-group">
-                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" max="<?php echo($product['max'])?>" onchange="caculate(this.value,<?php echo ($stt . ',\'' . $pid) . '\''; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
+                                <input name="number[<?php echo $pid; ?>]" type="number" min="1" max="<?php echo ($product['max']) ?>" onchange="caculate(this,<?php echo $stt; ?>)" value="<?php echo $product['number']; ?>" size="3" class="form-control text-center" />
                             </div>
                         </td>
 
@@ -151,18 +151,23 @@
     function getMoney(value) {
         return Number(value.replaceAll(".", ""));
     }
-    let caculate = (value, stt, pid) => {
-        console.log(pid);
-
-        document.querySelector(`#subtotal-${stt}`).textContent = stringMoney(Number(value) * getMoney(document.querySelector(`#price-${stt}`).textContent));
-        let newprice = 0;
-        for (let i = 1; i <= length; i++) {
-            let ele = document.querySelector(`#row-${i}`);
-            newprice += getMoney(ele.children[7].textContent);
+    let caculate = (ele, stt) => {
+        let value = Number(ele.value);
+        let max = Number(ele.max);
+        if (value > max) {
+            popUpError(`Product only have ${max} in stock`)
+            ele.value = max;
+        } else {
+            document.querySelector(`#subtotal-${stt}`).textContent = stringMoney(value * getMoney(document.querySelector(`#price-${stt}`).textContent));
+            let newprice = 0;
+            for (let i = 1; i <= length; i++) {
+                let ele = document.querySelector(`#row-${i}`);
+                newprice += getMoney(ele.children[7].textContent);
+            }
+            total = newprice;
+            totalElement.textContent = stringMoney(total);
+            activeEle();
         }
-        total = newprice;
-        totalElement.textContent = stringMoney(total);
-        activeEle();
     }
 
     let activeEle = () => {
@@ -233,5 +238,14 @@
         total -= Number(newprice.replaceAll(".", ""));
         length -= 1;
         totalElement.textContent = stringMoney(total);
+    }
+
+    function popUpError(msg) {
+        document.getElementById("response").innerHTML = msg;
+        var header = document.getElementById("inner-header")
+        header.innerHTML = "Add failed";
+        header.style.color = "red"
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
     }
 </script>
