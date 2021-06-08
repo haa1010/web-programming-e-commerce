@@ -53,7 +53,7 @@ class SQLQuery
 
     /** Custom SQL Query * */
     function query($query, $singleResult = 0)
-    {// echo $query;
+    { // echo $query;
         $this->_result = mysqli_query($this->_dbHandle, $query);
         if (preg_match("/select/i", $query)) {
             $result = array();
@@ -111,5 +111,10 @@ class SQLQuery
     function getInserted()
     {
         return array_values($this->query("select LAST_INSERT_ID() as id", true))[0];
+    }
+
+    function affected_rows()
+    {
+        return mysqli_affected_rows($this->_dbHandle);
     }
 }

@@ -53,6 +53,11 @@ function base64UrlEncode($text)
         base64_encode($text)
     );
 }
+
+function htmlsan($htmlsanitize)
+{
+    return htmlspecialchars($htmlsanitize, ENT_QUOTES, 'UTF-8');
+}
 // $url = Path route
 // ?url=cart/view/1/2
 // cart -> controller

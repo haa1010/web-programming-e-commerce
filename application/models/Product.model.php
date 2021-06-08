@@ -40,4 +40,42 @@ class Product extends Model
         }
         return $result;
     }
+
+    function insert_one($data)
+    {
+        $query = "insert into `" . $this->_table . "`(name, CategoryId, SubCategoryId, Description, Price, Color, Material, Size, Createdate ,EditDate ,isSaleOff ,Percent_off ,Image1 ,Image2, Image3, Image4, Alias, Quantity)
+        value ('" . $this->escape($data['Name']) . "'," . $data['CategoryId'] . "," . $data['SubCategoryId'] . ",'" .
+            $this->escape(htmlsan($data['Description'])) . "'," . $data['Price'] . ",'" . $this->escape($data['Color']) . "','" .
+            $this->escape(htmlsan($data['Material'])) . "','" . $this->escape($data['Size']) . "',STR_TO_DATE('" . date("Y-m-d") . "','%Y-%m-%d'),STR_TO_DATE('" . date("Y-m-d") . "','%Y-%m-%d')," .
+            $this->escape(isset($data['isSaleOff']) ? 1 : 0) . "," .
+            $this->escape($data['Percent_off']) . ",'" . $this->escape($data['Image1']) . "','" . $this->escape($data['Image2']) . "','" .
+            $this->escape($data['Image3']) . "','" . $this->escape($data['Image4']) . "','" . $this->escape($data['Alias']) . "','" .
+            $this->escape($data['Quantity']) . "');";
+        // var_dump($query);
+        $this->query($query);
+    }
+    function update_one($data)
+    {
+        $query = "update `" . $this->_table . "` set 
+        `Description` = '" . $this->escape(htmlsan($data['Description'])) . "'," .
+            "`Price` = "  . $this->escape($data['Price']) . "," .
+            "`Material` = '"  . $this->escape(htmlsan($data['Material']))  . "'," .
+            "`Percent_off` = "  . $this->escape($data['Percent_off'])  . "," .
+            "`Image1` = '"  . $this->escape($data['Image1'])  . "'," .
+            "`Image2` = '"  . $this->escape($data['Image2'])  . "'," .
+            "`Image3` = '"  . $this->escape($data['Image3'])  . "'," .
+            "`Image4` = '"  . $this->escape($data['Image4'])  . "'," .
+            "`Quantity` = '" . $this->escape($data['Quantity']) . "' where `Id`= " . $this->escape($data["Id"]) . ";";
+        $this->query($query);
+    }
+
+    function page($offset, $limit)
+    {
+        $query = "select * from `" . $this->_table . "` limit " . $this->escape($offset) . "," . $this->escape($limit) . ";";
+        return $this->query($query);
+    }
+    function getTotal()
+    {
+        return $this->query("select count(*) as total from `" . $this->_table . "`;", 1);
+    }
 }
