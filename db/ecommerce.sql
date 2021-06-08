@@ -184,6 +184,7 @@ CREATE TABLE `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(50) DEFAULT NULL,
   `Password` varchar(50) DEFAULT NULL,
+  `Is_admin` int(1) DEFAULT 0,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -194,7 +195,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (27,'hangtt','c4ca4238a0b923820dcc509a6f75849b'),(28,'hoang','c4ca4238a0b923820dcc509a6f75849b');
+INSERT INTO `user` VALUES 
+(27,'hangtt','c4ca4238a0b923820dcc509a6f75849b',0),
+(28,'hoang','c4ca4238a0b923820dcc509a6f75849b',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
