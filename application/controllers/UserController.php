@@ -1,7 +1,7 @@
 <?php
 class UserController extends BaseController
 {
-    private function genToken($username)
+    private function genToken($username, $uid, $is_admin)
     {
         $issuedAt   = new DateTimeImmutable();
         $expire     = $issuedAt->modify('+30 days')->getTimestamp();      // Add 60 seconds
@@ -15,6 +15,8 @@ class UserController extends BaseController
             'nbf'  => $issuedAt->getTimestamp(),         // Not before
             'exp'  => $expire,                           // Expire
             'username' => $username,
+            'uid' => $uid,
+            'is_admin' => $is_admin
         ]);
 
         //encode 
@@ -50,7 +52,11 @@ class UserController extends BaseController
         $tokenExpired = $exp - $now->getTimestamp();
 
         if ($signatureValid && ($tokenExpired > 0))
-            return $data['username'];
+            return array(
+                "username" => $data['username'],
+                "uid" => $data['uid'],
+                "is_admin" => $data['is_admin'],
+            );
         return null;
     }
     public function login()
@@ -63,8 +69,11 @@ class UserController extends BaseController
         );
         if (isset($_COOKIE['token'])) {
             $value = $this->validate_token($_COOKIE['token']);
-            if ($value != NULL && !empty($_SESSION['username']))
-                $_SESSION['username'] = $value;
+            if ($value != NULL && empty($_SESSION['username'])) {
+                $_SESSION['username'] = $value['username'];
+                $_SESSION['uid'] = $value['uid'];
+                $_SESSION['is_admin'] = intval($value['is_admin']);
+            }
         }
         if (!empty($_SESSION['username'])) {
             redirect("home", "view");
@@ -74,8 +83,9 @@ class UserController extends BaseController
             if (count($result) == 1) {
                 $_SESSION['username'] = $result['User']['username'];
                 $_SESSION['uid'] = $result['User']['id'];
+                $_SESSION['is_admin'] = intval($result['User']['is_admin']);
                 if (isset($_REQUEST['remember'])) {
-                    setcookie("token", $this->genToken($_SESSION['username']), $arr_cookie_options);
+                    setcookie("token", $this->genToken($_SESSION['username'], $_SESSION['uid'], $_SESSION['is_admin']), $arr_cookie_options);
                 }
                 redirect("home", "view");
             } else
@@ -87,9 +97,11 @@ class UserController extends BaseController
 
     public function logout()
     {
-        $_SESSION['username'] = null;
-        $_SESSION['uid'] = null;
-        setcookie("token", "", time() - 3600);
+        unset($_SESSION['username']);
+        unset($_SESSION['uid']);
+        unset($_SESSION['is_admin']);
+        setcookie('token', null, -1, '/'); 
+
         header('Location:' . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "?url=home/view"));
         // redirect("home", "view");
     }

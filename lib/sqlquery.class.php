@@ -35,7 +35,6 @@ class SQLQuery
 
     function selectAll()
     {
-        print_r($this->_table);
         $query = 'select * from `' . $this->_table . '`';
         return $this->query($query);
     }

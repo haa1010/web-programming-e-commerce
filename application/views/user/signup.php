@@ -45,14 +45,24 @@
 </html>
 <script>
     document.querySelector(".form-signup").addEventListener("submit", function(e) {
-        let isValid = false;
+        let isValid = true;
         let message = "";
         let params = document.querySelectorAll(".form-control");
-        if (params[1].value == params[2].value && params[1].value)
-            isValid = true;
-        else {
+
+        var usernameReg = /^[a-zA-Z0-9]{6,50}$/;
+        if (!usernameReg.test(params[0].value)) {
+            message = "Username must be in range 5 to 60 characters, numbers and alphabets only!";
+            isValid = false;
+        }
+        else if (params[1].value.length < 5 ||  params[1].value.length > 60) {
+            message = "Password must be in range 5 to 60 characters!"
+            isValid = false;
+        }
+        else if (!(params[1].value == params[2].value && params[1].value)) {
+            isValid = false;
             message = "Incompatible password!";
         }
+
         if (!isValid) {
             e.preventDefault()
             document.querySelector(".message").textContent = message;

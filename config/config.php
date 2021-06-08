@@ -6,10 +6,10 @@ define('DEVELOPMENT_ENVIRONMENT', true);
 ini_set('display_errors', 'On');
 
 define('DB_NAME', 'ecommerce');
-//define('DB_USER', 'hangtt');
-//define('DB_PASSWORD', '1');
-  define('DB_USER', 'duonghue1');
-  define('DB_PASSWORD', 'duonghue');
+// define('DB_USER', 'hangtt');
+// define('DB_PASSWORD', '1');
+ define('DB_USER', 'duonghue1');
+ define('DB_PASSWORD', 'duonghue');
 define('DB_HOST', 'localhost');
 
 define("SECRET", "tH1s_1s_S3cR3t");

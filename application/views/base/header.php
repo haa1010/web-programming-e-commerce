@@ -82,6 +82,13 @@
         x.className = "topnav";
       }
     }
+
+    function handle(e) {
+      if (e.keyCode === 13) {
+        e.preventDefault(); // Ensure it is only this code that runs
+        searchProduct();
+      }
+    }
   </script>
 </head>
 
@@ -115,7 +122,7 @@
       <div><img src="<?php echo PATH_URL_IMG_LOGO . "logo.png" ?>" alt="logo" height=150 width=150 /></div>
 
       <div class="right">
-        <div style="margin-right:10px;display: flex"><input class="search-input" placeholder="Search product" id="search" />
+        <div style="margin-right:10px;display: flex"><input class="search-input" placeholder="Search product" id="search" onkeypress="handle(event)" />
           <button class="btn-search" onclick="searchProduct()">Search</button>
         </div>
         <div style="margin-right:15px;display:flex">
@@ -129,6 +136,9 @@
                 <img src="<?php echo PATH_URL_IMG_LOGO . "user.svg"; ?>" class="fa fa-user tooltip" width=40 height=40 />
                 <div class="dropdown-content user">
                   <p id="username-header"><?php echo $_SESSION['username']; ?></p>
+                  <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === 1) : ?>
+                    <a href="?url=admin/manage">Manage</a>
+                  <?php endif ?>
                   <a href="?url=cart/history">History</a>
                   <a href="?url=user/logout">Logout</a>
                 </div>

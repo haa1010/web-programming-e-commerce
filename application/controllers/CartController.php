@@ -15,7 +15,6 @@ class CartController extends BaseController
         $productModel = new Product();
         $cart = $_SESSION['cart'];
         foreach ($cart as $id => $product) {
-            // var_dump($id);
             $cart[$id]['max'] = $productModel->get_quantity($product['id'], $product['color'], $product['size']);
         }
         $this->set("cart", $cart);
@@ -80,7 +79,6 @@ class CartController extends BaseController
                 if ($isValid == "") {
                     $orderModel->insert_one($address, $phone, $des, $this->Cart->cart_total());
                     $result = intval($orderModel->getInserted()['id']);
-                    var_dump($result);
                     if ($result > 0) {
                         foreach ($_SESSION['cart'] as $item) {
                             $orderModel->insert_detail($item, $result);
@@ -91,11 +89,9 @@ class CartController extends BaseController
                         redirect("cart", "history");
                     } else {
                         $this->set("message", $orderModel->getError());
-                        var_dump($orderModel->getError());
                     }
                 } else {
                     $this->set("message", $isValid);
-                    var_dump("herereer");
                 }
             } else {
                 $this->set("message", "Empty Cart");

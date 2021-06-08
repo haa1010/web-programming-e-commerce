@@ -1,62 +1,68 @@
+<link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'category.css' ?>">
 
-    <link rel="stylesheet" href="<?php echo PATH_URL_STYLE . 'category.css' ?>">
+<script>
+    var isFilter = false;
 
-    <script>
-        var isFilter = false;
-
-        function getHTTPObject() {
-            if (window.ActiveXObject) {
-                return new ActiveXObject("Microsoft.XMLHTTP");
-            } else if (window.XMLHttpRequest) {
-                return new XMLHttpRequest();
-            } else {
-                alert("Your browser does not support AJAX.");
-                return null;
-            }
+    function getHTTPObject() {
+        if (window.ActiveXObject) {
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        } else if (window.XMLHttpRequest) {
+            return new XMLHttpRequest();
+        } else {
+            alert("Your browser does not support AJAX.");
+            return null;
         }
-        direct = (id) => {
+    }
+    direct = (id) => {
 
-            window.location = " ?url=product/view/" + id;
-        }
-        filter = (event) => {
-            event.preventDefault();
-            var priceFrom = document.getElementById("priceFrom").value;
-            var priceTo = document.getElementById("priceTo").value;
-            var orderby = document.getElementById("order").value;
-            let query=window.location.search;
-            var search = query.split("/");
-            var url = "http://localhost/web-programming-e-commerce/?url=filter/filter///"+search[search.length-1];
+        window.location = " ?url=product/view/" + id;
+    }
+    filter = (event) => {
+        event.preventDefault();
+        var priceFrom = document.getElementById("priceFrom").value;
+        var priceTo = document.getElementById("priceTo").value;
+        var orderby = document.getElementById("order").value;
+        let query = window.location.search;
+        var search = query.split("/");
+        var url = "http://localhost/web-programming-e-commerce/?url=filter/filter///" + search[search.length - 1];
 
-            if (priceFrom) url = url + "/" + priceFrom;
-            else url = url + "/"
-            if (priceTo) url = url + "/" + priceTo;
-            else url = url + "/";
-            if (orderby) url = url + "/" + orderby;
-            url = url + "&api=1";
-            console.log(url);
-            var http = new XMLHttpRequest();
-            httpObject = getHTTPObject();
-            if (httpObject != null) {
-                //httpObject.open('POST', url, true);
-                httpObject.open("GET", url, true);
-                //httpObject.send(data);
-                httpObject.send(null);
-                httpObject.onreadystatechange = function() { //Call a function when the state changes.
-                    if (httpObject.readyState == 4 && httpObject.status == 200) {
-                        document.getElementById("listProduct").innerHTML = this.responseText;
-                    }
+        if (priceFrom) url = url + "/" + priceFrom;
+        else url = url + "/"
+        if (priceTo) url = url + "/" + priceTo;
+        else url = url + "/";
+        if (orderby) url = url + "/" + orderby;
+        url = url + "&api=1";
+        console.log(url);
+        var http = new XMLHttpRequest();
+        httpObject = getHTTPObject();
+        if (httpObject != null) {
+            //httpObject.open('POST', url, true);
+            httpObject.open("GET", url, true);
+            //httpObject.send(data);
+            httpObject.send(null);
+            httpObject.onreadystatechange = function() { //Call a function when the state changes.
+                if (httpObject.readyState == 4 && httpObject.status == 200) {
+                    document.getElementById("listProduct").innerHTML = this.responseText;
                 }
             }
         }
-    </script>
+    }
+
+    function handle(e) {
+      if (e.keyCode === 13) {
+        e.preventDefault(); // Ensure it is only this code that runs
+        filter(e);
+      }
+    }
+</script>
 
 
 
-<?php if(sizeof($products)>0):?>
-    <div class="filter " >
+<?php if (sizeof($products) > 0) : ?>
+    <div class="filter ">
         Price:
-        <input placeholder="From--" type='text' id="priceFrom"></input>
-        <input placeholder="To--" id="priceTo"></input>
+        <input placeholder="From--" type='text' id="priceFrom"  onkeypress="handle(event)"></input>
+        <input placeholder="To--" id="priceTo"  onkeypress="handle(event)"></input>
         <select name="order" id="order">
             <option value="0"> High to Low</option>
             <option value="1"> Low to High</option>
@@ -105,6 +111,6 @@
 
 
         </div>
-<?php else:?>
-<div style="text-align:center;height:30vh;font-size:20px;"> No product founds</div>
-    <?php endif?>
+    <?php else : ?>
+        <div style="text-align:center;height:30vh;font-size:20px;"> No product founds</div>
+    <?php endif ?>
