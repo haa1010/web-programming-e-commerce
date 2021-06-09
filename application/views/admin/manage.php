@@ -4,7 +4,7 @@
     <!-- <body onload="onload()"> -->
 
     <body>
-        <button id="add-product" class="btn-primary" onclick="showadd()">Thêm sản phẩm</button>
+        <button id="add-product" class="btn-primary" onclick="showadd()">Add new product</button>
         <div id="add-product-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="hiddenModal()">&times;</span>
@@ -318,21 +318,21 @@
             <table class="table">
                 <thead class="table-header">
                     <tr>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục</th>
-                        <th>Danh mục con</th>
-                        <th>Mô tả</th>
-                        <th>Giá</th>
-                        <th>Màu sắc</th>
-                        <th>Vật liệu</th>
-                        <th>Kích thước</th>
-                        <th>Ngày tạo</th>
-                        <th>Ngày sửa</th>
-                        <th>Đang khuyến mãi</th>
-                        <th>% khuyến mãi</th>
-                        <th style="max-width: 200px">Ảnh sản phẩm</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Sub Category</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Color</th>
+                        <th>Material</th>
+                        <th>Size</th>
+                        <th>Create at</th>
+                        <th>Edit at</th>
+                        <th>isSaleOff</th>
+                        <th>% sale</th>
+                        <th style="max-width: 200px">Image</th>
                         <th>Alias</th>
-                        <th>Số lượng</th>
+                        <th>Quantity</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -642,14 +642,14 @@
                 if (xhr.readyState == 4) {
                     response = xhr.response
                     if (response.success) {
-                        document.getElementById("response").innerHTML = "Cart Updated!";
+                        document.getElementById("response").innerHTML = "Product added!";
                         var header = document.getElementById("inner-header")
                         header.innerHTML = "Success";
                         header.style.color = "green"
                     } else {
                         document.getElementById("response").innerHTML = response.message;
                         var header = document.getElementById("inner-header")
-                        header.innerHTML = "Add failed";
+                        header.innerHTML = "Add failed!";
                         header.style.color = "red"
                     }
                     var popup = document.getElementById("popup");
@@ -669,14 +669,14 @@
                 if (xhr.readyState == 4) {
                     response = xhr.response
                     if (response.success) {
-                        document.getElementById("response").innerHTML = "Cart Updated!";
+                        document.getElementById("response").innerHTML = "Product updated!";
                         var header = document.getElementById("inner-header")
                         header.innerHTML = "Success";
                         header.style.color = "green"
                     } else {
                         document.getElementById("response").innerHTML = response.message;
                         var header = document.getElementById("inner-header")
-                        header.innerHTML = "Edit failed";
+                        header.innerHTML = "Edit failed!";
                         header.style.color = "red"
                     }
                     var popup = document.getElementById("popup");
