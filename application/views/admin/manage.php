@@ -11,107 +11,109 @@
                 <form id="add-form" onsubmit="return submitadd(event,this)">
                     <h3 id="modal-title">Add Product</h3>
                     <div class="modal-body">
-                    <div style="display:flex;justify-content:center;flex-direction:column">
-                    <div class="inline-modal">
-                    
-                        <div for="Name" class="label">Product name <span style="color:red">(*)</span></div>
-                        <input id="Name" name="Name" type="text" maxlength="100" class="name-product"  required/>
-                    
-                    </div><div class="inline-modal">
-                    <div class="form-group">
-                        <div for="CategoryId" class="label">Category <span style="color:red">(*)</span></div>
-                        <!-- <input class="CategoryId" name="CategoryId" /> -->
-                        <select id="CategoryId" name="CategoryId" required>
-                            <?php
-                            foreach ($category as $value) {
-                                echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                   
-                    </div>
-                    <div class="form-group">
-                        <div for="SubCategoryId" class="label">SubCategoryId </div>
-                        <select id="SubCategoryId" name="SubCategoryId">
-                            <?php
-                            foreach ($subcategory as $value) {
-                                echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                        <!-- <input class="SubCategoryId" name="SubCategoryId" /> -->
-                    </div>
-                    </div>
-                    
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Price" class="label">Price <span style="color:red">(*)</span></div>
-                        <input id="Price" name="Price" type="number"required />
-                    </div>
-                    <div class="form-group">
-                        <div for="Color" class="label">Color:</div>
-                        <input id="Color" name="Color" />
-                    </div>
-                    
-                   
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Material" class="label" >Material <span style="color:red">(*)</span></div>
-                        <input id="Material" name="Material" maxlength="200" required/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Size" class="label">Size</div>
-                        <input id="Size" name="Size" type="20" />
-                    </div>
-                    </div><div class="inline-modal">
-                    <div class="form-group1">
-                        <div for="isSaleOff" class="label">isSaleOff</div>
-                        <input id="isSaleOff" name="isSaleOff" type="checkbox" />
-                    </div>
-                   
-                    <div class="form-group">
-                        <div for="Percent_off" class="label">Percent_off</div>
-                        <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Image1" class="label" >Image1 <span style="color:red">(*)</span></div>
-                        <input id="Image1" name="Image1" required/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Image2" class="label">Image2</div>
-                        <input id="Image2" name="Image2" />
-                    </div>
-                    </div><div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Image3" class="label">Image3</div>
-                        <input id="Image3" name="Image3" required />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image4"class="label">Image4</div>
-                        <input id="Image4" name="Image4" />
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Alias" class="label">Alias <span style="color:red">(*)</span></div>
-                        <input id="Alias" name="Alias" type="text" maxlength="200" required/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Quantity" class="label">Quantity <span style="color:red">(*)</span></div>
-                        <input id="Quantity" name="Quantity" required/>
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    
-                        <div for="Description" class="label">Description </div>
-                        <textarea id="Description" name="Description" class="name-product"></textarea>
-                    
-                    </div>
-                    <button type="submit" class="btn-primary">Add</button>
-                    </div>
+                        <div style="display:flex;justify-content:center;flex-direction:column">
+                            <div class="inline-modal">
+
+                                <div for="Name" class="label">Product name <span style="color:red">(*)</span></div>
+                                <input id="Name" name="Name" type="text" maxlength="100" class="name-product" required />
+
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="CategoryId" class="label">Category <span style="color:red">(*)</span></div>
+                                    <select id="CategoryId" name="CategoryId" required>
+                                        <?php
+                                        foreach ($category as $value) {
+                                            echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <div for="SubCategoryId" class="label">SubCategoryId </div>
+                                    <select id="SubCategoryId" name="SubCategoryId">
+                                        <?php
+                                        foreach ($subcategory as $value) {
+                                            echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                    <!-- <input class="SubCategoryId" name="SubCategoryId" /> -->
+                                </div>
+                            </div>
+
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Price" class="label">Price <span style="color:red">(*)</span></div>
+                                    <input id="Price" name="Price" type="number" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Color" class="label">Color:</div>
+                                    <input id="Color" name="Color" />
+                                </div>
+
+
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Material" class="label">Material <span style="color:red">(*)</span></div>
+                                    <input id="Material" name="Material" maxlength="200" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Size" class="label">Size</div>
+                                    <input id="Size" name="Size" type="20" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group1">
+                                    <div for="isSaleOff" class="label">isSaleOff</div>
+                                    <input id="isSaleOff" name="isSaleOff" type="checkbox" />
+                                </div>
+
+                                <div class="form-group">
+                                    <div for="Percent_off" class="label">Percent_off</div>
+                                    <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Image1" class="label">Image1 <span style="color:red">(*)</span></div>
+                                    <input id="Image1" name="Image1" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Image2" class="label">Image2</div>
+                                    <input id="Image2" name="Image2" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Image3" class="label">Image3</div>
+                                    <input id="Image3" name="Image3" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Image4" class="label">Image4</div>
+                                    <input id="Image4" name="Image4" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Alias" class="label">Alias <span style="color:red">(*)</span></div>
+                                    <input id="Alias" name="Alias" type="text" maxlength="200" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Quantity" class="label">Quantity <span style="color:red">(*)</span></div>
+                                    <input id="Quantity" name="Quantity" required />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+
+                                <div for="Description" class="label">Description </div>
+                                <textarea id="Description" name="Description" class="name-product"></textarea>
+
+                            </div>
+                            <button type="submit" class="btn-primary">Add</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -119,200 +121,121 @@
         <div id="edit-product-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="hiddenModal()">&times;</span>
-               
+
                 <form id="edit-form" onsubmit="return submitedit(event,this)">
-                
+
                     <h3 id="modal-title">Edit Product</h3>
                     <div class="modal-body">
-                    <div style="display:flex;justify-content:center;flex-direction:column">
-                    <div class="form-group">
-                        <input id="Id" name="Id" type="text" maxlength="100" value="" hidden />
-                    </div>
-                    <div class="inline-modal">
-                    
-                        <div for="Name" class="label">Product name </div>
-                        <input id="Name" name="Name" type="text" maxlength="100" class="name-product"  disable/>
-                    
-                    </div><div class="inline-modal">
-                    <div class="form-group">
-                        <div for="CategoryId" class="label">Category</span></div>
-                        <!-- <input class="CategoryId" name="CategoryId" /> -->
-                        <select id="CategoryId" name="CategoryId" disabled>
-                            <?php
-                            foreach ($category as $value) {
-                                echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                   
-                    </div>
-                    <div class="form-group">
-                        <div for="SubCategoryId" class="label">SubCategoryId </div>
-                        <select id="SubCategoryId" name="SubCategoryId" disabled>
-                            <?php
-                            foreach ($subcategory as $value) {
-                                echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                        <!-- <input class="SubCategoryId" name="SubCategoryId" /> -->
-                    </div>
-                    </div>
-                    
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Price" class="label">Price <span style="color:red">(*)</span></div>
-                        <input id="Price" name="Price" type="number"required />
-                    </div>
-                    <div class="form-group">
-                        <div for="Color" class="label">Color:</div>
-                        <input id="Color" name="Color" disabled/>
-                    </div>
-                    
-                   
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Material" class="label" >Material <span style="color:red">(*)</span></div>
-                        <input id="Material" name="Material" maxlength="200"/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Size" class="label">Size</div>
-                        <input id="Size" name="Size" type="20"disabled/>
-                    </div>
-                    </div><div class="inline-modal">
-                    <div class="form-group1">
-                        <div for="isSaleOff" class="label">isSaleOff</div>
-                        <input id="isSaleOff" name="isSaleOff" type="checkbox" />
-                    </div>
-                   
-                    <div class="form-group">
-                        <div for="Percent_off" class="label">Percent_off</div>
-                        <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Image1" class="label" >Image1 <span style="color:red">(*)</span></div>
-                        <input id="Image1" name="Image1" required/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Image2" class="label">Image2</div>
-                        <input id="Image2" name="Image2" />
-                    </div>
-                    </div><div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Image3" class="label">Image3</div>
-                        <input id="Image3" name="Image3" required />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image4"class="label">Image4</div>
-                        <input id="Image4" name="Image4" />
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    <div class="form-group">
-                        <div for="Alias" class="label">Alias <span style="color:red">(*)</span></div>
-                        <input id="Alias" name="Alias" type="text" maxlength="200" disabled/>
-                    </div>
-                    <div class="form-group">
-                        <div for="Quantity" class="label">Quantity <span style="color:red">(*)</span></div>
-                        <input id="Quantity" name="Quantity" required/>
-                    </div>
-                    </div>
-                    <div class="inline-modal">
-                    
-                        <div for="Description" class="label">Description </div>
-                        <textarea id="Description" name="Description" class="name-product"></textarea>
-                    
-                    </div>
-                    <button type="submit" class="btn-primary">Update</button>
-                    </div>
+                        <div style="display:flex;justify-content:center;flex-direction:column">
+                            <div class="form-group">
+                                <input id="Id" name="Id" type="text" maxlength="100" value="" hidden />
+                            </div>
+                            <div class="inline-modal">
+
+                                <div for="Name" class="label">Product name </div>
+                                <input id="Name" name="Name" type="text" maxlength="100" class="name-product" disable />
+
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="CategoryId" class="label">Category</span></div>
+                                    <select id="CategoryId" name="CategoryId" disabled>
+                                        <?php
+                                        foreach ($category as $value) {
+                                            echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <div for="SubCategoryId" class="label">SubCategoryId </div>
+                                    <select id="SubCategoryId" name="SubCategoryId" disabled>
+                                        <?php
+                                        foreach ($subcategory as $value) {
+                                            echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Price" class="label">Price <span style="color:red">(*)</span></div>
+                                    <input id="Price" name="Price" type="number" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Color" class="label">Color:</div>
+                                    <input id="Color" name="Color" disabled />
+                                </div>
+
+
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Material" class="label">Material <span style="color:red">(*)</span></div>
+                                    <input id="Material" name="Material" maxlength="200" />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Size" class="label">Size</div>
+                                    <input id="Size" name="Size" type="20" disabled />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group1">
+                                    <div for="isSaleOff" class="label">isSaleOff</div>
+                                    <input id="isSaleOff" name="isSaleOff" type="checkbox" />
+                                </div>
+
+                                <div class="form-group">
+                                    <div for="Percent_off" class="label">Percent_off</div>
+                                    <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Image1" class="label">Image1 <span style="color:red">(*)</span></div>
+                                    <input id="Image1" name="Image1" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Image2" class="label">Image2</div>
+                                    <input id="Image2" name="Image2" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Image3" class="label">Image3</div>
+                                    <input id="Image3" name="Image3" required />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Image4" class="label">Image4</div>
+                                    <input id="Image4" name="Image4" />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+                                <div class="form-group">
+                                    <div for="Alias" class="label">Alias <span style="color:red">(*)</span></div>
+                                    <input id="Alias" name="Alias" type="text" maxlength="200" disabled />
+                                </div>
+                                <div class="form-group">
+                                    <div for="Quantity" class="label">Quantity <span style="color:red">(*)</span></div>
+                                    <input id="Quantity" name="Quantity" required />
+                                </div>
+                            </div>
+                            <div class="inline-modal">
+
+                                <div for="Description" class="label">Description </div>
+                                <textarea id="Description" name="Description" class="name-product"></textarea>
+
+                            </div>
+                            <button type="submit" class="btn-primary">Update</button>
+                        </div>
                     </div>
                 </form>
-                <!-- <form id="edit-form" onsubmit="return submitedit(event,this)">
-                    <div class="form-group">
-                        <input id="Id" name="Id" type="text" maxlength="100" value="" hidden />
-                    </div>
-                    <div class="form-group">
-                        <div for="Name">Product name:</div>
-                        <input id="Name" name="Name" type="text" maxlength="100" value="" disabled />
-                    </div>
-                    <div class="form-group">
-                        <div for="CategoryId">Category:</div>
-                        <select id="CategoryId" name="CategoryId" disabled>
-                            <?php
-                            foreach ($category as $value) {
-                                echo '<option value="' . $value["Categorie"]["id"] . '">' . $value["Categorie"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <div for="SubCategoryId">SubCategoryId:</div>
-                        <select id="SubCategoryId" name="SubCategoryId" disabled>
-                            <?php
-                            foreach ($subcategory as $value) {
-                                echo '<option value="' . $value["Subcategory"]["id"] . '">' . $value["Subcategory"]["name"] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <div for="Description">Description:</div>
-                        <textarea id="Description" name="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div for="Price">Price:</div>
-                        <input id="Price" name="Price" type="number" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Color">Color:</div>
-                        <input id="Color" name="Color" disabled />
-                    </div>
-                    <div class="form-group">
-                        <div for="Material">Material:</div>
-                        <input id="Material" name="Material" maxlength="200" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Size">Size:</div>
-                        <input id="Size" name="Size" type="20" disabled />
-                    </div>
-                    <div class="form-group">
-                        <div for="isSaleOff">isSaleOff:</div>
-                        <input id="isSaleOff" name="isSaleOff" type="checkbox" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Percent_off">Percent_off:</div>
-                        <input id="Percent_off" name="Percent_off" type="number" min="0" max="99" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image1">Image1:</div>
-                        <input id="Image1" name="Image1" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image2">Image2:</div>
-                        <input id="Image2" name="Image2" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image3">Image3:</div>
-                        <input id="Image3" name="Image3" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Image4">Image4:</div>
-                        <input id="Image4" name="Image4" />
-                    </div>
-                    <div class="form-group">
-                        <div for="Alias">Alias:</div>
-                        <input id="Alias" name="Alias" type="text" maxlength="200" disabled />
-                    </div>
-                    <div class="form-group">
-                        <div for="Quantity">Quantity:</div>
-                        <input id="Quantity" name="Quantity" />
-                    </div>
-                    <button type="submit">Edit</button>
-                </form> -->
+
             </div>
+        </div>
         </div>
         <div class="table-wrapper">
             <table class="table">
@@ -369,7 +292,6 @@
         var maxPage, page, size;
 
         function getData(filter) {
-            // return new Promise(function(resolve, reject) {
             var url = `?url=admin/view/${filter.currentPage}/${filter.pageSize}&api`;
             let data = [];
             var xmlhttp = new XMLHttpRequest();
@@ -386,7 +308,6 @@
                             data = response.data
                             renderTable({
                                 products: data['data'],
-                                // total: rNumb * 10,
                                 total: data['total'],
                                 pageSize: filter.pageSize,
                                 currentPage: filter.currentPage,
@@ -440,8 +361,6 @@
                     createLink(product.Image4, "Image4"),
                 ];
                 let imgsElement = createTD(imgs, "imglist");
-                // imgsElement.style.maxWidth = "150px";
-                // imgsElement.style.wordBreak = "break-all";
                 tr.appendChild(imgsElement);
                 tr.appendChild(createTD(product.Alias), "alias");
                 tr.appendChild(createTD(product.Quantity));
@@ -533,9 +452,7 @@
         function createTDAction(row) {
             let td = document.createElement("td");
             let buttonEdit = createLinkButton("Edit", () => editRow(row));
-            // let buttonDelete = createLinkButton("Delete", () => deleteRow(row));
             td.append(buttonEdit);
-            // td.append(buttonDelete);
             return td;
         }
 
@@ -673,6 +590,9 @@
                         var header = document.getElementById("inner-header")
                         header.innerHTML = "Success";
                         header.style.color = "green"
+                        setTimeout(function() {
+                            window.location.reload(1);
+                        }, 1000);
                     } else {
                         document.getElementById("response").innerHTML = response.message;
                         var header = document.getElementById("inner-header")

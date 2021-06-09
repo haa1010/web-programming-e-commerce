@@ -82,16 +82,12 @@ function callHook()
     $model = $controller; //Cart
     $controller .= 'Controller'; //CartController
     $dispatch = new $controller($model, $controllerName, $action, $api);
-    // $dispatch->render();
     if ((int)method_exists($controller, $action)) {
         call_user_func_array(array($dispatch, $action), $queryString);
     }
-    // } else {
-    //     /* Error Generation Code Here */
-    // }
+
 
 }
 
 setReporting();
-// autoload();
 callHook();

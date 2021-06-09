@@ -68,7 +68,6 @@
         if($orderby==1)
         usort($listProduct, "usortAscending");
         else  usort($listProduct, "usortDescending");
-       // print_r($listProduct);
         $this->set('products', $listProduct);
     
    

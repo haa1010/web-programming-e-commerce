@@ -4,7 +4,6 @@ class User extends Model
     function login($username, $password)
     {
         $query = "select id, username, is_admin from `" . $this->_table . "` where username = '" . $this->escape($username) . "' and password = '" . $this->escape(hash_password($password)) . "'";
-        // $query = "select username, password, avatar from `" . $this->_table . "` where username = '" . $this->escape($username) . "'";
         print_r($query);
         return $this->query($query, 1);
     }

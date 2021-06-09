@@ -103,7 +103,6 @@ class UserController extends BaseController
         setcookie('token', null, -1, '/'); 
 
         header('Location:' . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "?url=home/view"));
-        // redirect("home", "view");
     }
 
     public function signup()

@@ -51,7 +51,6 @@ class Product extends Model
             $this->escape($data['Percent_off']) . ",'" . $this->escape($data['Image1']) . "','" . $this->escape($data['Image2']) . "','" .
             $this->escape($data['Image3']) . "','" . $this->escape($data['Image4']) . "','" . $this->escape($data['Alias']) . "','" .
             $this->escape($data['Quantity']) . "');";
-        // var_dump($query);
         $this->query($query);
     }
     function update_one($data)

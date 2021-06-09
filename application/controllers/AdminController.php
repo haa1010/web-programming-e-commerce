@@ -27,7 +27,6 @@ class AdminController extends BaseController
             show_404();
         }
         $return = new Message();
-        // $data = $this->db->selectAll();
         $data = $this->db->page(($offset - 1) * $limit, $limit);
         if ($data != null) {
             $return->success = true;

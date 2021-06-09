@@ -27,7 +27,6 @@ class Orders extends Model
     function get_history($username)
     {
         $query = 'SELECT `orders`.`Cart_total`,`orders`.`Created_at`, `order_detail`.*, `product`.`Name`,`product`.`Image1`,`product`.`Alias` FROM `orders` JOIN `order_detail` ON `order_detail`.`OrderId`=`orders`.`Id` JOIN `product` on `product`.`Id` = `order_detail`.`ProductId` JOIN `user` on `user`.`Id` = `orders`.`Uid` WHERE `user`.`username`=\'' . $username . '\' ';
-        // echo($query);
         return $this->query($query);
     }
 }

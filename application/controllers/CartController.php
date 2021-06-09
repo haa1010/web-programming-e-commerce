@@ -37,9 +37,7 @@ class CartController extends BaseController
     }
     function clear()
     {
-        // $data = new Message(true);
         $this->Cart->cart_destroy();
-        // $this->set("message", $data->getMesage());
     }
 
     function delete($id = NULL)
@@ -47,9 +45,7 @@ class CartController extends BaseController
         $data = new Message();
         if ($id != null) {
             $data->success = $this->Cart->cart_delete($id);
-            // $data->message = $data->success ? "Successful deleted" : "Invalid Product Id";
         }
-        // $this->set("message", $data->getMesage());
     }
 
     function checkout()
@@ -67,13 +63,10 @@ class CartController extends BaseController
                 $this->set("message", "Invalid length Description");
                 return;
             }
-            // if (preg_match_all($pattern, $phone))
-            //     $this->set("message", "Invalid Phone Number");
             // add to DB
             if ($_SESSION['cart'] != array()) {
                 $orderModel = new Orders();
                 $productModel = new Product();
-                // $productModel.get_quantity();D
                 $isValid = $productModel->checkCart();
                 // add to order and order detail.
                 if ($isValid == "") {
